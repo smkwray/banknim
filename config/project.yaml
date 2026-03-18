@@ -1,0 +1,89 @@
+project:
+  name: NimScale
+  sample_start: "2010-03-31"
+  sample_end: "2025-12-31"
+  min_bank_quarters: 8
+  winsor_pct: 0.01
+
+paths:
+  raw: "data/raw"
+  external: "data/external"
+  interim: "data/interim"
+  final: "data/final"
+  figures: "output/figures"
+  tables: "output/tables"
+  logs: "output/logs"
+
+fdic:
+  base_url: "https://api.fdic.gov/banks"
+  api_key_env: "FDIC_API_KEY"
+  page_size: 10000
+  endpoints:
+    financials: "financials"
+    institutions: "institutions"
+    history: "history"
+    sod: "sod"
+  metadata_urls:
+    swagger: "https://api.fdic.gov/banks/docs/swagger.yaml"
+    common_financial_reports: "https://api.fdic.gov/banks/docs/All%20Financial%20Reports.xlsx"
+    sod_definitions: "https://api.fdic.gov/banks/docs/SOD_Variables_and_Definitions.csv"
+  default_filters:
+    financials: 'ACTIVE:1 AND !(BKCLASS:NC)'
+  financial_fields_core:
+    - CERT
+    - NAME
+    - REPDTE
+    - ASSET
+    - DEP
+    - EQ
+    - LNLSNET
+    - NIMY
+    - INTINCY
+    - INTEXPY
+    - ROA
+    - ROE
+    - OFFOA
+    - CITY
+    - STALP
+    - REGAGNT
+    - BKCLASS
+    - ACTIVE
+  column_candidates:
+    bank_id: [CERT, FDICCERT, CERTNUM, FDIC_ID]
+    quarter_date: [REPDTE, REPORTDATE, DATE]
+    total_assets: [ASSET, ASSETS]
+    total_deposits: [DEP, DEPOSITS]
+    equity: [EQ, EQUITY]
+    loans_net: [LNLSNET, NETLOANS]
+    nim: [NIMY, NIM, UBPRE018, UBPRKX42]
+    interest_income: [INTINCY, INTINC]
+    interest_expense: [INTEXPY, INTEXP]
+    roa: [ROA]
+    roe: [ROE]
+    office_count: [OFFOA, OFFICES]
+    city: [CITY]
+    state: [STALP, STATE]
+    regulator: [REGAGNT, REGULATOR]
+    active_flag: [ACTIVE]
+    bank_class: [BKCLASS]
+    sod_year: [YEAR, SOD_YEAR]
+    sod_branch_id: [BRNUM, OFFICEID, BRANCH_ID, UNINUMBR]
+    sod_deposits: [DEPSUMBR, DEPSUM, DEPOSITS, DEPDOM]
+    sod_county_fips: [CNTYNUM, COUNTYFIPS, CNTY_FIPS]
+    history_event_date: [EFFDATE, PROCDATE, DATE]
+    history_acquirer_cert: [SUR_CERT, SURCERT, ACQ_CERT, ACQUIRER_CERT, CERT]
+    history_target_cert: [OUT_CERT, OUTCERT, TARGET_CERT, FAILED_CERT]
+    history_event_code: [EVT_CODE, EVENTCODE, CODE]
+    history_event_desc: [CHANGECODE_DESC, EVENTDESC, EVENT_DESC, DESCRIPTION, TRANS_TYPE]
+
+rates:
+  series:
+    FEDFUNDS: "https://fred.stlouisfed.org/graph/fredgraph.csv?id=FEDFUNDS"
+    DPRIME: "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DPRIME"
+    DGS10: "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10"
+    DGS2: "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2"
+    DGS3MO: "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS3MO"
+
+ffiec:
+  bulk_page: "https://cdr.ffiec.gov/public/pws/downloadbulkdata.aspx"
+  user_guide_page: "https://cdr.ffiec.gov/Public/DownloadUBPRUserGuide.aspx"

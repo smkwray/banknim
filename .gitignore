@@ -1,0 +1,44 @@
+
+# Agent orchestration
+do/
+
+# Seed docs (keep GH Pages site files in docs/)
+docs/*.md
+
+# Data & output (large files, contain PII paths in logs)
+/data/
+/output/
+
+# Environment
+.env
+
+# Plans
+*.plan.md
+plan.md
+plans/
+
+# Prompts
+prompts/
+
+# Screenshots from dev
+*.png
+
+# Playwright
+.playwright-mcp/
+.playwright-cli/
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+dist/
+build/
+
+# Editor / OS
+.DS_Store
+.vscode/
+.idea/

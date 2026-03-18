@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>banknim &mdash; Models &amp; Results</title>
+  <script src="js/theme.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+</head>
+<body data-page="models">
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="site-logo">bank<span class="logo-accent">nim</span></a>
+      <div class="header-controls">
+        <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle navigation">&#9776;</button>
+        <button id="themeToggle" class="theme-toggle" onclick="rcToggleTheme()" aria-label="Toggle theme">&#9790;</button>
+      </div>
+      <nav><ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="models.html">Models</a></li>
+        <li><a href="data.html">Data</a></li>
+      </ul></nav>
+    </div>
+  </header>
+
+  <section class="hero hero-sm">
+    <div class="hero-inner">
+      <h1>Models &amp; Results</h1>
+      <p class="subtitle">Nine result sections, six robustness specifications, and eight extensions.</p>
+    </div>
+  </section>
+
+  <main class="content">
+    <nav class="page-nav">
+      <a href="#summary-stats" class="active">Summary Stats</a>
+      <a href="#baseline">Baseline</a>
+      <a href="#nim-decomposition">NIM Decomposition</a>
+      <a href="#franchise">Franchise Dilution</a>
+      <a href="#rate-cycle">Rate Cycle</a>
+      <a href="#event-study">Event Study</a>
+      <a href="#thresholds">Thresholds</a>
+      <a href="#robustness">Robustness</a>
+      <a href="#time-varying">Time Variation</a>
+      <a href="#extensions">Extensions</a>
+    </nav>
+
+    <!-- Summary Statistics -->
+    <section id="summary-stats" class="section">
+      <div class="section-header"><h2>Summary Statistics</h2></div>
+      <div class="table-wrap"><table class="data-table" id="summaryTable">
+        <thead><tr>
+          <th>Variable</th><th class="num">N</th><th class="num">Mean</th><th class="num">Std</th>
+          <th class="num">1%</th><th class="num">25%</th><th class="num">50%</th><th class="num">75%</th><th class="num">99%</th>
+        </tr></thead>
+        <tbody id="summaryBody"></tbody>
+      </table></div>
+    </section>
+
+    <!-- Baseline -->
+    <section id="baseline" class="section">
+      <div class="section-header"><h2>Baseline</h2><span class="section-tag">Within &amp; Between</span></div>
+      <p>The within-bank model estimates the size penalty using bank fixed effects. The between-bank model confirms the cross-sectional relationship using bank-level means. The growth model adds asset and deposit growth dynamics.</p>
+      <div class="table-wrap"><table class="data-table" id="baselineTable">
+        <thead><tr><th>Model</th><th>Term</th><th class="num">Coef</th><th class="num">SE</th><th class="num">p</th><th class="num">CI Low</th><th class="num">CI High</th><th class="num">N</th><th class="num">R&sup2;</th></tr></thead>
+        <tbody id="baselineBody"></tbody>
+      </table></div>
+      <div class="insight-box">
+        <p>The <strong>within-bank</strong> model shows a size penalty of <strong>&minus;0.090</strong>. The <strong>between-bank</strong> model confirms the cross-section at <strong>&minus;0.085</strong>. The <strong>growth</strong> model shows asset growth is positively associated with NIM (+0.71) but the asset&times;deposit growth interaction is strongly negative (&minus;3.64) &mdash; growth without matching deposit growth hurts margins.</p>
+      </div>
+    </section>
+
+    <!-- NIM Decomposition -->
+    <section id="nim-decomposition" class="section">
+      <div class="section-header"><h2>NIM Decomposition</h2><span class="section-tag">Asset yield vs funding cost</span></div>
+      <p>The baseline within-bank FE is rerun with interest income and interest expense as separate outcomes to isolate whether the NIM penalty comes from lower asset yields, higher funding costs, or both.</p>
+      <div class="table-wrap"><table class="data-table" id="nimDecompTable">
+        <thead><tr><th>Model</th><th>Term</th><th class="num">Coef</th><th class="num">SE</th><th class="num">p</th><th class="num">CI Low</th><th class="num">CI High</th><th class="num">N</th><th class="num">R&sup2;</th></tr></thead>
+        <tbody id="nimDecompBody"></tbody>
+      </table></div>
+      <div class="insight-box" id="nimDecompInsight">
+        <p>Loading decomposition results.</p>
+      </div>
+    </section>
+
+    <!-- Franchise Dilution -->
+    <section id="franchise" class="section">
+      <div class="section-header"><h2>Franchise Dilution</h2><span class="section-tag">Growth quality</span></div>
+      <div class="table-wrap"><table class="data-table" id="franchiseTable">
+        <thead><tr><th>Model</th><th>Term</th><th class="num">Coef</th><th class="num">SE</th><th class="num">p</th><th class="num">CI Low</th><th class="num">CI High</th><th class="num">N</th><th class="num">R&sup2;</th></tr></thead>
+        <tbody id="franchiseBody"></tbody>
+      </table></div>
+      <div class="insight-box">
+        <p>The branch-growth interaction is <strong>negative and significant (&minus;0.58)</strong>: rapid franchise expansion dilutes margins.</p>
+      </div>
+    </section>
+
+    <!-- Rate Cycle -->
+    <section id="rate-cycle" class="section">
+      <div class="section-header"><h2>Rate Cycle</h2><span class="section-tag">Heterogeneity</span></div>
+      <div class="table-wrap"><table class="data-table" id="rateCycleTable">
+        <thead><tr><th>Model</th><th>Term</th><th class="num">Coef</th><th class="num">SE</th><th class="num">p</th><th class="num">CI Low</th><th class="num">CI High</th><th class="num">N</th><th class="num">R&sup2;</th></tr></thead>
+        <tbody id="rateCycleBody"></tbody>
+      </table></div>
+      <div class="insight-box">
+        <p>Size&times;FedFunds = <strong>&minus;0.012</strong> (p&lt;0.001): each 1 pp rate hike amplifies the size penalty. A steeper yield curve partially offsets this (+0.015).</p>
+      </div>
+    </section>
+
+    <!-- Event Study -->
+    <section id="event-study" class="section">
+      <div class="section-header"><h2>Acquisition Event Study</h2><span class="section-tag">23,837 obs</span></div>
+      <div class="chart-container">
+        <h3>NIM Around Acquisitions</h3>
+        <p class="chart-subtitle">Event-time coefficients (relative to t&minus;1) for acquiring banks. 95% confidence intervals shown as shaded band.</p>
+        <div class="chart-canvas-wrap"><canvas id="eventStudyChart"></canvas></div>
+        <p class="chart-note">Reference period is t&minus;1 (coefficient = 0). Positive coefficients mean higher NIM relative to the quarter before the deal.</p>
+      </div>
+      <div class="insight-box">
+        <p>NIM declines into acquisitions (coefficients fall from +0.11 at t&minus;8 to +0.02 at t&minus;2 vs. t&minus;1), then rebounds post-deal peaking at t+2 (+0.12) before fading. Acquirers may be buying when their own margins are under pressure.</p>
+      </div>
+    </section>
+
+    <!-- Thresholds -->
+    <section id="thresholds" class="section">
+      <div class="section-header"><h2>Threshold Crossing</h2><span class="section-tag">Regulatory cutoffs</span></div>
+      <p>Event-study coefficients around the quarter a bank first crosses a regulatory asset threshold. Reference period is t&minus;1.</p>
+      <div class="tabs">
+        <button class="tab-btn active" onclick="showTab('tab10b',this)">$10B (n=148)</button>
+        <button class="tab-btn" onclick="showTab('tab50b',this)">$50B (n=41)</button>
+        <button class="tab-btn" onclick="showTab('tab100b',this)">$100B (n=26)</button>
+      </div>
+      <div id="tab10b" class="tab-panel active">
+        <div class="chart-container"><div class="chart-canvas-wrap"><canvas id="threshold10bChart"></canvas></div></div>
+      </div>
+      <div id="tab50b" class="tab-panel">
+        <div class="chart-container"><div class="chart-canvas-wrap"><canvas id="threshold50bChart"></canvas></div></div>
+      </div>
+      <div id="tab100b" class="tab-panel">
+        <div class="chart-container"><div class="chart-canvas-wrap"><canvas id="threshold100bChart"></canvas></div></div>
+      </div>
+      <div class="warning-box">
+        <p>148 banks crossed $10B. $50B (41 banks) and $100B (26 banks) samples are too small for reliable inference.</p>
+      </div>
+    </section>
+
+    <!-- Robustness -->
+    <section id="robustness" class="section">
+      <div class="section-header"><h2>Robustness</h2><span class="section-tag">6 specifications</span></div>
+      <div class="chart-container">
+        <h3>Size Coefficient Across Specifications</h3>
+        <p class="chart-subtitle">Point estimates and 95% confidence intervals for the log-assets coefficient under six alternative specifications. Dashed red line marks zero.</p>
+        <div class="chart-canvas-wrap"><canvas id="forestChart"></canvas></div>
+      </div>
+      <div class="warning-box">
+        <p><strong>Raw NIM (no winsorization)</strong> shows the size effect is insignificant (&minus;0.01, p=0.87). The result depends on trimming extreme NIM outliers. The <strong>first-difference</strong> spec (&minus;0.11, p&lt;0.001), which removes bank-specific trends, and the <strong>lagged-controls</strong> spec (&minus;0.12, p&lt;0.001) are the most reassuring robustness results.</p>
+      </div>
+    </section>
+
+    <!-- Time-Varying Coefficients -->
+    <section id="time-varying" class="section">
+      <div class="section-header"><h2>Time-Varying Coefficients</h2><span class="section-tag">Rolling 20-quarter FE</span></div>
+      <p>The baseline within-bank FE specification is re-estimated in rolling 20-quarter windows to show how the size penalty evolves over time rather than assuming one constant coefficient for the full 2010&ndash;2025 sample.</p>
+      <div class="chart-container">
+        <h3>Rolling Size Penalty on NIM</h3>
+        <p class="chart-subtitle">Each point is the log-assets coefficient from the baseline FE model centered on the labeled quarter. The shaded band shows the 95% confidence interval.</p>
+        <div class="chart-canvas-wrap"><canvas id="rollingCoeffChart"></canvas></div>
+        <p class="chart-note">Window length is 20 quarters. More negative values imply a steeper within-bank size penalty.</p>
+      </div>
+      <div class="insight-box" id="rollingInsight">
+        <p>Loading rolling coefficient path.</p>
+      </div>
+    </section>
+
+    <!-- Extensions -->
+    <section id="extensions" class="section">
+      <div class="section-header"><h2>Extensions</h2><span class="section-tag">8 analyses</span></div>
+      <div class="table-wrap"><table class="data-table" id="extensionTable">
+        <thead><tr><th>Model</th><th>Term</th><th class="num">Coef</th><th class="num">SE</th><th class="num">p</th><th class="num">CI Low</th><th class="num">CI High</th><th class="num">N</th><th class="num">R&sup2;</th></tr></thead>
+        <tbody id="extensionBody"></tbody>
+      </table></div>
+      <div class="insight-box">
+        <p><strong>NIM Volatility:</strong> null result (p=0.19). Size doesn&rsquo;t predict NIM volatility.</p>
+      </div>
+      <div class="insight-box">
+        <p><strong>H6 Fee Offset:</strong> ROA rises with size (+0.20, p&lt;0.001). Noninterest margin +0.31 (p&lt;0.001). Large banks offset lower NIM with higher fee income &mdash; a different earnings model, not a worse one.</p>
+      </div>
+      <div class="insight-box">
+        <p><strong>Market Power:</strong> null result. Local deposit HHI doesn&rsquo;t predict NIM (p=0.70).</p>
+      </div>
+      <div class="insight-box">
+        <p><strong>Lagged Controls:</strong> strengthens baseline (&minus;0.119 vs. &minus;0.090).</p>
+      </div>
+      <div class="insight-box" id="equityInsight">
+        <p>Loading equity-ratio extension.</p>
+      </div>
+      <div class="insight-box" id="efficiencyInsight">
+        <p>Loading efficiency extension.</p>
+      </div>
+      <div class="insight-box" id="loanMixInsight">
+        <p>Loading loan-composition extension.</p>
+      </div>
+      <div class="insight-box" id="distressInsight">
+        <p>Loading distress model.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer"><div class="footer-inner"><span>banknim &middot; MIT License &middot; Shane Wray 2026</span><a href="https://github.com/smkwray/banknim">GitHub</a></div></footer>
+
+  <script>
+    /* Tabs */
+    function showTab(id, btn) {
+      document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
+      document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+      document.getElementById(id).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    /* Human-readable model names */
+    var MODEL_NAMES = {
+      'within_fe_size': 'Within-bank FE',
+      'between_bank_means': 'Between-bank means',
+      'growth_fe': 'Growth dynamics',
+      'int_income_fe': 'Interest income FE',
+      'int_expense_fe': 'Interest expense FE',
+      'franchise_branch_fe': 'Branch growth FE',
+      'franchise_dep_per_branch_fe': 'Deposits per branch FE',
+      'franchise_sod_dep_fe': 'SOD deposit growth FE',
+      'rate_cycle_fedfunds': 'Rate cycle (fed funds)',
+      'rate_cycle_slope': 'Rate cycle (yield slope)',
+      'rate_cycle_both': 'Rate cycle (combined)',
+      'acquirer_event_study': 'Acquirer event study',
+      'threshold_cross_10b': 'Threshold $10B',
+      'threshold_cross_50b': 'Threshold $50B',
+      'threshold_cross_100b': 'Threshold $100B',
+      'rob_raw_nim_fe_size': 'Raw NIM (no winsorize)',
+      'rob_min12q_fe_size': 'Exclude <12 quarters',
+      'rob_log_deposits_fe': 'Log deposits as size',
+      'rob_first_diff_fe': 'First differences',
+      'rob_lagged_controls_fe': 'Lagged controls',
+      'rob_growth_winsorized': 'Growth (winsorized)',
+      'nim_vol_fe_size': 'NIM volatility',
+      'equity_ratio_fe': 'Equity ratio FE',
+      'efficiency_fe': 'Efficiency pass-through FE',
+      'loan_mix_fe': 'Loan mix FE',
+      'distress_logit': 'Distress logit',
+      'h6_roa_fe': 'ROA (fee offset)',
+      'h6_intexp_fe': 'Interest expense',
+      'h6_nonint_margin_fe': 'Noninterest margin',
+      'market_power_hhi': 'Market power (HHI)',
+      'market_power_hhi_x_size': 'Market power (HHI \u00d7 size)'
+    };
+
+    /* Human-readable term names */
+    var TERM_NAMES = {
+      'Intercept': 'Intercept',
+      'LN_ASSETS': 'Log assets',
+      'AVG_LN_ASSETS': 'Avg log assets',
+      'NIM_W': 'NIM',
+      'LN_DEP': 'Log deposits',
+      'EQ_RATIO_W': 'Equity / assets',
+      'CI_SHARE_W': 'C&I loans / assets',
+      'RESIDENTIAL_SHARE_W': 'Residential loans / assets',
+      'CRE_SHARE_W': 'CRE loans / assets',
+      'CONSUMER_SHARE_W': 'Consumer loans / assets',
+      'AVG_EQ_RATIO': 'Avg equity / assets',
+      'EQ_RATIO_LAG1': 'Equity / assets (lagged)',
+      'LOANS_SHARE_W': 'Loans / assets',
+      'AVG_LOANS_SHARE': 'Avg loans / assets',
+      'LOANS_SHARE_LAG1': 'Loans / assets (lagged)',
+      'ASSET_GROWTH_QOQ_W': 'Asset growth (q/q)',
+      'DEP_GROWTH_QOQ_W': 'Deposit growth (q/q)',
+      'ASSET_GROWTH_QOQ_W:DEP_GROWTH_QOQ_W': 'Asset growth \u00d7 Deposit growth',
+      'BRANCH_COUNT_GROWTH_YOY_W': 'Branch growth (y/y)',
+      'ASSET_GROWTH_QOQ_W:BRANCH_COUNT_GROWTH_YOY_W': 'Asset growth \u00d7 Branch growth',
+      'DEP_PER_BRANCH_GROWTH_YOY_W': 'Deposits per branch growth',
+      'ASSET_GROWTH_QOQ_W:DEP_PER_BRANCH_GROWTH_YOY_W': 'Asset growth \u00d7 Dep/branch growth',
+      'SOD_DEP_TOTAL_GROWTH_YOY_W': 'SOD deposit growth (y/y)',
+      'ASSET_GROWTH_QOQ_W:SOD_DEP_TOTAL_GROWTH_YOY_W': 'Asset growth \u00d7 SOD deposit growth',
+      'LN_ASSETS_x_FEDFUNDS': 'Log assets \u00d7 Fed funds',
+      'LN_ASSETS_x_SLOPE': 'Log assets \u00d7 Yield slope',
+      'LN_ASSETS_x_HHI': 'Log assets \u00d7 HHI',
+      'LOCAL_HHI_W': 'Local deposit HHI',
+      'D_LN_ASSETS': '\u0394 Log assets',
+      'D_EQ_RATIO_W': '\u0394 Equity / assets',
+      'D_LOANS_SHARE_W': '\u0394 Loans / assets'
+    };
+    /* Event-time terms */
+    ['m8','m7','m6','m5','m4','m3','m2'].forEach(function(k) {
+      TERM_NAMES['ET_' + k] = 't\u2212' + k.slice(1);
+    });
+    ['p0','p1','p2','p3','p4','p5','p6','p7'].forEach(function(k) {
+      TERM_NAMES['ET_' + k] = 't+' + k.slice(1);
+    });
+
+    function humanModel(raw) { return MODEL_NAMES[raw] || raw; }
+    function humanTerm(raw) { return TERM_NAMES[raw] || raw; }
+
+    /* Significance stars */
+    function sigStars(p) {
+      if (p === null || p === undefined) return '';
+      if (p < 0.001) return ' ***';
+      if (p < 0.01) return ' **';
+      if (p < 0.05) return ' *';
+      return '';
+    }
+    function fmtCoef(v) { return v.toFixed(4); }
+    function fmtP(p) {
+      if (p === null || p === undefined) return '';
+      if (p === 0) return '<0.001';
+      if (p < 0.001) return '<0.001';
+      return p.toFixed(4);
+    }
+    function getR2(row) {
+      if (row.r2_within !== undefined && row.r2_within !== null) return row.r2_within.toFixed(3);
+      if (row.r2 !== undefined && row.r2 !== null) return row.r2.toFixed(3);
+      return '';
+    }
+    function findTerm(rows, model, term) {
+      return rows.find(function(r) { return r.model === model && r.term === term; }) || null;
+    }
+    function setInsight(id, html) {
+      var box = document.getElementById(id);
+      if (box) box.innerHTML = '<p>' + html + '</p>';
+    }
+
+    function renderCoefTable(rows, tbodyId) {
+      var tb = document.getElementById(tbodyId);
+      if (!tb) return;
+      tb.innerHTML = rows.map(function(r) {
+        var stars = sigStars(r.p_value);
+        return '<tr>' +
+          '<td class="highlight">' + humanModel(r.model) + '</td>' +
+          '<td>' + humanTerm(r.term) + '</td>' +
+          '<td class="num">' + fmtCoef(r.coef) + (stars ? '<span class="sig">' + stars + '</span>' : '') + '</td>' +
+          '<td class="num">' + fmtCoef(r.std_err) + '</td>' +
+          '<td class="num">' + fmtP(r.p_value) + '</td>' +
+          '<td class="num">' + fmtCoef(r.ci_low) + '</td>' +
+          '<td class="num">' + fmtCoef(r.ci_high) + '</td>' +
+          '<td class="num">' + (r.nobs ? r.nobs.toLocaleString() : '') + '</td>' +
+          '<td class="num">' + getR2(r) + '</td>' +
+          '</tr>';
+      }).join('');
+    }
+
+    rcChartDefaults();
+    var charts = [];
+
+    function buildCharts() {
+      charts.forEach(function(c){ c.destroy(); });
+      charts = [];
+      var C = rcColors();
+
+      /* Load model results for tables */
+      fetch('data/model_results.json')
+        .then(function(r){ return r.json(); })
+        .then(function(data) {
+          var baselineRows = data.filter(function(d){ return d.group === 'baseline'; });
+          var nimDecompRows = data.filter(function(d){ return d.group === 'nim_decomposition'; });
+          var franchiseRows = data.filter(function(d){ return d.group === 'franchise_dilution'; });
+          var rateRows = data.filter(function(d){ return d.group === 'rate_cycle'; });
+          var extensionRows = data.filter(function(d){ return d.group === 'extension'; });
+          var extensionDisplayRows = extensionRows.filter(function(d){ return !String(d.term).startsWith('C(QUARTER)'); });
+
+          renderCoefTable(baselineRows, 'baselineBody');
+          renderCoefTable(nimDecompRows, 'nimDecompBody');
+          renderCoefTable(franchiseRows, 'franchiseBody');
+          renderCoefTable(rateRows, 'rateCycleBody');
+          renderCoefTable(extensionDisplayRows, 'extensionBody');
+
+          var income = findTerm(nimDecompRows, 'int_income_fe', 'LN_ASSETS');
+          var expense = findTerm(nimDecompRows, 'int_expense_fe', 'LN_ASSETS');
+          if (income && expense) {
+            var channels = [];
+            if (income.p_value < 0.05 && income.coef < 0) channels.push('earning less on assets');
+            if (expense.p_value < 0.05 && expense.coef > 0) channels.push('paying more for funding');
+            var summary = 'The size-linked NIM penalty appears to come ';
+            if (channels.length === 2) {
+              summary += '<strong>from both sides of the balance sheet</strong>: interest income falls by <strong>' + fmtCoef(income.coef) + '</strong> while interest expense rises by <strong>' + fmtCoef(expense.coef) + '</strong> as banks grow.';
+              summary += ' The larger channel is <strong>' + (Math.abs(income.coef) >= Math.abs(expense.coef) ? 'lower asset yield</strong>.' : 'higher funding cost</strong>.');
+            } else if (channels.length === 1) {
+              summary += '<strong>primarily from ' + channels[0] + '</strong>.';
+              summary += ' The size coefficient is <strong>' + fmtCoef(income.coef) + '</strong> for interest income and <strong>' + fmtCoef(expense.coef) + '</strong> for interest expense.';
+            } else {
+              summary += 'but neither channel is estimated precisely enough on its own to isolate a dominant mechanism.';
+            }
+            setInsight('nimDecompInsight', summary);
+          }
+
+          var equitySize = findTerm(extensionRows, 'equity_ratio_fe', 'LN_ASSETS');
+          if (equitySize) {
+            var equityText = '<strong>Equity Ratio:</strong> ';
+            if (equitySize.p_value < 0.05 && equitySize.coef < 0) {
+              equityText += 'larger banks run thinner capital buffers. A one-unit increase in log assets is associated with <strong>' + fmtCoef(equitySize.coef) + '</strong> lower equity/assets within bank.';
+            } else if (equitySize.p_value < 0.05) {
+              equityText += 'equity/assets rises with size (<strong>' + fmtCoef(equitySize.coef) + '</strong>), so leverage is not the main explanation for the ROA result.';
+            } else {
+              equityText += 'the size coefficient is imprecise (<strong>' + fmtCoef(equitySize.coef) + '</strong>, p=' + fmtP(equitySize.p_value) + '), so leverage is not tightly pinned down.';
+            }
+            setInsight('equityInsight', equityText);
+          }
+
+          var nimPass = findTerm(extensionRows, 'efficiency_fe', 'NIM_W');
+          var effSize = findTerm(extensionRows, 'efficiency_fe', 'LN_ASSETS');
+          if (nimPass && effSize) {
+            var efficiencyText = '<strong>Efficiency:</strong> each 1 pp of NIM translates into about <strong>' + fmtCoef(nimPass.coef) + '</strong> pp of ROA after FE controls.';
+            if (nimPass.p_value < 0.05) {
+              efficiencyText += ' That implies only part of a margin gain reaches the bottom line; the rest is absorbed by costs, taxes, provisions, or other offsets.';
+            }
+            if (effSize.p_value < 0.05) {
+              efficiencyText += ' Conditional on NIM, the residual size effect on ROA is <strong>' + fmtCoef(effSize.coef) + '</strong>.';
+            }
+            setInsight('efficiencyInsight', efficiencyText);
+          }
+
+          var baselineSize = findTerm(baselineRows, 'within_fe_size', 'LN_ASSETS');
+          var loanMixSize = findTerm(extensionRows, 'loan_mix_fe', 'LN_ASSETS');
+          if (baselineSize && loanMixSize) {
+            var attenuation = baselineSize.coef !== 0 ? (1 - (loanMixSize.coef / baselineSize.coef)) * 100 : null;
+            var loanMixText = '<strong>Loan Mix:</strong> once detailed CRE, residential, C&amp;I, and consumer shares are included, the size coefficient moves from <strong>' + fmtCoef(baselineSize.coef) + '</strong> to <strong>' + fmtCoef(loanMixSize.coef) + '</strong>.';
+            if (loanMixSize.p_value < 0.05) {
+              loanMixText += ' Asset mix explains roughly <strong>' + attenuation.toFixed(0) + '%</strong> of the baseline penalty, but a statistically significant size effect remains.';
+            } else {
+              loanMixText += ' After loan-mix controls, the residual size effect is no longer precisely estimated.';
+            }
+            setInsight('loanMixInsight', loanMixText);
+          }
+
+          var distressNim = findTerm(extensionRows, 'distress_logit', 'NIM_W');
+          var distressRoa = findTerm(extensionRows, 'distress_logit', 'ROA_W');
+          var distressSize = findTerm(extensionRows, 'distress_logit', 'LN_ASSETS');
+          if (distressNim && distressRoa && distressSize) {
+            var distressText = '<strong>Distress Prediction:</strong> in the pooled 4-quarter-ahead failure logit, higher NIM (<strong>' + fmtCoef(distressNim.coef) + '</strong>) and larger size (<strong>' + fmtCoef(distressSize.coef) + '</strong>) predict the failure label, while higher ROA lowers it (<strong>' + fmtCoef(distressRoa.coef) + '</strong>).';
+            distressText += ' Even with a cleaner failure-only label, this is not a simple “low NIM predicts failure” result, so the model should be treated as exploratory rather than headline evidence.';
+            setInsight('distressInsight', distressText);
+          }
+        });
+
+      /* Summary statistics */
+      fetch('data/summary_statistics.json')
+        .then(function(r){ return r.json(); })
+        .then(function(data) {
+          var tb = document.getElementById('summaryBody');
+          tb.innerHTML = data.map(function(r) {
+            return '<tr>' +
+              '<td class="highlight">' + r.variable + '</td>' +
+              '<td class="num">' + r.count.toLocaleString() + '</td>' +
+              '<td class="num">' + r.mean.toFixed(4) + '</td>' +
+              '<td class="num">' + r.std.toFixed(4) + '</td>' +
+              '<td class="num">' + r['1%'].toFixed(4) + '</td>' +
+              '<td class="num">' + r['25%'].toFixed(4) + '</td>' +
+              '<td class="num">' + r['50%'].toFixed(4) + '</td>' +
+              '<td class="num">' + r['75%'].toFixed(4) + '</td>' +
+              '<td class="num">' + r['99%'].toFixed(4) + '</td>' +
+              '</tr>';
+          }).join('');
+        });
+
+      /* Event study chart */
+      fetch('data/event_study.json')
+        .then(function(r){ return r.json(); })
+        .then(function(data) {
+          var coefs = data.coefficients;
+          var labels = coefs.map(function(c){ return 't' + (c.event_time >= 0 ? '+' : '') + c.event_time; });
+          var vals = coefs.map(function(c){ return c.coef; });
+          var ciLow = coefs.map(function(c){ return c.ci_low; });
+          var ciHigh = coefs.map(function(c){ return c.ci_high; });
+          var bgColors = coefs.map(function(c){ return c.event_time === -1 ? C.muted : C.accent; });
+
+          var ch = new Chart(document.getElementById('eventStudyChart'), {
+            type: 'line',
+            data: {
+              labels: labels,
+              datasets: [
+                { label: 'CI Upper', data: ciHigh, borderColor: 'transparent', backgroundColor: C.accent + '22', fill: '+1', pointRadius: 0 },
+                { label: 'Coefficient', data: vals, borderColor: C.accent, backgroundColor: C.accent + '33', fill: false, pointRadius: 5, pointBackgroundColor: bgColors, borderWidth: 2.5, tension: 0.2 },
+                { label: 'CI Lower', data: ciLow, borderColor: 'transparent', backgroundColor: 'transparent', fill: false, pointRadius: 0 }
+              ]
+            },
+            options: {
+              responsive: true,
+              plugins: {
+                legend: { display: false },
+                tooltip: { callbacks: { label: function(ctx){ if(ctx.datasetIndex!==1) return ''; return 'Coef: ' + ctx.parsed.y.toFixed(3); } } }
+              },
+              scales: {
+                y: { title: { display: true, text: 'NIM coefficient (vs. t-1)' }, grid: { color: C.grid } },
+                x: { title: { display: true, text: 'Event time (quarters)' }, grid: { display: false } }
+              }
+            }
+          });
+          charts.push(ch);
+        });
+
+      /* Rolling coefficient chart */
+      fetch('data/rolling_coefficients.json')
+        .then(function(r){ return r.json(); })
+        .then(function(data) {
+          var rows = data.rows || [];
+          if (!rows.length) return;
+
+          var labels = rows.map(function(r){ return r.window_mid; });
+          var vals = rows.map(function(r){ return r.coef; });
+          var ciLow = rows.map(function(r){ return r.ci_low; });
+          var ciHigh = rows.map(function(r){ return r.ci_high; });
+          var pointColors = rows.map(function(r) {
+            return r.p_value < 0.05 ? C.accent : C.muted;
+          });
+
+          var ch = new Chart(document.getElementById('rollingCoeffChart'), {
+            type: 'line',
+            data: {
+              labels: labels,
+              datasets: [
+                { label: 'CI Upper', data: ciHigh, borderColor: 'transparent', backgroundColor: C.accent + '22', fill: '+1', pointRadius: 0 },
+                { label: 'Coefficient', data: vals, borderColor: C.accent, backgroundColor: C.accent + '33', fill: false, pointRadius: 4, pointBackgroundColor: pointColors, borderWidth: 2.5, tension: 0.2 },
+                { label: 'CI Lower', data: ciLow, borderColor: 'transparent', backgroundColor: 'transparent', fill: false, pointRadius: 0 }
+              ]
+            },
+            options: {
+              responsive: true,
+              plugins: {
+                legend: { display: false },
+                tooltip: {
+                  callbacks: {
+                    label: function(ctx) {
+                      if (ctx.datasetIndex !== 1) return '';
+                      var row = rows[ctx.dataIndex];
+                      return 'Coef: ' + row.coef.toFixed(3) + ' [' + row.ci_low.toFixed(3) + ', ' + row.ci_high.toFixed(3) + ']';
+                    },
+                    afterLabel: function(ctx) {
+                      if (ctx.datasetIndex !== 1) return '';
+                      var row = rows[ctx.dataIndex];
+                      return 'Window: ' + row.window_start + ' to ' + row.window_end + ' | Banks: ' + row.n_banks.toLocaleString();
+                    }
+                  }
+                }
+              },
+              scales: {
+                y: { title: { display: true, text: 'Size coefficient (log assets)' }, grid: { color: C.grid } },
+                x: { title: { display: true, text: 'Window midpoint' }, grid: { display: false }, ticks: { maxTicksLimit: 12, font: { size: 10 } } }
+              }
+            }
+          });
+          charts.push(ch);
+
+          var strongest = rows.reduce(function(best, r) { return r.coef < best.coef ? r : best; }, rows[0]);
+          var weakest = rows.reduce(function(best, r) { return r.coef > best.coef ? r : best; }, rows[0]);
+          var latest = rows[rows.length - 1];
+          var significant = rows.filter(function(r){ return r.p_value < 0.05; }).length;
+          var rollingText = '<strong>Time Variation:</strong> the within-bank size penalty is not constant. It is weakest at <strong>' + fmtCoef(weakest.coef) + '</strong> in the ' + weakest.window_start + ' to ' + weakest.window_end + ' window and strongest at <strong>' + fmtCoef(strongest.coef) + '</strong> in the ' + strongest.window_start + ' to ' + strongest.window_end + ' window.';
+          rollingText += ' In the latest window (' + latest.window_start + ' to ' + latest.window_end + '), the estimate is <strong>' + fmtCoef(latest.coef) + '</strong>.';
+          if (latest.p_value < 0.05) {
+            rollingText += ' It remains statistically significant.';
+          } else {
+            rollingText += ' It is no longer precisely estimated.';
+          }
+          rollingText += ' The coefficient is significant in <strong>' + significant + ' of ' + rows.length + '</strong> windows.';
+          setInsight('rollingInsight', rollingText);
+        });
+
+      /* Threshold charts */
+      fetch('data/threshold_crossing.json')
+        .then(function(r){ return r.json(); })
+        .then(function(data) {
+          ['10b','50b','100b'].forEach(function(key) {
+            var thresh = data['threshold_cross_' + key];
+            var coefs = thresh.coefficients;
+            var labels = coefs.map(function(c){ return 't' + (c.event_time >= 0 ? '+' : '') + c.event_time; });
+            var vals = coefs.map(function(c){ return c.coef; });
+            var ciLow = coefs.map(function(c){ return c.ci_low; });
+            var ciHigh = coefs.map(function(c){ return c.ci_high; });
+
+            var ch = new Chart(document.getElementById('threshold' + key + 'Chart'), {
+              type: 'line',
+              data: {
+                labels: labels,
+                datasets: [
+                  { label: 'CI Upper', data: ciHigh, borderColor: 'transparent', backgroundColor: C.accent + '22', fill: '+1', pointRadius: 0 },
+                  { label: 'Coefficient', data: vals, borderColor: C.accent, backgroundColor: C.accent + '33', fill: false, pointRadius: 4, borderWidth: 2, tension: 0.2 },
+                  { label: 'CI Lower', data: ciLow, borderColor: 'transparent', backgroundColor: 'transparent', fill: false, pointRadius: 0 }
+                ]
+              },
+              options: {
+                responsive: true,
+                plugins: {
+                  legend: { display: false },
+                  tooltip: { callbacks: { label: function(ctx){ if(ctx.datasetIndex!==1) return ''; return 'Coef: ' + ctx.parsed.y.toFixed(3) + ' (n=' + thresh.nobs + ')'; } } }
+                },
+                scales: {
+                  y: { title: { display: true, text: 'NIM coefficient (vs. t-1)' }, grid: { color: C.grid } },
+                  x: { title: { display: true, text: 'Event time (quarters)' }, grid: { display: false } }
+                }
+              }
+            });
+            charts.push(ch);
+          });
+        });
+
+      /* Robustness forest plot — horizontal bar (transparent) with error-bar overlay */
+      fetch('data/robustness_forest.json')
+        .then(function(r){ return r.json(); })
+        .then(function(data) {
+          var labels = data.map(function(d){ return d.label; });
+          var pointColors = data.map(function(d) {
+            return (d.ci_low > 0 || d.ci_high < 0) ? C.accent : C.muted;
+          });
+
+          var ch = new Chart(document.getElementById('forestChart'), {
+            type: 'bar',
+            data: {
+              labels: labels,
+              datasets: [{
+                label: 'Size coefficient',
+                data: data.map(function(d){ return d.coef; }),
+                backgroundColor: 'transparent',
+                borderColor: 'transparent',
+                barThickness: 1
+              }]
+            },
+            plugins: [{
+              id: 'forestDots',
+              afterDatasetsDraw: function(chart) {
+                var ctx = chart.ctx;
+                var xScale = chart.scales.x;
+                var meta = chart.getDatasetMeta(0);
+                data.forEach(function(d, i) {
+                  var bar = meta.data[i];
+                  if (!bar) return;
+                  var y = bar.y;
+                  var xLow = xScale.getPixelForValue(d.ci_low);
+                  var xHigh = xScale.getPixelForValue(d.ci_high);
+                  var xPt = xScale.getPixelForValue(d.coef);
+                  /* whisker line */
+                  ctx.save();
+                  ctx.strokeStyle = C.text;
+                  ctx.lineWidth = 1.5;
+                  ctx.beginPath(); ctx.moveTo(xLow, y); ctx.lineTo(xHigh, y); ctx.stroke();
+                  /* caps */
+                  ctx.beginPath(); ctx.moveTo(xLow, y - 6); ctx.lineTo(xLow, y + 6); ctx.stroke();
+                  ctx.beginPath(); ctx.moveTo(xHigh, y - 6); ctx.lineTo(xHigh, y + 6); ctx.stroke();
+                  /* point */
+                  ctx.fillStyle = pointColors[i];
+                  ctx.beginPath(); ctx.arc(xPt, y, 7, 0, Math.PI * 2); ctx.fill();
+                  ctx.restore();
+                });
+                /* zero line */
+                var xZero = xScale.getPixelForValue(0);
+                var yScale = chart.scales.y;
+                ctx.save();
+                ctx.strokeStyle = C.red;
+                ctx.lineWidth = 1;
+                ctx.setLineDash([4, 4]);
+                ctx.beginPath(); ctx.moveTo(xZero, yScale.top); ctx.lineTo(xZero, yScale.bottom); ctx.stroke();
+                ctx.restore();
+              }
+            }],
+            options: {
+              indexAxis: 'y',
+              responsive: true,
+              maintainAspectRatio: true,
+              aspectRatio: 2.2,
+              plugins: {
+                legend: { display: false },
+                tooltip: { callbacks: { label: function(ctx){ var d = data[ctx.dataIndex]; return d.label + ': ' + d.coef.toFixed(3) + ' [' + d.ci_low.toFixed(3) + ', ' + d.ci_high.toFixed(3) + ']'; } } }
+              },
+              scales: {
+                x: {
+                  title: { display: true, text: 'Size coefficient (log assets)' },
+                  grid: { color: C.grid },
+                  min: Math.min.apply(null, data.map(function(d){ return d.ci_low; })) - 0.02,
+                  max: Math.max.apply(null, data.map(function(d){ return d.ci_high; })) + 0.02
+                },
+                y: { grid: { display: false }, ticks: { font: { size: 12 } } }
+              }
+            }
+          });
+          charts.push(ch);
+        });
+    }
+
+    buildCharts();
+    window.rcRebuildCharts = function(){ rcChartDefaults(); buildCharts(); };
+    rcInitScrollSpy();
+  </script>
+</body>
+</html>

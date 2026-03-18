@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>banknim &mdash; Data &amp; Distributions</title>
+  <script src="js/theme.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+</head>
+<body data-page="data">
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="site-logo">bank<span class="logo-accent">nim</span></a>
+      <div class="header-controls">
+        <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle navigation">&#9776;</button>
+        <button id="themeToggle" class="theme-toggle" onclick="rcToggleTheme()" aria-label="Toggle theme">&#9790;</button>
+      </div>
+      <nav><ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="models.html">Models</a></li>
+        <li><a href="data.html">Data</a></li>
+      </ul></nav>
+    </div>
+  </header>
+
+  <section class="hero hero-sm">
+    <div class="hero-inner">
+      <h1>Data &amp; Distributions</h1>
+      <p class="subtitle">373,220 bank-quarter observations from 8,032 FDIC-insured commercial banks, 2010&ndash;2025.</p>
+    </div>
+  </section>
+
+  <main class="content">
+
+    <!-- Distributions -->
+    <section class="section">
+      <div class="section-header"><h2>Distributions</h2></div>
+
+      <div class="chart-container">
+        <h3>Bank Asset Distribution</h3>
+        <p class="chart-subtitle">Log&#8321;&#8320; total assets ($000s). Median bank has $214M in assets; the distribution is heavily right-skewed.</p>
+        <div class="chart-canvas-wrap"><canvas id="assetsHistChart"></canvas></div>
+      </div>
+
+      <div class="chart-container">
+        <h3>NIM Distribution</h3>
+        <p class="chart-subtitle">Net interest margin (%). Winsorized at 1st/99th percentiles. Mean = 3.66%, Median = 3.62%.</p>
+        <div class="chart-canvas-wrap"><canvas id="nimHistChart"></canvas></div>
+      </div>
+
+      <div class="chart-container">
+        <h3>Asset Growth vs. Deposit Growth</h3>
+        <p class="chart-subtitle">2D histogram of quarterly growth rates. Strong positive correlation along the diagonal; off-diagonal mass reflects funded vs. unfunded growth.</p>
+        <div class="chart-canvas-wrap"><canvas id="growthHeatChart"></canvas></div>
+        <p class="chart-note">Darker cells indicate higher observation density. Growth rates winsorized at 1st/99th percentiles.</p>
+      </div>
+    </section>
+
+    <!-- Decile summary -->
+    <section class="section">
+      <div class="section-header"><h2>Size Decile Summary</h2></div>
+      <div class="table-wrap"><table class="data-table" id="decileTable">
+        <thead><tr>
+          <th>Decile</th><th class="num">Avg NIM</th><th class="num">Avg ROA</th><th class="num">Avg Ln(Assets)</th><th class="num">Banks</th><th class="num">Obs</th>
+        </tr></thead>
+        <tbody id="decileBody"></tbody>
+      </table></div>
+    </section>
+
+    <!-- Data sources -->
+    <section class="section">
+      <div class="section-header"><h2>Data Sources</h2></div>
+      <div class="card">
+        <h3 style="margin-top:0;">Federal Data Pipeline</h3>
+        <div class="table-wrap"><table class="data-table">
+          <thead><tr><th>Source</th><th>Agency</th><th>Frequency</th><th>Coverage</th></tr></thead>
+          <tbody>
+            <tr><td class="highlight">BankFind Financials</td><td>FDIC</td><td>Quarterly</td><td>2010&ndash;2025</td></tr>
+            <tr><td class="highlight">Summary of Deposits (SOD)</td><td>FDIC</td><td>Annual</td><td>2010&ndash;2025</td></tr>
+            <tr><td class="highlight">Institution History</td><td>FDIC</td><td>Event-based</td><td>Merger/acquisition events</td></tr>
+            <tr><td class="highlight">FRED Rates</td><td>Federal Reserve</td><td>Daily/Quarterly</td><td>Fed funds, prime, treasury yields</td></tr>
+          </tbody>
+        </table></div>
+        <p>373,220 bank-quarter observations. 8,032 unique FDIC-insured commercial banks. All data are free and publicly available.</p>
+      </div>
+    </section>
+
+    <!-- Reproducibility -->
+    <section class="section">
+      <div class="section-header"><h2>Reproducibility</h2></div>
+      <div class="card">
+        <h3 style="margin-top:0;">Full Pipeline</h3>
+        <p>Every download is scripted and every result can be reproduced from scratch. The pipeline covers raw FDIC data ingestion, panel construction, variable engineering, model estimation, and robustness checks.</p>
+        <p style="margin-bottom:0;"><a href="https://github.com/smkwray/banknim" class="cta-btn">View on GitHub &rarr;</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer"><div class="footer-inner"><span>banknim &middot; MIT License &middot; Shane Wray 2026</span><a href="https://github.com/smkwray/banknim">GitHub</a></div></footer>
+
+  <script>
+    rcChartDefaults();
+    var charts = [];
+
+    function buildCharts() {
+      charts.forEach(function(c){ c.destroy(); });
+      charts = [];
+      var C = rcColors();
+
+      /* Distributions */
+      fetch('data/distributions.json')
+        .then(function(r){ return r.json(); })
+        .then(function(dist) {
+
+          /* Assets histogram */
+          var aEdges = dist.assets_log10.bin_edges;
+          var aCounts = dist.assets_log10.counts;
+          var aLabels = [];
+          for (var i = 0; i < aCounts.length; i++) {
+            aLabels.push(((aEdges[i] + aEdges[i+1]) / 2).toFixed(1));
+          }
+          charts.push(new Chart(document.getElementById('assetsHistChart'), {
+            type: 'bar',
+            data: { labels: aLabels, datasets: [{ label: 'Observations', data: aCounts, backgroundColor: C.accent + 'cc', borderRadius: 2 }] },
+            options: {
+              responsive: true,
+              plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(ctx){ return ctx.parsed.y.toLocaleString() + ' obs'; } } } },
+              scales: {
+                x: { title: { display: true, text: dist.assets_log10.xlabel || 'Log\u2081\u2080 assets ($000s)' }, grid: { display: false }, ticks: { maxTicksLimit: 12 } },
+                y: { title: { display: true, text: 'Frequency' }, grid: { color: C.grid } }
+              }
+            }
+          }));
+
+          /* NIM histogram */
+          var nEdges = dist.nim.bin_edges;
+          var nCounts = dist.nim.counts;
+          var nLabels = [];
+          for (var j = 0; j < nCounts.length; j++) {
+            nLabels.push(((nEdges[j] + nEdges[j+1]) / 2).toFixed(1));
+          }
+          charts.push(new Chart(document.getElementById('nimHistChart'), {
+            type: 'bar',
+            data: { labels: nLabels, datasets: [{ label: 'Observations', data: nCounts, backgroundColor: C.green + 'cc', borderRadius: 2 }] },
+            options: {
+              responsive: true,
+              plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(ctx){ return ctx.parsed.y.toLocaleString() + ' obs'; } } } },
+              scales: {
+                x: { title: { display: true, text: dist.nim.xlabel || 'NIM (%)' }, grid: { display: false }, ticks: { maxTicksLimit: 12 } },
+                y: { title: { display: true, text: 'Frequency' }, grid: { color: C.grid } }
+              }
+            }
+          }));
+
+          /* Growth heatmap — rendered as a matrix of colored cells */
+          var gs = dist.growth_scatter;
+          var xE = gs.x_edges, yE = gs.y_edges, counts2d = gs.counts;
+          var heatData = [];
+          var maxCount = 0;
+          for (var gy = 0; gy < counts2d.length; gy++) {
+            for (var gx = 0; gx < counts2d[gy].length; gx++) {
+              var v = counts2d[gy][gx];
+              if (v > maxCount) maxCount = v;
+              if (v > 0) {
+                heatData.push({ x: (xE[gx] + xE[gx+1]) / 2, y: (yE[gy] + yE[gy+1]) / 2, v: v });
+              }
+            }
+          }
+          /* Use bubble chart as heatmap proxy */
+          charts.push(new Chart(document.getElementById('growthHeatChart'), {
+            type: 'bubble',
+            data: {
+              datasets: [{
+                label: 'Density',
+                data: heatData.map(function(d) {
+                  return { x: d.x, y: d.y, r: Math.max(1.5, Math.sqrt(d.v / maxCount) * 12) };
+                }),
+                backgroundColor: heatData.map(function(d) {
+                  var alpha = Math.min(0.9, 0.15 + 0.75 * (d.v / maxCount));
+                  var hex = C.accent.replace('#','');
+                  var r = parseInt(hex.substring(0,2),16), g = parseInt(hex.substring(2,4),16), b = parseInt(hex.substring(4,6),16);
+                  return 'rgba(' + r + ',' + g + ',' + b + ',' + alpha + ')';
+                }),
+                borderWidth: 0
+              }]
+            },
+            options: {
+              responsive: true,
+              plugins: {
+                legend: { display: false },
+                tooltip: { callbacks: { label: function(ctx){ var d = heatData[ctx.dataIndex]; return 'Asset growth: ' + d.x.toFixed(2) + ', Deposit growth: ' + d.y.toFixed(2) + ' (' + d.v + ' obs)'; } } }
+              },
+              scales: {
+                x: { title: { display: true, text: gs.xlabel || 'Asset growth (q/q)' }, grid: { color: C.grid }, min: -0.3, max: 0.3 },
+                y: { title: { display: true, text: gs.ylabel || 'Deposit growth (q/q)' }, grid: { color: C.grid }, min: -0.3, max: 0.3 }
+              }
+            }
+          }));
+        });
+
+      /* Decile table */
+      fetch('data/cross_section.json')
+        .then(function(r){ return r.json(); })
+        .then(function(data) {
+          var tb = document.getElementById('decileBody');
+          tb.innerHTML = data.deciles.map(function(d) {
+            return '<tr>' +
+              '<td class="highlight">' + d.SIZE_DECILE + '</td>' +
+              '<td class="num">' + d.avg_nim.toFixed(2) + '</td>' +
+              '<td class="num">' + d.avg_roa.toFixed(2) + '</td>' +
+              '<td class="num">' + d.avg_ln_assets.toFixed(2) + '</td>' +
+              '<td class="num">' + d.n_banks.toLocaleString() + '</td>' +
+              '<td class="num">' + d.n_obs.toLocaleString() + '</td>' +
+              '</tr>';
+          }).join('');
+        });
+    }
+
+    buildCharts();
+    window.rcRebuildCharts = function(){ rcChartDefaults(); buildCharts(); };
+  </script>
+</body>
+</html>

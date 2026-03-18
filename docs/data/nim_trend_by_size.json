@@ -1,0 +1,4482 @@
+[
+  {
+    "QUARTER": "2010Q1",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.865978803877913,
+    "nim_median": 3.864353312302839,
+    "n_banks": 795
+  },
+  {
+    "QUARTER": "2010Q1",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.904120902897883,
+    "nim_median": 3.882150848641757,
+    "n_banks": 794
+  },
+  {
+    "QUARTER": "2010Q1",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.859092579646169,
+    "nim_median": 3.880324080087214,
+    "n_banks": 794
+  },
+  {
+    "QUARTER": "2010Q1",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.8190038043178474,
+    "nim_median": 3.8429027462265593,
+    "n_banks": 794
+  },
+  {
+    "QUARTER": "2010Q1",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.7881461070514018,
+    "nim_median": 3.797340619590614,
+    "n_banks": 795
+  },
+  {
+    "QUARTER": "2010Q1",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.8334475842037015,
+    "nim_median": 3.812374253822168,
+    "n_banks": 794
+  },
+  {
+    "QUARTER": "2010Q1",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.7595381889321153,
+    "nim_median": 3.736862735121668,
+    "n_banks": 794
+  },
+  {
+    "QUARTER": "2010Q1",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.6393093235488534,
+    "nim_median": 3.6683861048098843,
+    "n_banks": 794
+  },
+  {
+    "QUARTER": "2010Q1",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.691802006276847,
+    "nim_median": 3.625157165628372,
+    "n_banks": 794
+  },
+  {
+    "QUARTER": "2010Q1",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.7034136695784263,
+    "nim_median": 3.557152489125078,
+    "n_banks": 795
+  },
+  {
+    "QUARTER": "2010Q2",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.8957393642335685,
+    "nim_median": 3.90507694817195,
+    "n_banks": 784
+  },
+  {
+    "QUARTER": "2010Q2",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.90478791786299,
+    "nim_median": 3.899996860318998,
+    "n_banks": 784
+  },
+  {
+    "QUARTER": "2010Q2",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.8870715031507417,
+    "nim_median": 3.8970446990094967,
+    "n_banks": 784
+  },
+  {
+    "QUARTER": "2010Q2",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.842275198447625,
+    "nim_median": 3.874625481341455,
+    "n_banks": 784
+  },
+  {
+    "QUARTER": "2010Q2",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.838768147960976,
+    "nim_median": 3.8235625715243673,
+    "n_banks": 784
+  },
+  {
+    "QUARTER": "2010Q2",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.873886178519545,
+    "nim_median": 3.837805587786371,
+    "n_banks": 783
+  },
+  {
+    "QUARTER": "2010Q2",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.77389601940384,
+    "nim_median": 3.74932685054804,
+    "n_banks": 784
+  },
+  {
+    "QUARTER": "2010Q2",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.70180781539566,
+    "nim_median": 3.7236617228821025,
+    "n_banks": 784
+  },
+  {
+    "QUARTER": "2010Q2",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.7271105360424293,
+    "nim_median": 3.649815326325668,
+    "n_banks": 784
+  },
+  {
+    "QUARTER": "2010Q2",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.7256234499681167,
+    "nim_median": 3.592244853670254,
+    "n_banks": 784
+  },
+  {
+    "QUARTER": "2010Q3",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.906612034882147,
+    "nim_median": 3.920135392257005,
+    "n_banks": 777
+  },
+  {
+    "QUARTER": "2010Q3",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.9393324872404722,
+    "nim_median": 3.931507409869364,
+    "n_banks": 778
+  },
+  {
+    "QUARTER": "2010Q3",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.9159075288250187,
+    "nim_median": 3.9248649832943046,
+    "n_banks": 776
+  },
+  {
+    "QUARTER": "2010Q3",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.8632677918923144,
+    "nim_median": 3.877990507633989,
+    "n_banks": 777
+  },
+  {
+    "QUARTER": "2010Q3",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.8316258353812427,
+    "nim_median": 3.8341860761850177,
+    "n_banks": 777
+  },
+  {
+    "QUARTER": "2010Q3",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.8997367131281706,
+    "nim_median": 3.898659945235051,
+    "n_banks": 777
+  },
+  {
+    "QUARTER": "2010Q3",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.8420489146881334,
+    "nim_median": 3.799534376542811,
+    "n_banks": 777
+  },
+  {
+    "QUARTER": "2010Q3",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.7259047758413,
+    "nim_median": 3.73014263419127,
+    "n_banks": 777
+  },
+  {
+    "QUARTER": "2010Q3",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.7458334002935456,
+    "nim_median": 3.680539880298034,
+    "n_banks": 777
+  },
+  {
+    "QUARTER": "2010Q3",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.7146455461394687,
+    "nim_median": 3.6125827631606864,
+    "n_banks": 777
+  },
+  {
+    "QUARTER": "2010Q4",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.8740730293171097,
+    "nim_median": 3.900854102219887,
+    "n_banks": 767
+  },
+  {
+    "QUARTER": "2010Q4",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.908548653741699,
+    "nim_median": 3.899124713728056,
+    "n_banks": 767
+  },
+  {
+    "QUARTER": "2010Q4",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.8894618472891818,
+    "nim_median": 3.905778460637012,
+    "n_banks": 766
+  },
+  {
+    "QUARTER": "2010Q4",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.8955985544508707,
+    "nim_median": 3.931246811595501,
+    "n_banks": 767
+  },
+  {
+    "QUARTER": "2010Q4",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.814909759982776,
+    "nim_median": 3.850783857341658,
+    "n_banks": 767
+  },
+  {
+    "QUARTER": "2010Q4",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.900820597296784,
+    "nim_median": 3.9208211236671815,
+    "n_banks": 766
+  },
+  {
+    "QUARTER": "2010Q4",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.8430318814152624,
+    "nim_median": 3.8211448633571834,
+    "n_banks": 767
+  },
+  {
+    "QUARTER": "2010Q4",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.715734458212207,
+    "nim_median": 3.739253089064019,
+    "n_banks": 766
+  },
+  {
+    "QUARTER": "2010Q4",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.752597368602404,
+    "nim_median": 3.6757325237569143,
+    "n_banks": 767
+  },
+  {
+    "QUARTER": "2010Q4",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.730240204382378,
+    "nim_median": 3.617664020680115,
+    "n_banks": 767
+  },
+  {
+    "QUARTER": "2011Q1",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.736639559685282,
+    "nim_median": 3.7443990981477784,
+    "n_banks": 759
+  },
+  {
+    "QUARTER": "2011Q1",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.8227452308597645,
+    "nim_median": 3.7922290189280448,
+    "n_banks": 758
+  },
+  {
+    "QUARTER": "2011Q1",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.8340435197184335,
+    "nim_median": 3.803944260361682,
+    "n_banks": 758
+  },
+  {
+    "QUARTER": "2011Q1",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.815659944355809,
+    "nim_median": 3.8544181533418627,
+    "n_banks": 758
+  },
+  {
+    "QUARTER": "2011Q1",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.8498486514277834,
+    "nim_median": 3.821500816455851,
+    "n_banks": 759
+  },
+  {
+    "QUARTER": "2011Q1",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.8621432426451263,
+    "nim_median": 3.8638721729413468,
+    "n_banks": 758
+  },
+  {
+    "QUARTER": "2011Q1",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.760223929016087,
+    "nim_median": 3.7627812622057144,
+    "n_banks": 758
+  },
+  {
+    "QUARTER": "2011Q1",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.7356650914896226,
+    "nim_median": 3.728936594383617,
+    "n_banks": 758
+  },
+  {
+    "QUARTER": "2011Q1",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.726543897046813,
+    "nim_median": 3.6605939055971946,
+    "n_banks": 758
+  },
+  {
+    "QUARTER": "2011Q1",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.7659566182055673,
+    "nim_median": 3.63043217301043,
+    "n_banks": 759
+  },
+  {
+    "QUARTER": "2011Q2",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.783499356081216,
+    "nim_median": 3.7975126175795224,
+    "n_banks": 753
+  },
+  {
+    "QUARTER": "2011Q2",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.8489018703614537,
+    "nim_median": 3.8225959203073825,
+    "n_banks": 752
+  },
+  {
+    "QUARTER": "2011Q2",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.8662844871768494,
+    "nim_median": 3.8482457623577573,
+    "n_banks": 752
+  },
+  {
+    "QUARTER": "2011Q2",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.8745555619601197,
+    "nim_median": 3.910527486837574,
+    "n_banks": 752
+  },
+  {
+    "QUARTER": "2011Q2",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.8848515652890985,
+    "nim_median": 3.8613494782924427,
+    "n_banks": 752
+  },
+  {
+    "QUARTER": "2011Q2",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.892874655396777,
+    "nim_median": 3.8993140907681525,
+    "n_banks": 752
+  },
+  {
+    "QUARTER": "2011Q2",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.8298301481828916,
+    "nim_median": 3.8047956258427695,
+    "n_banks": 752
+  },
+  {
+    "QUARTER": "2011Q2",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.7680204674251674,
+    "nim_median": 3.7764044909308563,
+    "n_banks": 752
+  },
+  {
+    "QUARTER": "2011Q2",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.7749048261566895,
+    "nim_median": 3.6929634622871124,
+    "n_banks": 752
+  },
+  {
+    "QUARTER": "2011Q2",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.78125611459593,
+    "nim_median": 3.6603098325684287,
+    "n_banks": 753
+  },
+  {
+    "QUARTER": "2011Q3",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.8168206397952913,
+    "nim_median": 3.8172992916174735,
+    "n_banks": 745
+  },
+  {
+    "QUARTER": "2011Q3",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.885736906648116,
+    "nim_median": 3.8725186255576416,
+    "n_banks": 745
+  },
+  {
+    "QUARTER": "2011Q3",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.876477937842823,
+    "nim_median": 3.8420608128496396,
+    "n_banks": 744
+  },
+  {
+    "QUARTER": "2011Q3",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.8916977884147586,
+    "nim_median": 3.933666883843288,
+    "n_banks": 745
+  },
+  {
+    "QUARTER": "2011Q3",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.9161948028998155,
+    "nim_median": 3.9003823393203314,
+    "n_banks": 744
+  },
+  {
+    "QUARTER": "2011Q3",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.897034211513593,
+    "nim_median": 3.889892365316624,
+    "n_banks": 745
+  },
+  {
+    "QUARTER": "2011Q3",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.848674823455505,
+    "nim_median": 3.850833340148962,
+    "n_banks": 744
+  },
+  {
+    "QUARTER": "2011Q3",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.784528016030196,
+    "nim_median": 3.805616118763025,
+    "n_banks": 745
+  },
+  {
+    "QUARTER": "2011Q3",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.8112454928189563,
+    "nim_median": 3.739657141512203,
+    "n_banks": 744
+  },
+  {
+    "QUARTER": "2011Q3",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.7834490085892503,
+    "nim_median": 3.67655216778537,
+    "n_banks": 745
+  },
+  {
+    "QUARTER": "2011Q4",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.7927682427582576,
+    "nim_median": 3.8469692190755898,
+    "n_banks": 737
+  },
+  {
+    "QUARTER": "2011Q4",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.879856935592589,
+    "nim_median": 3.8546021398710417,
+    "n_banks": 737
+  },
+  {
+    "QUARTER": "2011Q4",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.8740979861320644,
+    "nim_median": 3.842413147786914,
+    "n_banks": 736
+  },
+  {
+    "QUARTER": "2011Q4",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.8968137573912847,
+    "nim_median": 3.91887895075012,
+    "n_banks": 737
+  },
+  {
+    "QUARTER": "2011Q4",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.9028153255143505,
+    "nim_median": 3.8952350270605747,
+    "n_banks": 736
+  },
+  {
+    "QUARTER": "2011Q4",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.903975148053005,
+    "nim_median": 3.900193200970115,
+    "n_banks": 737
+  },
+  {
+    "QUARTER": "2011Q4",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.8453820858346894,
+    "nim_median": 3.8373969210706758,
+    "n_banks": 736
+  },
+  {
+    "QUARTER": "2011Q4",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.79310718431293,
+    "nim_median": 3.798985230840916,
+    "n_banks": 737
+  },
+  {
+    "QUARTER": "2011Q4",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.7861189309680423,
+    "nim_median": 3.7238916379896967,
+    "n_banks": 736
+  },
+  {
+    "QUARTER": "2011Q4",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.825248416785905,
+    "nim_median": 3.682986180692091,
+    "n_banks": 737
+  },
+  {
+    "QUARTER": "2012Q1",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.680569665927527,
+    "nim_median": 3.69421756220393,
+    "n_banks": 732
+  },
+  {
+    "QUARTER": "2012Q1",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.793764335466568,
+    "nim_median": 3.78887270442508,
+    "n_banks": 732
+  },
+  {
+    "QUARTER": "2012Q1",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.813321235087136,
+    "nim_median": 3.785471215231881,
+    "n_banks": 731
+  },
+  {
+    "QUARTER": "2012Q1",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.827678023985449,
+    "nim_median": 3.807996345321837,
+    "n_banks": 732
+  },
+  {
+    "QUARTER": "2012Q1",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.829283658126779,
+    "nim_median": 3.8002785605826706,
+    "n_banks": 732
+  },
+  {
+    "QUARTER": "2012Q1",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.7964549573928643,
+    "nim_median": 3.810890096651677,
+    "n_banks": 731
+  },
+  {
+    "QUARTER": "2012Q1",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.774293444602512,
+    "nim_median": 3.7467802429294994,
+    "n_banks": 732
+  },
+  {
+    "QUARTER": "2012Q1",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.7543122784170273,
+    "nim_median": 3.7323528029206994,
+    "n_banks": 731
+  },
+  {
+    "QUARTER": "2012Q1",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.713624279159306,
+    "nim_median": 3.6260675726182,
+    "n_banks": 732
+  },
+  {
+    "QUARTER": "2012Q1",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.775200080648295,
+    "nim_median": 3.619522196175283,
+    "n_banks": 732
+  },
+  {
+    "QUARTER": "2012Q2",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.7023755090356754,
+    "nim_median": 3.661003050513326,
+    "n_banks": 726
+  },
+  {
+    "QUARTER": "2012Q2",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.759680342021502,
+    "nim_median": 3.764219507057089,
+    "n_banks": 725
+  },
+  {
+    "QUARTER": "2012Q2",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.825562118572842,
+    "nim_median": 3.78842863320986,
+    "n_banks": 725
+  },
+  {
+    "QUARTER": "2012Q2",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.804554815890422,
+    "nim_median": 3.829892830771475,
+    "n_banks": 726
+  },
+  {
+    "QUARTER": "2012Q2",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.8598444193571986,
+    "nim_median": 3.816902144301889,
+    "n_banks": 725
+  },
+  {
+    "QUARTER": "2012Q2",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.7986263345373676,
+    "nim_median": 3.7998362369106022,
+    "n_banks": 725
+  },
+  {
+    "QUARTER": "2012Q2",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.7719886014599573,
+    "nim_median": 3.7497936086566104,
+    "n_banks": 726
+  },
+  {
+    "QUARTER": "2012Q2",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.7495788977327607,
+    "nim_median": 3.705951658395516,
+    "n_banks": 725
+  },
+  {
+    "QUARTER": "2012Q2",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.7449858429331107,
+    "nim_median": 3.6494765403074463,
+    "n_banks": 725
+  },
+  {
+    "QUARTER": "2012Q2",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.765059209671401,
+    "nim_median": 3.6409742050985106,
+    "n_banks": 726
+  },
+  {
+    "QUARTER": "2012Q3",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.7110256419116823,
+    "nim_median": 3.679588790663895,
+    "n_banks": 719
+  },
+  {
+    "QUARTER": "2012Q3",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.768963735015417,
+    "nim_median": 3.773708344344308,
+    "n_banks": 719
+  },
+  {
+    "QUARTER": "2012Q3",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.821489503459421,
+    "nim_median": 3.7757954356155254,
+    "n_banks": 719
+  },
+  {
+    "QUARTER": "2012Q3",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.817083333705827,
+    "nim_median": 3.8399408592197664,
+    "n_banks": 719
+  },
+  {
+    "QUARTER": "2012Q3",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.8440536830380583,
+    "nim_median": 3.818125896934115,
+    "n_banks": 719
+  },
+  {
+    "QUARTER": "2012Q3",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.7981286356269695,
+    "nim_median": 3.800084675693628,
+    "n_banks": 719
+  },
+  {
+    "QUARTER": "2012Q3",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.7856670991774704,
+    "nim_median": 3.73643953518014,
+    "n_banks": 719
+  },
+  {
+    "QUARTER": "2012Q3",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.750049326814055,
+    "nim_median": 3.718766612174915,
+    "n_banks": 719
+  },
+  {
+    "QUARTER": "2012Q3",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.74123244238328,
+    "nim_median": 3.642898012132329,
+    "n_banks": 719
+  },
+  {
+    "QUARTER": "2012Q3",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.751200756284537,
+    "nim_median": 3.645039488056027,
+    "n_banks": 719
+  },
+  {
+    "QUARTER": "2012Q4",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.684057836037439,
+    "nim_median": 3.651714078418907,
+    "n_banks": 710
+  },
+  {
+    "QUARTER": "2012Q4",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.737523321520425,
+    "nim_median": 3.7485082637189735,
+    "n_banks": 709
+  },
+  {
+    "QUARTER": "2012Q4",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.802668095224985,
+    "nim_median": 3.7835322160442457,
+    "n_banks": 709
+  },
+  {
+    "QUARTER": "2012Q4",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.78436013989788,
+    "nim_median": 3.7938379130728186,
+    "n_banks": 709
+  },
+  {
+    "QUARTER": "2012Q4",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.8266514894493127,
+    "nim_median": 3.8113179809815234,
+    "n_banks": 709
+  },
+  {
+    "QUARTER": "2012Q4",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.764480955766946,
+    "nim_median": 3.7913969521560578,
+    "n_banks": 709
+  },
+  {
+    "QUARTER": "2012Q4",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.760906944722599,
+    "nim_median": 3.7054372683245074,
+    "n_banks": 709
+  },
+  {
+    "QUARTER": "2012Q4",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.7192973644972898,
+    "nim_median": 3.705392494125894,
+    "n_banks": 709
+  },
+  {
+    "QUARTER": "2012Q4",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.705380882665441,
+    "nim_median": 3.6363918133884954,
+    "n_banks": 709
+  },
+  {
+    "QUARTER": "2012Q4",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.7811288134895515,
+    "nim_median": 3.6376195691788085,
+    "n_banks": 710
+  },
+  {
+    "QUARTER": "2013Q1",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.4514619625952148,
+    "nim_median": 3.4245129091083597,
+    "n_banks": 703
+  },
+  {
+    "QUARTER": "2013Q1",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.5489424815702457,
+    "nim_median": 3.4989657840304424,
+    "n_banks": 703
+  },
+  {
+    "QUARTER": "2013Q1",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.6085228263973628,
+    "nim_median": 3.5868136129270702,
+    "n_banks": 703
+  },
+  {
+    "QUARTER": "2013Q1",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.627063031054455,
+    "nim_median": 3.6162665857545537,
+    "n_banks": 702
+  },
+  {
+    "QUARTER": "2013Q1",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.6522360862257335,
+    "nim_median": 3.617406736421784,
+    "n_banks": 703
+  },
+  {
+    "QUARTER": "2013Q1",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.6201662025937433,
+    "nim_median": 3.6127265139038487,
+    "n_banks": 703
+  },
+  {
+    "QUARTER": "2013Q1",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.571965191915064,
+    "nim_median": 3.528800628596697,
+    "n_banks": 702
+  },
+  {
+    "QUARTER": "2013Q1",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.5781322222502494,
+    "nim_median": 3.5492262245932724,
+    "n_banks": 703
+  },
+  {
+    "QUARTER": "2013Q1",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.564870076477225,
+    "nim_median": 3.487489061430577,
+    "n_banks": 703
+  },
+  {
+    "QUARTER": "2013Q1",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.626620192646892,
+    "nim_median": 3.4685909625975455,
+    "n_banks": 703
+  },
+  {
+    "QUARTER": "2013Q2",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.489188456831359,
+    "nim_median": 3.4524417431592584,
+    "n_banks": 695
+  },
+  {
+    "QUARTER": "2013Q2",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.580715963307341,
+    "nim_median": 3.5548066162416285,
+    "n_banks": 696
+  },
+  {
+    "QUARTER": "2013Q2",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.657327803051248,
+    "nim_median": 3.6443604969780874,
+    "n_banks": 694
+  },
+  {
+    "QUARTER": "2013Q2",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.6332582998536154,
+    "nim_median": 3.634636182621264,
+    "n_banks": 695
+  },
+  {
+    "QUARTER": "2013Q2",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.6822916605923304,
+    "nim_median": 3.666492514654755,
+    "n_banks": 695
+  },
+  {
+    "QUARTER": "2013Q2",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.659373744166284,
+    "nim_median": 3.65485776381474,
+    "n_banks": 694
+  },
+  {
+    "QUARTER": "2013Q2",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.592874461521392,
+    "nim_median": 3.570812796898875,
+    "n_banks": 695
+  },
+  {
+    "QUARTER": "2013Q2",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.6148188923225093,
+    "nim_median": 3.5683179753989247,
+    "n_banks": 695
+  },
+  {
+    "QUARTER": "2013Q2",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.593575101334168,
+    "nim_median": 3.5111959130026573,
+    "n_banks": 695
+  },
+  {
+    "QUARTER": "2013Q2",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.6469012507861422,
+    "nim_median": 3.4696323218865817,
+    "n_banks": 695
+  },
+  {
+    "QUARTER": "2013Q3",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.519810607717172,
+    "nim_median": 3.474985568638051,
+    "n_banks": 690
+  },
+  {
+    "QUARTER": "2013Q3",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.5965833070256883,
+    "nim_median": 3.5859696283871703,
+    "n_banks": 690
+  },
+  {
+    "QUARTER": "2013Q3",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.6979951906273407,
+    "nim_median": 3.6592001670620418,
+    "n_banks": 690
+  },
+  {
+    "QUARTER": "2013Q3",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.6404128338886776,
+    "nim_median": 3.643248302262507,
+    "n_banks": 690
+  },
+  {
+    "QUARTER": "2013Q3",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.7142616933767814,
+    "nim_median": 3.7023823746460813,
+    "n_banks": 690
+  },
+  {
+    "QUARTER": "2013Q3",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.695844379051477,
+    "nim_median": 3.6954560704547186,
+    "n_banks": 690
+  },
+  {
+    "QUARTER": "2013Q3",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.6168147905965733,
+    "nim_median": 3.593061156284585,
+    "n_banks": 690
+  },
+  {
+    "QUARTER": "2013Q3",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.640100724494439,
+    "nim_median": 3.5801804689560193,
+    "n_banks": 690
+  },
+  {
+    "QUARTER": "2013Q3",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.6302154360530126,
+    "nim_median": 3.547065565149773,
+    "n_banks": 690
+  },
+  {
+    "QUARTER": "2013Q3",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.657264815762449,
+    "nim_median": 3.4894359998207496,
+    "n_banks": 690
+  },
+  {
+    "QUARTER": "2013Q4",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.5016320460068484,
+    "nim_median": 3.4772529701535793,
+    "n_banks": 683
+  },
+  {
+    "QUARTER": "2013Q4",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.609419194134514,
+    "nim_median": 3.622059187926663,
+    "n_banks": 682
+  },
+  {
+    "QUARTER": "2013Q4",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.7134372910750097,
+    "nim_median": 3.690203593842094,
+    "n_banks": 682
+  },
+  {
+    "QUARTER": "2013Q4",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.6692209308782733,
+    "nim_median": 3.6455694451747203,
+    "n_banks": 682
+  },
+  {
+    "QUARTER": "2013Q4",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.7294070024548325,
+    "nim_median": 3.7048785046661488,
+    "n_banks": 682
+  },
+  {
+    "QUARTER": "2013Q4",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.6912315745026603,
+    "nim_median": 3.688742256097599,
+    "n_banks": 682
+  },
+  {
+    "QUARTER": "2013Q4",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.6279249663815274,
+    "nim_median": 3.5901117368288054,
+    "n_banks": 682
+  },
+  {
+    "QUARTER": "2013Q4",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.6438511866836407,
+    "nim_median": 3.6179480495768574,
+    "n_banks": 682
+  },
+  {
+    "QUARTER": "2013Q4",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.6658205309938214,
+    "nim_median": 3.577039089296,
+    "n_banks": 682
+  },
+  {
+    "QUARTER": "2013Q4",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.667507360676811,
+    "nim_median": 3.5049079240205927,
+    "n_banks": 682
+  },
+  {
+    "QUARTER": "2014Q1",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.134193462229285,
+    "nim_median": 3.437518843229037,
+    "n_banks": 674
+  },
+  {
+    "QUARTER": "2014Q1",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.5887235477831703,
+    "nim_median": 3.5763549719109022,
+    "n_banks": 674
+  },
+  {
+    "QUARTER": "2014Q1",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.669765896799646,
+    "nim_median": 3.654013672972412,
+    "n_banks": 674
+  },
+  {
+    "QUARTER": "2014Q1",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.647560847793438,
+    "nim_median": 3.588370876285482,
+    "n_banks": 674
+  },
+  {
+    "QUARTER": "2014Q1",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.7039823212396965,
+    "nim_median": 3.667856663889314,
+    "n_banks": 674
+  },
+  {
+    "QUARTER": "2014Q1",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.677657116676651,
+    "nim_median": 3.6507695364083625,
+    "n_banks": 673
+  },
+  {
+    "QUARTER": "2014Q1",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.6032179578343704,
+    "nim_median": 3.5589957773329712,
+    "n_banks": 674
+  },
+  {
+    "QUARTER": "2014Q1",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.6112747192912784,
+    "nim_median": 3.570014154469307,
+    "n_banks": 674
+  },
+  {
+    "QUARTER": "2014Q1",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.666294616324333,
+    "nim_median": 3.550544156361735,
+    "n_banks": 674
+  },
+  {
+    "QUARTER": "2014Q1",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.626723757591882,
+    "nim_median": 3.4439836901037584,
+    "n_banks": 674
+  },
+  {
+    "QUARTER": "2014Q2",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.5295663528247623,
+    "nim_median": 3.4691510186326395,
+    "n_banks": 667
+  },
+  {
+    "QUARTER": "2014Q2",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.614382619396104,
+    "nim_median": 3.596546709572113,
+    "n_banks": 666
+  },
+  {
+    "QUARTER": "2014Q2",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.685394502805095,
+    "nim_median": 3.673397562799701,
+    "n_banks": 667
+  },
+  {
+    "QUARTER": "2014Q2",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.6665235001384184,
+    "nim_median": 3.6306491645853916,
+    "n_banks": 666
+  },
+  {
+    "QUARTER": "2014Q2",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.8808443473180083,
+    "nim_median": 3.719636381699866,
+    "n_banks": 667
+  },
+  {
+    "QUARTER": "2014Q2",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.738997281508557,
+    "nim_median": 3.6741203375898026,
+    "n_banks": 666
+  },
+  {
+    "QUARTER": "2014Q2",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.612168000346633,
+    "nim_median": 3.592442388881344,
+    "n_banks": 666
+  },
+  {
+    "QUARTER": "2014Q2",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.666160320112331,
+    "nim_median": 3.626699879480164,
+    "n_banks": 667
+  },
+  {
+    "QUARTER": "2014Q2",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.677011607282112,
+    "nim_median": 3.574511603666037,
+    "n_banks": 666
+  },
+  {
+    "QUARTER": "2014Q2",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.631462224553212,
+    "nim_median": 3.465655893894152,
+    "n_banks": 667
+  },
+  {
+    "QUARTER": "2014Q3",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.545954750177256,
+    "nim_median": 3.5153217080283925,
+    "n_banks": 660
+  },
+  {
+    "QUARTER": "2014Q3",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.639110273421082,
+    "nim_median": 3.616449324783094,
+    "n_banks": 660
+  },
+  {
+    "QUARTER": "2014Q3",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.6944861922006793,
+    "nim_median": 3.7062831209887914,
+    "n_banks": 660
+  },
+  {
+    "QUARTER": "2014Q3",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.713671272573915,
+    "nim_median": 3.6967683898013535,
+    "n_banks": 659
+  },
+  {
+    "QUARTER": "2014Q3",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.737120593120162,
+    "nim_median": 3.7122067395368363,
+    "n_banks": 660
+  },
+  {
+    "QUARTER": "2014Q3",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.8380605720455696,
+    "nim_median": 3.7164551904635923,
+    "n_banks": 660
+  },
+  {
+    "QUARTER": "2014Q3",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.652498502467989,
+    "nim_median": 3.623287956460772,
+    "n_banks": 659
+  },
+  {
+    "QUARTER": "2014Q3",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.686478953113954,
+    "nim_median": 3.644079363077994,
+    "n_banks": 660
+  },
+  {
+    "QUARTER": "2014Q3",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.6753416958359213,
+    "nim_median": 3.5710938576667015,
+    "n_banks": 660
+  },
+  {
+    "QUARTER": "2014Q3",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.645945236524355,
+    "nim_median": 3.460004928407436,
+    "n_banks": 660
+  },
+  {
+    "QUARTER": "2014Q4",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.5676966891987454,
+    "nim_median": 3.505313474161799,
+    "n_banks": 652
+  },
+  {
+    "QUARTER": "2014Q4",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.6600157970764218,
+    "nim_median": 3.6258560159599984,
+    "n_banks": 652
+  },
+  {
+    "QUARTER": "2014Q4",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.6886381880410877,
+    "nim_median": 3.70747175879048,
+    "n_banks": 652
+  },
+  {
+    "QUARTER": "2014Q4",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.7266357834268464,
+    "nim_median": 3.685078377066499,
+    "n_banks": 651
+  },
+  {
+    "QUARTER": "2014Q4",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.7595505788890455,
+    "nim_median": 3.7519029134863726,
+    "n_banks": 652
+  },
+  {
+    "QUARTER": "2014Q4",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.868925393622233,
+    "nim_median": 3.698674816603818,
+    "n_banks": 652
+  },
+  {
+    "QUARTER": "2014Q4",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.645159655114914,
+    "nim_median": 3.62559564617858,
+    "n_banks": 651
+  },
+  {
+    "QUARTER": "2014Q4",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.698014827210007,
+    "nim_median": 3.6476567027921263,
+    "n_banks": 652
+  },
+  {
+    "QUARTER": "2014Q4",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.699022577002432,
+    "nim_median": 3.569728115653886,
+    "n_banks": 652
+  },
+  {
+    "QUARTER": "2014Q4",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.629465018764458,
+    "nim_median": 3.4643265485276835,
+    "n_banks": 652
+  },
+  {
+    "QUARTER": "2015Q1",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.4793910815235276,
+    "nim_median": 3.4310971270180173,
+    "n_banks": 643
+  },
+  {
+    "QUARTER": "2015Q1",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.602744824714594,
+    "nim_median": 3.5421075539946263,
+    "n_banks": 643
+  },
+  {
+    "QUARTER": "2015Q1",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.5995850249244428,
+    "nim_median": 3.5891658119830847,
+    "n_banks": 643
+  },
+  {
+    "QUARTER": "2015Q1",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.661061402133881,
+    "nim_median": 3.6403134305935705,
+    "n_banks": 642
+  },
+  {
+    "QUARTER": "2015Q1",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.6573338021183694,
+    "nim_median": 3.6763427776812097,
+    "n_banks": 643
+  },
+  {
+    "QUARTER": "2015Q1",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.6644239949797943,
+    "nim_median": 3.604899565063704,
+    "n_banks": 643
+  },
+  {
+    "QUARTER": "2015Q1",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.569181358924088,
+    "nim_median": 3.540007054867979,
+    "n_banks": 642
+  },
+  {
+    "QUARTER": "2015Q1",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.615634769041639,
+    "nim_median": 3.554184421122411,
+    "n_banks": 643
+  },
+  {
+    "QUARTER": "2015Q1",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.6146147920463587,
+    "nim_median": 3.517010701673859,
+    "n_banks": 643
+  },
+  {
+    "QUARTER": "2015Q1",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.5354518821523575,
+    "nim_median": 3.386201364054928,
+    "n_banks": 643
+  },
+  {
+    "QUARTER": "2015Q2",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.502756674430812,
+    "nim_median": 3.469388410687921,
+    "n_banks": 636
+  },
+  {
+    "QUARTER": "2015Q2",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.6439949227861,
+    "nim_median": 3.5698180896332135,
+    "n_banks": 636
+  },
+  {
+    "QUARTER": "2015Q2",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.606171307297834,
+    "nim_median": 3.624549121477244,
+    "n_banks": 635
+  },
+  {
+    "QUARTER": "2015Q2",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.7074119014384954,
+    "nim_median": 3.6757622063021476,
+    "n_banks": 636
+  },
+  {
+    "QUARTER": "2015Q2",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.8867248947066573,
+    "nim_median": 3.723768023742056,
+    "n_banks": 636
+  },
+  {
+    "QUARTER": "2015Q2",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.664589501896439,
+    "nim_median": 3.6379730512419814,
+    "n_banks": 635
+  },
+  {
+    "QUARTER": "2015Q2",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.616130208758109,
+    "nim_median": 3.567474172691705,
+    "n_banks": 636
+  },
+  {
+    "QUARTER": "2015Q2",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.637757966022553,
+    "nim_median": 3.5750950792132343,
+    "n_banks": 635
+  },
+  {
+    "QUARTER": "2015Q2",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.6601670257056176,
+    "nim_median": 3.549519956747784,
+    "n_banks": 636
+  },
+  {
+    "QUARTER": "2015Q2",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.532396009638476,
+    "nim_median": 3.396621492496827,
+    "n_banks": 636
+  },
+  {
+    "QUARTER": "2015Q3",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.528256527460243,
+    "nim_median": 3.4747860657514797,
+    "n_banks": 628
+  },
+  {
+    "QUARTER": "2015Q3",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.6951514098846383,
+    "nim_median": 3.6224171995271512,
+    "n_banks": 628
+  },
+  {
+    "QUARTER": "2015Q3",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.6389600904616812,
+    "nim_median": 3.6550543820695776,
+    "n_banks": 628
+  },
+  {
+    "QUARTER": "2015Q3",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.7140122383029426,
+    "nim_median": 3.7004414382531863,
+    "n_banks": 628
+  },
+  {
+    "QUARTER": "2015Q3",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.720611928393732,
+    "nim_median": 3.7028669303873247,
+    "n_banks": 628
+  },
+  {
+    "QUARTER": "2015Q3",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.682350218413047,
+    "nim_median": 3.69372045985868,
+    "n_banks": 627
+  },
+  {
+    "QUARTER": "2015Q3",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.6706551280471413,
+    "nim_median": 3.615028583207077,
+    "n_banks": 628
+  },
+  {
+    "QUARTER": "2015Q3",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.6474578262430413,
+    "nim_median": 3.595741246601178,
+    "n_banks": 628
+  },
+  {
+    "QUARTER": "2015Q3",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.686913336852199,
+    "nim_median": 3.577241465321241,
+    "n_banks": 628
+  },
+  {
+    "QUARTER": "2015Q3",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.549587871654593,
+    "nim_median": 3.4075275196403907,
+    "n_banks": 628
+  },
+  {
+    "QUARTER": "2015Q4",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.524801309406758,
+    "nim_median": 3.4827098350962613,
+    "n_banks": 620
+  },
+  {
+    "QUARTER": "2015Q4",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.6861347171150634,
+    "nim_median": 3.6293759247700543,
+    "n_banks": 619
+  },
+  {
+    "QUARTER": "2015Q4",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.6453834454021266,
+    "nim_median": 3.656566292984343,
+    "n_banks": 619
+  },
+  {
+    "QUARTER": "2015Q4",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.7102099927047867,
+    "nim_median": 3.6816686060333073,
+    "n_banks": 619
+  },
+  {
+    "QUARTER": "2015Q4",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.7470737061507235,
+    "nim_median": 3.7125858651306576,
+    "n_banks": 619
+  },
+  {
+    "QUARTER": "2015Q4",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.6939641261133,
+    "nim_median": 3.7152349169697194,
+    "n_banks": 619
+  },
+  {
+    "QUARTER": "2015Q4",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.6831882793553183,
+    "nim_median": 3.61636105938586,
+    "n_banks": 619
+  },
+  {
+    "QUARTER": "2015Q4",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.628718597920789,
+    "nim_median": 3.5819364256747517,
+    "n_banks": 619
+  },
+  {
+    "QUARTER": "2015Q4",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.675707418539155,
+    "nim_median": 3.5694745340830316,
+    "n_banks": 619
+  },
+  {
+    "QUARTER": "2015Q4",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.5597061247967567,
+    "nim_median": 3.414697961386618,
+    "n_banks": 619
+  },
+  {
+    "QUARTER": "2016Q1",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.583776331383138,
+    "nim_median": 3.524515296537173,
+    "n_banks": 614
+  },
+  {
+    "QUARTER": "2016Q1",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.7101548752314693,
+    "nim_median": 3.6373054012834167,
+    "n_banks": 613
+  },
+  {
+    "QUARTER": "2016Q1",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.660448185055248,
+    "nim_median": 3.668891800707778,
+    "n_banks": 613
+  },
+  {
+    "QUARTER": "2016Q1",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.6910583000417936,
+    "nim_median": 3.677638609429004,
+    "n_banks": 613
+  },
+  {
+    "QUARTER": "2016Q1",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.7043101931098183,
+    "nim_median": 3.6879462279042055,
+    "n_banks": 613
+  },
+  {
+    "QUARTER": "2016Q1",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.68564501680064,
+    "nim_median": 3.6687857271596505,
+    "n_banks": 613
+  },
+  {
+    "QUARTER": "2016Q1",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.635822386881148,
+    "nim_median": 3.609414221508147,
+    "n_banks": 613
+  },
+  {
+    "QUARTER": "2016Q1",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.650370137450397,
+    "nim_median": 3.588445535626989,
+    "n_banks": 613
+  },
+  {
+    "QUARTER": "2016Q1",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.6867099416749745,
+    "nim_median": 3.573293019815979,
+    "n_banks": 613
+  },
+  {
+    "QUARTER": "2016Q1",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.535160660781249,
+    "nim_median": 3.418506899089002,
+    "n_banks": 613
+  },
+  {
+    "QUARTER": "2016Q2",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.60216398117686,
+    "nim_median": 3.5504385303957324,
+    "n_banks": 607
+  },
+  {
+    "QUARTER": "2016Q2",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.713220344110815,
+    "nim_median": 3.670823315902223,
+    "n_banks": 607
+  },
+  {
+    "QUARTER": "2016Q2",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.652165437353566,
+    "nim_median": 3.6530368721910915,
+    "n_banks": 606
+  },
+  {
+    "QUARTER": "2016Q2",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.722505246587848,
+    "nim_median": 3.739847433114473,
+    "n_banks": 607
+  },
+  {
+    "QUARTER": "2016Q2",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.703584215286509,
+    "nim_median": 3.6920361651001614,
+    "n_banks": 607
+  },
+  {
+    "QUARTER": "2016Q2",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.7138667093761475,
+    "nim_median": 3.7068197364617617,
+    "n_banks": 606
+  },
+  {
+    "QUARTER": "2016Q2",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.6556724629812773,
+    "nim_median": 3.6243858782637113,
+    "n_banks": 607
+  },
+  {
+    "QUARTER": "2016Q2",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.655034711490286,
+    "nim_median": 3.5848092600770802,
+    "n_banks": 606
+  },
+  {
+    "QUARTER": "2016Q2",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.6892163505204674,
+    "nim_median": 3.5817775676421215,
+    "n_banks": 607
+  },
+  {
+    "QUARTER": "2016Q2",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.538957421159089,
+    "nim_median": 3.398843010846917,
+    "n_banks": 607
+  },
+  {
+    "QUARTER": "2016Q3",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.6119291127734847,
+    "nim_median": 3.556832154093856,
+    "n_banks": 599
+  },
+  {
+    "QUARTER": "2016Q3",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.7370054668000408,
+    "nim_median": 3.69349876602788,
+    "n_banks": 599
+  },
+  {
+    "QUARTER": "2016Q3",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.6444690774886057,
+    "nim_median": 3.649009743938364,
+    "n_banks": 599
+  },
+  {
+    "QUARTER": "2016Q3",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.7342302806432426,
+    "nim_median": 3.769832091497966,
+    "n_banks": 599
+  },
+  {
+    "QUARTER": "2016Q3",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.703260303584208,
+    "nim_median": 3.6956497257746905,
+    "n_banks": 599
+  },
+  {
+    "QUARTER": "2016Q3",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.7326067277838897,
+    "nim_median": 3.7283047249515855,
+    "n_banks": 598
+  },
+  {
+    "QUARTER": "2016Q3",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.6892994830059274,
+    "nim_median": 3.6232439042721545,
+    "n_banks": 599
+  },
+  {
+    "QUARTER": "2016Q3",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.6270009092416524,
+    "nim_median": 3.588532257642106,
+    "n_banks": 599
+  },
+  {
+    "QUARTER": "2016Q3",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.6935575544533927,
+    "nim_median": 3.5856965816128614,
+    "n_banks": 599
+  },
+  {
+    "QUARTER": "2016Q3",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.5345835147645843,
+    "nim_median": 3.3935850775570424,
+    "n_banks": 599
+  },
+  {
+    "QUARTER": "2016Q4",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.614411957267056,
+    "nim_median": 3.5597752635440396,
+    "n_banks": 593
+  },
+  {
+    "QUARTER": "2016Q4",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.7092373570138184,
+    "nim_median": 3.694997914593567,
+    "n_banks": 592
+  },
+  {
+    "QUARTER": "2016Q4",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.6865063761431305,
+    "nim_median": 3.6765637164945075,
+    "n_banks": 592
+  },
+  {
+    "QUARTER": "2016Q4",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.701474492715306,
+    "nim_median": 3.7871031854562283,
+    "n_banks": 592
+  },
+  {
+    "QUARTER": "2016Q4",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.7090372323986425,
+    "nim_median": 3.7050935836852306,
+    "n_banks": 592
+  },
+  {
+    "QUARTER": "2016Q4",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.730416045899197,
+    "nim_median": 3.7149318997302343,
+    "n_banks": 592
+  },
+  {
+    "QUARTER": "2016Q4",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.6827591573996794,
+    "nim_median": 3.647660321895346,
+    "n_banks": 592
+  },
+  {
+    "QUARTER": "2016Q4",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.645353233656412,
+    "nim_median": 3.6068485078582766,
+    "n_banks": 592
+  },
+  {
+    "QUARTER": "2016Q4",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.7093377698952343,
+    "nim_median": 3.597441444514118,
+    "n_banks": 592
+  },
+  {
+    "QUARTER": "2016Q4",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.552292559679905,
+    "nim_median": 3.3892164891333803,
+    "n_banks": 593
+  },
+  {
+    "QUARTER": "2017Q1",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.548317590296697,
+    "nim_median": 3.5006311233996517,
+    "n_banks": 587
+  },
+  {
+    "QUARTER": "2017Q1",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.665706851295815,
+    "nim_median": 3.638531824998043,
+    "n_banks": 586
+  },
+  {
+    "QUARTER": "2017Q1",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.6398815688942285,
+    "nim_median": 3.628153375492371,
+    "n_banks": 587
+  },
+  {
+    "QUARTER": "2017Q1",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.6715439205795874,
+    "nim_median": 3.6863586106324933,
+    "n_banks": 586
+  },
+  {
+    "QUARTER": "2017Q1",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.6816031976742254,
+    "nim_median": 3.664927266482756,
+    "n_banks": 587
+  },
+  {
+    "QUARTER": "2017Q1",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.6810439232026315,
+    "nim_median": 3.650590028029728,
+    "n_banks": 586
+  },
+  {
+    "QUARTER": "2017Q1",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.6549917182953364,
+    "nim_median": 3.631064873994122,
+    "n_banks": 586
+  },
+  {
+    "QUARTER": "2017Q1",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.6246860628116337,
+    "nim_median": 3.569467607440667,
+    "n_banks": 587
+  },
+  {
+    "QUARTER": "2017Q1",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.6749341898301005,
+    "nim_median": 3.5432190110176354,
+    "n_banks": 586
+  },
+  {
+    "QUARTER": "2017Q1",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.5575075973308827,
+    "nim_median": 3.3758062891196134,
+    "n_banks": 587
+  },
+  {
+    "QUARTER": "2017Q2",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.5902601510527137,
+    "nim_median": 3.5375227084202585,
+    "n_banks": 580
+  },
+  {
+    "QUARTER": "2017Q2",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.7198230307206273,
+    "nim_median": 3.694447569496896,
+    "n_banks": 580
+  },
+  {
+    "QUARTER": "2017Q2",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.659194113043299,
+    "nim_median": 3.653648273002319,
+    "n_banks": 579
+  },
+  {
+    "QUARTER": "2017Q2",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.728983941345504,
+    "nim_median": 3.768817550006762,
+    "n_banks": 580
+  },
+  {
+    "QUARTER": "2017Q2",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.7285661107099792,
+    "nim_median": 3.709266712822258,
+    "n_banks": 579
+  },
+  {
+    "QUARTER": "2017Q2",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.7389119439587555,
+    "nim_median": 3.730778938303609,
+    "n_banks": 580
+  },
+  {
+    "QUARTER": "2017Q2",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.693740592014047,
+    "nim_median": 3.641856959218333,
+    "n_banks": 579
+  },
+  {
+    "QUARTER": "2017Q2",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.639698535474871,
+    "nim_median": 3.605669828899521,
+    "n_banks": 580
+  },
+  {
+    "QUARTER": "2017Q2",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.738442025193725,
+    "nim_median": 3.6007186147553867,
+    "n_banks": 579
+  },
+  {
+    "QUARTER": "2017Q2",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.5704864006614736,
+    "nim_median": 3.4109674742863305,
+    "n_banks": 580
+  },
+  {
+    "QUARTER": "2017Q3",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.6163322521185184,
+    "nim_median": 3.598300603831489,
+    "n_banks": 575
+  },
+  {
+    "QUARTER": "2017Q3",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.7224694361861292,
+    "nim_median": 3.7274854765685914,
+    "n_banks": 575
+  },
+  {
+    "QUARTER": "2017Q3",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.694860676433242,
+    "nim_median": 3.689631480506215,
+    "n_banks": 574
+  },
+  {
+    "QUARTER": "2017Q3",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.76102350210384,
+    "nim_median": 3.794047738574879,
+    "n_banks": 575
+  },
+  {
+    "QUARTER": "2017Q3",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.758819570186649,
+    "nim_median": 3.752646543553807,
+    "n_banks": 575
+  },
+  {
+    "QUARTER": "2017Q3",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.772580284220653,
+    "nim_median": 3.772729407465092,
+    "n_banks": 574
+  },
+  {
+    "QUARTER": "2017Q3",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.717085935933357,
+    "nim_median": 3.676627405917839,
+    "n_banks": 575
+  },
+  {
+    "QUARTER": "2017Q3",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.6789927397471893,
+    "nim_median": 3.641872849061115,
+    "n_banks": 574
+  },
+  {
+    "QUARTER": "2017Q3",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.7695605278146673,
+    "nim_median": 3.628443691539528,
+    "n_banks": 575
+  },
+  {
+    "QUARTER": "2017Q3",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.6027197843370944,
+    "nim_median": 3.4372503061557493,
+    "n_banks": 575
+  },
+  {
+    "QUARTER": "2017Q4",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.6301876877204404,
+    "nim_median": 3.6003690500846632,
+    "n_banks": 568
+  },
+  {
+    "QUARTER": "2017Q4",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.7556280986181068,
+    "nim_median": 3.7457132572006637,
+    "n_banks": 568
+  },
+  {
+    "QUARTER": "2017Q4",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.7022631458861492,
+    "nim_median": 3.7088091615477374,
+    "n_banks": 569
+  },
+  {
+    "QUARTER": "2017Q4",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.7630278849338117,
+    "nim_median": 3.782785371259697,
+    "n_banks": 567
+  },
+  {
+    "QUARTER": "2017Q4",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.771651381370524,
+    "nim_median": 3.786151821856621,
+    "n_banks": 568
+  },
+  {
+    "QUARTER": "2017Q4",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.7963358081603573,
+    "nim_median": 3.782277175226423,
+    "n_banks": 567
+  },
+  {
+    "QUARTER": "2017Q4",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.695653846488102,
+    "nim_median": 3.681950818757832,
+    "n_banks": 568
+  },
+  {
+    "QUARTER": "2017Q4",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.6970679451674155,
+    "nim_median": 3.6611717709365834,
+    "n_banks": 568
+  },
+  {
+    "QUARTER": "2017Q4",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.797202146716892,
+    "nim_median": 3.6480621345071516,
+    "n_banks": 568
+  },
+  {
+    "QUARTER": "2017Q4",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.616678765622672,
+    "nim_median": 3.4633237444981737,
+    "n_banks": 568
+  },
+  {
+    "QUARTER": "2018Q1",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.644908973338363,
+    "nim_median": 3.6037190059627866,
+    "n_banks": 562
+  },
+  {
+    "QUARTER": "2018Q1",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.764953230407599,
+    "nim_median": 3.7585897818942335,
+    "n_banks": 561
+  },
+  {
+    "QUARTER": "2018Q1",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.737221702565776,
+    "nim_median": 3.7177763267963932,
+    "n_banks": 562
+  },
+  {
+    "QUARTER": "2018Q1",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.787675469483152,
+    "nim_median": 3.7809117633491423,
+    "n_banks": 561
+  },
+  {
+    "QUARTER": "2018Q1",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.7873688188394325,
+    "nim_median": 3.7842744358709424,
+    "n_banks": 562
+  },
+  {
+    "QUARTER": "2018Q1",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.818128432075455,
+    "nim_median": 3.7883355220032575,
+    "n_banks": 561
+  },
+  {
+    "QUARTER": "2018Q1",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.71387939029993,
+    "nim_median": 3.675093032208392,
+    "n_banks": 561
+  },
+  {
+    "QUARTER": "2018Q1",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.691893574426747,
+    "nim_median": 3.669193602215853,
+    "n_banks": 562
+  },
+  {
+    "QUARTER": "2018Q1",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.810183942461603,
+    "nim_median": 3.6667169186899966,
+    "n_banks": 561
+  },
+  {
+    "QUARTER": "2018Q1",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.6650746674516093,
+    "nim_median": 3.5076320384248505,
+    "n_banks": 562
+  },
+  {
+    "QUARTER": "2018Q2",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.7021204650387105,
+    "nim_median": 3.6444597359938706,
+    "n_banks": 556
+  },
+  {
+    "QUARTER": "2018Q2",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.7893898355805398,
+    "nim_median": 3.779532378504101,
+    "n_banks": 555
+  },
+  {
+    "QUARTER": "2018Q2",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.8013354772494274,
+    "nim_median": 3.796668415204848,
+    "n_banks": 555
+  },
+  {
+    "QUARTER": "2018Q2",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.841834520483202,
+    "nim_median": 3.8509708574350743,
+    "n_banks": 555
+  },
+  {
+    "QUARTER": "2018Q2",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.837359783500128,
+    "nim_median": 3.830555617479461,
+    "n_banks": 555
+  },
+  {
+    "QUARTER": "2018Q2",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.8496172429131295,
+    "nim_median": 3.827800534307334,
+    "n_banks": 555
+  },
+  {
+    "QUARTER": "2018Q2",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.7456242803259605,
+    "nim_median": 3.717570512025626,
+    "n_banks": 555
+  },
+  {
+    "QUARTER": "2018Q2",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.739750173634128,
+    "nim_median": 3.699983196570046,
+    "n_banks": 555
+  },
+  {
+    "QUARTER": "2018Q2",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.84910617603963,
+    "nim_median": 3.716175209790728,
+    "n_banks": 555
+  },
+  {
+    "QUARTER": "2018Q2",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.684352594106768,
+    "nim_median": 3.553067021409996,
+    "n_banks": 555
+  },
+  {
+    "QUARTER": "2018Q3",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.7191335053294448,
+    "nim_median": 3.684262071987914,
+    "n_banks": 549
+  },
+  {
+    "QUARTER": "2018Q3",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.832388448131811,
+    "nim_median": 3.806731687002874,
+    "n_banks": 549
+  },
+  {
+    "QUARTER": "2018Q3",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.8214747891899123,
+    "nim_median": 3.8253422483256427,
+    "n_banks": 548
+  },
+  {
+    "QUARTER": "2018Q3",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.89409347827569,
+    "nim_median": 3.897053299148274,
+    "n_banks": 549
+  },
+  {
+    "QUARTER": "2018Q3",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.867171210212964,
+    "nim_median": 3.869784394889712,
+    "n_banks": 548
+  },
+  {
+    "QUARTER": "2018Q3",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.8917999308289617,
+    "nim_median": 3.879318282095382,
+    "n_banks": 549
+  },
+  {
+    "QUARTER": "2018Q3",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.772004813393753,
+    "nim_median": 3.750235998031829,
+    "n_banks": 548
+  },
+  {
+    "QUARTER": "2018Q3",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.7490952445770342,
+    "nim_median": 3.723765897218657,
+    "n_banks": 549
+  },
+  {
+    "QUARTER": "2018Q3",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.8716471575817035,
+    "nim_median": 3.7413369844708644,
+    "n_banks": 548
+  },
+  {
+    "QUARTER": "2018Q3",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.708304031213947,
+    "nim_median": 3.5730722423577483,
+    "n_banks": 549
+  },
+  {
+    "QUARTER": "2018Q4",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.75613602997838,
+    "nim_median": 3.700883644333457,
+    "n_banks": 542
+  },
+  {
+    "QUARTER": "2018Q4",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.833894182000916,
+    "nim_median": 3.8054004009625824,
+    "n_banks": 541
+  },
+  {
+    "QUARTER": "2018Q4",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.8234804459294693,
+    "nim_median": 3.8305710682988012,
+    "n_banks": 542
+  },
+  {
+    "QUARTER": "2018Q4",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.8803961328724412,
+    "nim_median": 3.896938398364252,
+    "n_banks": 541
+  },
+  {
+    "QUARTER": "2018Q4",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.881010309841151,
+    "nim_median": 3.8898446701209544,
+    "n_banks": 542
+  },
+  {
+    "QUARTER": "2018Q4",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.887466418049835,
+    "nim_median": 3.8894997251236942,
+    "n_banks": 541
+  },
+  {
+    "QUARTER": "2018Q4",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.8230157801772076,
+    "nim_median": 3.784380040697988,
+    "n_banks": 541
+  },
+  {
+    "QUARTER": "2018Q4",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.7774945749816387,
+    "nim_median": 3.7506206561818534,
+    "n_banks": 542
+  },
+  {
+    "QUARTER": "2018Q4",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.872773232788314,
+    "nim_median": 3.7391430676476385,
+    "n_banks": 541
+  },
+  {
+    "QUARTER": "2018Q4",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.733328677538694,
+    "nim_median": 3.6036190061002715,
+    "n_banks": 542
+  },
+  {
+    "QUARTER": "2019Q1",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.8077920071079383,
+    "nim_median": 3.746379544343493,
+    "n_banks": 538
+  },
+  {
+    "QUARTER": "2019Q1",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.8280149912755523,
+    "nim_median": 3.775451950523311,
+    "n_banks": 537
+  },
+  {
+    "QUARTER": "2019Q1",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.8204250402411035,
+    "nim_median": 3.8415314154549094,
+    "n_banks": 537
+  },
+  {
+    "QUARTER": "2019Q1",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.889801066769419,
+    "nim_median": 3.82722948384195,
+    "n_banks": 537
+  },
+  {
+    "QUARTER": "2019Q1",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.842125250303591,
+    "nim_median": 3.8153986748914783,
+    "n_banks": 537
+  },
+  {
+    "QUARTER": "2019Q1",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.8590053834480056,
+    "nim_median": 3.81960822062858,
+    "n_banks": 537
+  },
+  {
+    "QUARTER": "2019Q1",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.7896065974931727,
+    "nim_median": 3.7315800698045782,
+    "n_banks": 537
+  },
+  {
+    "QUARTER": "2019Q1",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.764317490288365,
+    "nim_median": 3.6960261929551095,
+    "n_banks": 537
+  },
+  {
+    "QUARTER": "2019Q1",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.844312835275717,
+    "nim_median": 3.7017843889760185,
+    "n_banks": 537
+  },
+  {
+    "QUARTER": "2019Q1",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.703282542935135,
+    "nim_median": 3.5493525499787077,
+    "n_banks": 537
+  },
+  {
+    "QUARTER": "2019Q2",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.8159746436631043,
+    "nim_median": 3.735665885436524,
+    "n_banks": 532
+  },
+  {
+    "QUARTER": "2019Q2",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.8445917529826743,
+    "nim_median": 3.7900203111585737,
+    "n_banks": 531
+  },
+  {
+    "QUARTER": "2019Q2",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.8299049120316324,
+    "nim_median": 3.838552843754168,
+    "n_banks": 531
+  },
+  {
+    "QUARTER": "2019Q2",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.930323536716482,
+    "nim_median": 3.905459168059512,
+    "n_banks": 531
+  },
+  {
+    "QUARTER": "2019Q2",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.8421889340091893,
+    "nim_median": 3.841219624596759,
+    "n_banks": 531
+  },
+  {
+    "QUARTER": "2019Q2",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.882094551795029,
+    "nim_median": 3.868339338043567,
+    "n_banks": 531
+  },
+  {
+    "QUARTER": "2019Q2",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.7766730520954868,
+    "nim_median": 3.766765513169079,
+    "n_banks": 531
+  },
+  {
+    "QUARTER": "2019Q2",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.790117886918506,
+    "nim_median": 3.726468450739735,
+    "n_banks": 531
+  },
+  {
+    "QUARTER": "2019Q2",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.8554839637857334,
+    "nim_median": 3.73116820435334,
+    "n_banks": 531
+  },
+  {
+    "QUARTER": "2019Q2",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.708188952152443,
+    "nim_median": 3.5599990320696984,
+    "n_banks": 532
+  },
+  {
+    "QUARTER": "2019Q3",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.7892207450864,
+    "nim_median": 3.7178632668577105,
+    "n_banks": 527
+  },
+  {
+    "QUARTER": "2019Q3",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.8401951075716814,
+    "nim_median": 3.834571375699724,
+    "n_banks": 527
+  },
+  {
+    "QUARTER": "2019Q3",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.8297313711866066,
+    "nim_median": 3.8391676307056284,
+    "n_banks": 526
+  },
+  {
+    "QUARTER": "2019Q3",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.953651938725628,
+    "nim_median": 3.9293099360416495,
+    "n_banks": 527
+  },
+  {
+    "QUARTER": "2019Q3",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.865387415596337,
+    "nim_median": 3.8677988986463463,
+    "n_banks": 527
+  },
+  {
+    "QUARTER": "2019Q3",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.879018143436519,
+    "nim_median": 3.877889209789938,
+    "n_banks": 526
+  },
+  {
+    "QUARTER": "2019Q3",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.7613889969185523,
+    "nim_median": 3.74636227772543,
+    "n_banks": 527
+  },
+  {
+    "QUARTER": "2019Q3",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.797390080747204,
+    "nim_median": 3.7372138949366995,
+    "n_banks": 526
+  },
+  {
+    "QUARTER": "2019Q3",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.8660429445465856,
+    "nim_median": 3.741847322371128,
+    "n_banks": 527
+  },
+  {
+    "QUARTER": "2019Q3",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.6970211221590357,
+    "nim_median": 3.549600904104109,
+    "n_banks": 527
+  },
+  {
+    "QUARTER": "2019Q4",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.758511614683488,
+    "nim_median": 3.705530588134994,
+    "n_banks": 519
+  },
+  {
+    "QUARTER": "2019Q4",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.823423936412578,
+    "nim_median": 3.811086635333708,
+    "n_banks": 519
+  },
+  {
+    "QUARTER": "2019Q4",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.834737336546417,
+    "nim_median": 3.84558606801205,
+    "n_banks": 518
+  },
+  {
+    "QUARTER": "2019Q4",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.8924539011401693,
+    "nim_median": 3.911478054920182,
+    "n_banks": 519
+  },
+  {
+    "QUARTER": "2019Q4",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.845447610536224,
+    "nim_median": 3.8638607080802334,
+    "n_banks": 518
+  },
+  {
+    "QUARTER": "2019Q4",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.815371054244317,
+    "nim_median": 3.8410671677139616,
+    "n_banks": 519
+  },
+  {
+    "QUARTER": "2019Q4",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.769894943269269,
+    "nim_median": 3.73925117791756,
+    "n_banks": 518
+  },
+  {
+    "QUARTER": "2019Q4",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.7842190102266757,
+    "nim_median": 3.732534336430201,
+    "n_banks": 519
+  },
+  {
+    "QUARTER": "2019Q4",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.8272602325265273,
+    "nim_median": 3.715860063080452,
+    "n_banks": 518
+  },
+  {
+    "QUARTER": "2019Q4",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.6795619639588257,
+    "nim_median": 3.5410427470860375,
+    "n_banks": 519
+  },
+  {
+    "QUARTER": "2020Q1",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.598611570945017,
+    "nim_median": 3.5459085221093014,
+    "n_banks": 513
+  },
+  {
+    "QUARTER": "2020Q1",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.6630392030479233,
+    "nim_median": 3.6501957172386654,
+    "n_banks": 512
+  },
+  {
+    "QUARTER": "2020Q1",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.697924866807384,
+    "nim_median": 3.717652638889673,
+    "n_banks": 513
+  },
+  {
+    "QUARTER": "2020Q1",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.762403013808965,
+    "nim_median": 3.7312857852336165,
+    "n_banks": 512
+  },
+  {
+    "QUARTER": "2020Q1",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.717952596425777,
+    "nim_median": 3.7222453865419296,
+    "n_banks": 513
+  },
+  {
+    "QUARTER": "2020Q1",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.692228136578238,
+    "nim_median": 3.6839414205366987,
+    "n_banks": 512
+  },
+  {
+    "QUARTER": "2020Q1",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.669073922394696,
+    "nim_median": 3.6308970792784376,
+    "n_banks": 512
+  },
+  {
+    "QUARTER": "2020Q1",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.6572547153613244,
+    "nim_median": 3.637719472844659,
+    "n_banks": 513
+  },
+  {
+    "QUARTER": "2020Q1",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.6844685069119243,
+    "nim_median": 3.5877490064414435,
+    "n_banks": 512
+  },
+  {
+    "QUARTER": "2020Q1",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.5205947316060113,
+    "nim_median": 3.3908804803421027,
+    "n_banks": 513
+  },
+  {
+    "QUARTER": "2020Q2",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.5034879334554643,
+    "nim_median": 3.4668675908896933,
+    "n_banks": 508
+  },
+  {
+    "QUARTER": "2020Q2",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.6333371162047454,
+    "nim_median": 3.6264785834986406,
+    "n_banks": 507
+  },
+  {
+    "QUARTER": "2020Q2",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.6892627285184085,
+    "nim_median": 3.6880506333953504,
+    "n_banks": 508
+  },
+  {
+    "QUARTER": "2020Q2",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.713443747457694,
+    "nim_median": 3.714549829585147,
+    "n_banks": 507
+  },
+  {
+    "QUARTER": "2020Q2",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.705877366633839,
+    "nim_median": 3.6709719933548675,
+    "n_banks": 508
+  },
+  {
+    "QUARTER": "2020Q2",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.678995757567277,
+    "nim_median": 3.6632142462930943,
+    "n_banks": 507
+  },
+  {
+    "QUARTER": "2020Q2",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.661806085547206,
+    "nim_median": 3.583525893706674,
+    "n_banks": 507
+  },
+  {
+    "QUARTER": "2020Q2",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.597663902787703,
+    "nim_median": 3.5623793815734164,
+    "n_banks": 508
+  },
+  {
+    "QUARTER": "2020Q2",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.5766894369955176,
+    "nim_median": 3.535435704836772,
+    "n_banks": 507
+  },
+  {
+    "QUARTER": "2020Q2",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.413900250132934,
+    "nim_median": 3.3233739473498454,
+    "n_banks": 508
+  },
+  {
+    "QUARTER": "2020Q3",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.4237558212284296,
+    "nim_median": 3.399290431577331,
+    "n_banks": 505
+  },
+  {
+    "QUARTER": "2020Q3",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.539043634696587,
+    "nim_median": 3.553481059549858,
+    "n_banks": 504
+  },
+  {
+    "QUARTER": "2020Q3",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.5778164091917835,
+    "nim_median": 3.615360875604611,
+    "n_banks": 504
+  },
+  {
+    "QUARTER": "2020Q3",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.6062886745628546,
+    "nim_median": 3.652208333128517,
+    "n_banks": 504
+  },
+  {
+    "QUARTER": "2020Q3",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.6013971718238262,
+    "nim_median": 3.5755974561195987,
+    "n_banks": 504
+  },
+  {
+    "QUARTER": "2020Q3",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.609855658980676,
+    "nim_median": 3.588505208839164,
+    "n_banks": 504
+  },
+  {
+    "QUARTER": "2020Q3",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.597249782807018,
+    "nim_median": 3.547540212530201,
+    "n_banks": 504
+  },
+  {
+    "QUARTER": "2020Q3",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.5139332321551704,
+    "nim_median": 3.489252471686827,
+    "n_banks": 504
+  },
+  {
+    "QUARTER": "2020Q3",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.516572427524728,
+    "nim_median": 3.473558827249962,
+    "n_banks": 504
+  },
+  {
+    "QUARTER": "2020Q3",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.3714830044739696,
+    "nim_median": 3.2768187245704428,
+    "n_banks": 505
+  },
+  {
+    "QUARTER": "2020Q4",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.3541114430056176,
+    "nim_median": 3.326166453522932,
+    "n_banks": 502
+  },
+  {
+    "QUARTER": "2020Q4",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.459239618201652,
+    "nim_median": 3.5045493017350826,
+    "n_banks": 501
+  },
+  {
+    "QUARTER": "2020Q4",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.545829056488468,
+    "nim_median": 3.5526978042786483,
+    "n_banks": 501
+  },
+  {
+    "QUARTER": "2020Q4",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.521553489433766,
+    "nim_median": 3.5927177462221884,
+    "n_banks": 501
+  },
+  {
+    "QUARTER": "2020Q4",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.5714965279796007,
+    "nim_median": 3.5678275717759327,
+    "n_banks": 501
+  },
+  {
+    "QUARTER": "2020Q4",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.556319694329807,
+    "nim_median": 3.550196155070579,
+    "n_banks": 501
+  },
+  {
+    "QUARTER": "2020Q4",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.5469426865619234,
+    "nim_median": 3.522163767347655,
+    "n_banks": 501
+  },
+  {
+    "QUARTER": "2020Q4",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.4817952254113913,
+    "nim_median": 3.4865062846644883,
+    "n_banks": 501
+  },
+  {
+    "QUARTER": "2020Q4",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.503484651564263,
+    "nim_median": 3.4752868180424654,
+    "n_banks": 501
+  },
+  {
+    "QUARTER": "2020Q4",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.355018585536354,
+    "nim_median": 3.277572615614503,
+    "n_banks": 501
+  },
+  {
+    "QUARTER": "2021Q1",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.1701336265989393,
+    "nim_median": 3.1267042355935284,
+    "n_banks": 499
+  },
+  {
+    "QUARTER": "2021Q1",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.3703825112839803,
+    "nim_median": 3.2691440364088615,
+    "n_banks": 499
+  },
+  {
+    "QUARTER": "2021Q1",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.3874983903624387,
+    "nim_median": 3.3112516652150843,
+    "n_banks": 498
+  },
+  {
+    "QUARTER": "2021Q1",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.4049585600321097,
+    "nim_median": 3.332947293351782,
+    "n_banks": 499
+  },
+  {
+    "QUARTER": "2021Q1",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.404838557593378,
+    "nim_median": 3.331793340469886,
+    "n_banks": 499
+  },
+  {
+    "QUARTER": "2021Q1",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.383244180277892,
+    "nim_median": 3.3255039760278047,
+    "n_banks": 498
+  },
+  {
+    "QUARTER": "2021Q1",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.3548178449605874,
+    "nim_median": 3.310464211412327,
+    "n_banks": 499
+  },
+  {
+    "QUARTER": "2021Q1",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.3927667208754353,
+    "nim_median": 3.2780045766107837,
+    "n_banks": 498
+  },
+  {
+    "QUARTER": "2021Q1",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.301121749424429,
+    "nim_median": 3.2964229057017023,
+    "n_banks": 499
+  },
+  {
+    "QUARTER": "2021Q1",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.1987172389457776,
+    "nim_median": 3.1006425878008215,
+    "n_banks": 499
+  },
+  {
+    "QUARTER": "2021Q2",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.1975169776076053,
+    "nim_median": 3.1236495892504292,
+    "n_banks": 496
+  },
+  {
+    "QUARTER": "2021Q2",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.401963372890759,
+    "nim_median": 3.345306000559546,
+    "n_banks": 496
+  },
+  {
+    "QUARTER": "2021Q2",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.428365214870662,
+    "nim_median": 3.3859013042327932,
+    "n_banks": 496
+  },
+  {
+    "QUARTER": "2021Q2",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.4180192972956527,
+    "nim_median": 3.391523665348048,
+    "n_banks": 496
+  },
+  {
+    "QUARTER": "2021Q2",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.398889609637298,
+    "nim_median": 3.3438032397520363,
+    "n_banks": 496
+  },
+  {
+    "QUARTER": "2021Q2",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.394407329906159,
+    "nim_median": 3.374361771149706,
+    "n_banks": 495
+  },
+  {
+    "QUARTER": "2021Q2",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.361059003765929,
+    "nim_median": 3.32449907185885,
+    "n_banks": 496
+  },
+  {
+    "QUARTER": "2021Q2",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.3932852850103132,
+    "nim_median": 3.2975697730830618,
+    "n_banks": 496
+  },
+  {
+    "QUARTER": "2021Q2",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.2988662797950523,
+    "nim_median": 3.2883346864181746,
+    "n_banks": 496
+  },
+  {
+    "QUARTER": "2021Q2",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.1759817742863667,
+    "nim_median": 3.0606184789592983,
+    "n_banks": 496
+  },
+  {
+    "QUARTER": "2021Q3",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.177551281132932,
+    "nim_median": 3.1274353721055173,
+    "n_banks": 493
+  },
+  {
+    "QUARTER": "2021Q3",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.3392590653860097,
+    "nim_median": 3.3551442461217555,
+    "n_banks": 492
+  },
+  {
+    "QUARTER": "2021Q3",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.378994905084942,
+    "nim_median": 3.3344869388621468,
+    "n_banks": 492
+  },
+  {
+    "QUARTER": "2021Q3",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.429193437871977,
+    "nim_median": 3.413273158066046,
+    "n_banks": 492
+  },
+  {
+    "QUARTER": "2021Q3",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.386242483072444,
+    "nim_median": 3.369144549146317,
+    "n_banks": 493
+  },
+  {
+    "QUARTER": "2021Q3",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.396890656975362,
+    "nim_median": 3.363845422910467,
+    "n_banks": 492
+  },
+  {
+    "QUARTER": "2021Q3",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.385899937961673,
+    "nim_median": 3.370958715052991,
+    "n_banks": 492
+  },
+  {
+    "QUARTER": "2021Q3",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.405491158662894,
+    "nim_median": 3.2993486258734412,
+    "n_banks": 492
+  },
+  {
+    "QUARTER": "2021Q3",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.3149864796412194,
+    "nim_median": 3.3114728608976365,
+    "n_banks": 492
+  },
+  {
+    "QUARTER": "2021Q3",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.200380190889364,
+    "nim_median": 3.0638512036839325,
+    "n_banks": 493
+  },
+  {
+    "QUARTER": "2021Q4",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.134600919428716,
+    "nim_median": 3.1131368329424283,
+    "n_banks": 485
+  },
+  {
+    "QUARTER": "2021Q4",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.3097140299829717,
+    "nim_median": 3.3103059516482505,
+    "n_banks": 485
+  },
+  {
+    "QUARTER": "2021Q4",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.2801019322791554,
+    "nim_median": 3.2734996268072205,
+    "n_banks": 485
+  },
+  {
+    "QUARTER": "2021Q4",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.4163274754784787,
+    "nim_median": 3.3792772364328068,
+    "n_banks": 484
+  },
+  {
+    "QUARTER": "2021Q4",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.3351927049872794,
+    "nim_median": 3.340371737992229,
+    "n_banks": 485
+  },
+  {
+    "QUARTER": "2021Q4",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.371720852867175,
+    "nim_median": 3.353063927243958,
+    "n_banks": 485
+  },
+  {
+    "QUARTER": "2021Q4",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.3510398405184376,
+    "nim_median": 3.3384629849402696,
+    "n_banks": 484
+  },
+  {
+    "QUARTER": "2021Q4",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.3842759216929257,
+    "nim_median": 3.2822492280247766,
+    "n_banks": 485
+  },
+  {
+    "QUARTER": "2021Q4",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.305057192903435,
+    "nim_median": 3.2869025165247834,
+    "n_banks": 485
+  },
+  {
+    "QUARTER": "2021Q4",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.1890569447148205,
+    "nim_median": 3.0336962366169895,
+    "n_banks": 485
+  },
+  {
+    "QUARTER": "2022Q1",
+    "SIZE_DECILE": 1,
+    "nim_mean": 2.8202995340410526,
+    "nim_median": 2.768657378649392,
+    "n_banks": 481
+  },
+  {
+    "QUARTER": "2022Q1",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.0463761680548274,
+    "nim_median": 2.9525766284257893,
+    "n_banks": 480
+  },
+  {
+    "QUARTER": "2022Q1",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.046632995178194,
+    "nim_median": 2.9944244793522485,
+    "n_banks": 481
+  },
+  {
+    "QUARTER": "2022Q1",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.1290072405771694,
+    "nim_median": 3.0626648646606345,
+    "n_banks": 480
+  },
+  {
+    "QUARTER": "2022Q1",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.1193716673413308,
+    "nim_median": 3.055337878097209,
+    "n_banks": 481
+  },
+  {
+    "QUARTER": "2022Q1",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.1812717952344216,
+    "nim_median": 3.106493369202588,
+    "n_banks": 480
+  },
+  {
+    "QUARTER": "2022Q1",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.1702121874551334,
+    "nim_median": 3.0970012665085305,
+    "n_banks": 480
+  },
+  {
+    "QUARTER": "2022Q1",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.171343134968006,
+    "nim_median": 3.0775508532361084,
+    "n_banks": 481
+  },
+  {
+    "QUARTER": "2022Q1",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.1959690224590296,
+    "nim_median": 3.1311409367416276,
+    "n_banks": 480
+  },
+  {
+    "QUARTER": "2022Q1",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.120169448360428,
+    "nim_median": 2.930650135325382,
+    "n_banks": 481
+  },
+  {
+    "QUARTER": "2022Q2",
+    "SIZE_DECILE": 1,
+    "nim_mean": 2.8916764000770567,
+    "nim_median": 2.8664411520679307,
+    "n_banks": 478
+  },
+  {
+    "QUARTER": "2022Q2",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.1044404727146375,
+    "nim_median": 3.0501380962664593,
+    "n_banks": 478
+  },
+  {
+    "QUARTER": "2022Q2",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.1909262638227984,
+    "nim_median": 3.1121315847537865,
+    "n_banks": 478
+  },
+  {
+    "QUARTER": "2022Q2",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.2342708967929785,
+    "nim_median": 3.1917126831779195,
+    "n_banks": 478
+  },
+  {
+    "QUARTER": "2022Q2",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.221787564245304,
+    "nim_median": 3.1762556492279668,
+    "n_banks": 478
+  },
+  {
+    "QUARTER": "2022Q2",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.2863668116115035,
+    "nim_median": 3.212355044608125,
+    "n_banks": 478
+  },
+  {
+    "QUARTER": "2022Q2",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.274926582174516,
+    "nim_median": 3.183290668767704,
+    "n_banks": 478
+  },
+  {
+    "QUARTER": "2022Q2",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.3013987144833252,
+    "nim_median": 3.1969117654463632,
+    "n_banks": 478
+  },
+  {
+    "QUARTER": "2022Q2",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.3233835087155486,
+    "nim_median": 3.246286229402512,
+    "n_banks": 478
+  },
+  {
+    "QUARTER": "2022Q2",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.2494339780919357,
+    "nim_median": 3.0813005041419474,
+    "n_banks": 478
+  },
+  {
+    "QUARTER": "2022Q3",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.027266829331379,
+    "nim_median": 3.0257162653538616,
+    "n_banks": 476
+  },
+  {
+    "QUARTER": "2022Q3",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.2509768342569676,
+    "nim_median": 3.1878240650010325,
+    "n_banks": 475
+  },
+  {
+    "QUARTER": "2022Q3",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.317273190688658,
+    "nim_median": 3.258914202166819,
+    "n_banks": 476
+  },
+  {
+    "QUARTER": "2022Q3",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.3850438128051676,
+    "nim_median": 3.357824014215533,
+    "n_banks": 475
+  },
+  {
+    "QUARTER": "2022Q3",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.363674126459088,
+    "nim_median": 3.323429798798915,
+    "n_banks": 476
+  },
+  {
+    "QUARTER": "2022Q3",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.425657718996521,
+    "nim_median": 3.3455893880807093,
+    "n_banks": 475
+  },
+  {
+    "QUARTER": "2022Q3",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.3608176605275335,
+    "nim_median": 3.2839408496162092,
+    "n_banks": 475
+  },
+  {
+    "QUARTER": "2022Q3",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.402539130092862,
+    "nim_median": 3.359806458629401,
+    "n_banks": 476
+  },
+  {
+    "QUARTER": "2022Q3",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.5159920749472398,
+    "nim_median": 3.364339973397935,
+    "n_banks": 475
+  },
+  {
+    "QUARTER": "2022Q3",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.3936188153526547,
+    "nim_median": 3.22434169175635,
+    "n_banks": 476
+  },
+  {
+    "QUARTER": "2022Q4",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.1823066487577685,
+    "nim_median": 3.1413387190712214,
+    "n_banks": 472
+  },
+  {
+    "QUARTER": "2022Q4",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.3323341085790616,
+    "nim_median": 3.2827435333308475,
+    "n_banks": 471
+  },
+  {
+    "QUARTER": "2022Q4",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.3746530525639638,
+    "nim_median": 3.3414781602958508,
+    "n_banks": 472
+  },
+  {
+    "QUARTER": "2022Q4",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.5406847607020526,
+    "nim_median": 3.4729906975335534,
+    "n_banks": 471
+  },
+  {
+    "QUARTER": "2022Q4",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.4306159139678467,
+    "nim_median": 3.4086699725027314,
+    "n_banks": 472
+  },
+  {
+    "QUARTER": "2022Q4",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.5024120307742006,
+    "nim_median": 3.423697834410607,
+    "n_banks": 471
+  },
+  {
+    "QUARTER": "2022Q4",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.4839950153004406,
+    "nim_median": 3.3778226417521937,
+    "n_banks": 471
+  },
+  {
+    "QUARTER": "2022Q4",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.4911760882602074,
+    "nim_median": 3.469395565653612,
+    "n_banks": 472
+  },
+  {
+    "QUARTER": "2022Q4",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.6096738858418678,
+    "nim_median": 3.453473468341451,
+    "n_banks": 471
+  },
+  {
+    "QUARTER": "2022Q4",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.4669528235782,
+    "nim_median": 3.2949712638364383,
+    "n_banks": 472
+  },
+  {
+    "QUARTER": "2023Q1",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.6661717773688687,
+    "nim_median": 3.5002000357510705,
+    "n_banks": 469
+  },
+  {
+    "QUARTER": "2023Q1",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.674626173224925,
+    "nim_median": 3.5186137988340893,
+    "n_banks": 468
+  },
+  {
+    "QUARTER": "2023Q1",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.6296355969636864,
+    "nim_median": 3.5835042033973985,
+    "n_banks": 468
+  },
+  {
+    "QUARTER": "2023Q1",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.7249896077339,
+    "nim_median": 3.6614583000047958,
+    "n_banks": 468
+  },
+  {
+    "QUARTER": "2023Q1",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.5896742653208373,
+    "nim_median": 3.5127300027359754,
+    "n_banks": 468
+  },
+  {
+    "QUARTER": "2023Q1",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.613293357697261,
+    "nim_median": 3.560322851382928,
+    "n_banks": 468
+  },
+  {
+    "QUARTER": "2023Q1",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.588146255809151,
+    "nim_median": 3.495283669616655,
+    "n_banks": 468
+  },
+  {
+    "QUARTER": "2023Q1",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.5896454773769104,
+    "nim_median": 3.481007302711099,
+    "n_banks": 468
+  },
+  {
+    "QUARTER": "2023Q1",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.6065457780114674,
+    "nim_median": 3.3772867659346675,
+    "n_banks": 468
+  },
+  {
+    "QUARTER": "2023Q1",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.569095575019097,
+    "nim_median": 3.351111063723981,
+    "n_banks": 468
+  },
+  {
+    "QUARTER": "2023Q2",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.7147257672693144,
+    "nim_median": 3.522365054353246,
+    "n_banks": 466
+  },
+  {
+    "QUARTER": "2023Q2",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.658103808976382,
+    "nim_median": 3.507716861443449,
+    "n_banks": 465
+  },
+  {
+    "QUARTER": "2023Q2",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.6406134485930677,
+    "nim_median": 3.616949047927661,
+    "n_banks": 465
+  },
+  {
+    "QUARTER": "2023Q2",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.7021967972781953,
+    "nim_median": 3.616777890675791,
+    "n_banks": 466
+  },
+  {
+    "QUARTER": "2023Q2",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.562806460174688,
+    "nim_median": 3.474088291746641,
+    "n_banks": 465
+  },
+  {
+    "QUARTER": "2023Q2",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.5803210161438552,
+    "nim_median": 3.550753153722952,
+    "n_banks": 465
+  },
+  {
+    "QUARTER": "2023Q2",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.5643813332976837,
+    "nim_median": 3.4555849546075925,
+    "n_banks": 466
+  },
+  {
+    "QUARTER": "2023Q2",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.554128482842205,
+    "nim_median": 3.4334692362782677,
+    "n_banks": 465
+  },
+  {
+    "QUARTER": "2023Q2",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.5530700932282384,
+    "nim_median": 3.319449856123291,
+    "n_banks": 465
+  },
+  {
+    "QUARTER": "2023Q2",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.5092305604696024,
+    "nim_median": 3.280026415129037,
+    "n_banks": 466
+  },
+  {
+    "QUARTER": "2023Q3",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.6582649104490925,
+    "nim_median": 3.526664271837543,
+    "n_banks": 463
+  },
+  {
+    "QUARTER": "2023Q3",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.7375876761540745,
+    "nim_median": 3.5494020984318944,
+    "n_banks": 462
+  },
+  {
+    "QUARTER": "2023Q3",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.6376139056273176,
+    "nim_median": 3.574372611433559,
+    "n_banks": 462
+  },
+  {
+    "QUARTER": "2023Q3",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.7023556271594646,
+    "nim_median": 3.6033299307130466,
+    "n_banks": 462
+  },
+  {
+    "QUARTER": "2023Q3",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.5425809145408813,
+    "nim_median": 3.4510021912612356,
+    "n_banks": 463
+  },
+  {
+    "QUARTER": "2023Q3",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.544446879137782,
+    "nim_median": 3.503179371279768,
+    "n_banks": 462
+  },
+  {
+    "QUARTER": "2023Q3",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.540451078202379,
+    "nim_median": 3.44984824468961,
+    "n_banks": 462
+  },
+  {
+    "QUARTER": "2023Q3",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.536289814682064,
+    "nim_median": 3.4371732900679883,
+    "n_banks": 462
+  },
+  {
+    "QUARTER": "2023Q3",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.503618556271591,
+    "nim_median": 3.271288692194241,
+    "n_banks": 462
+  },
+  {
+    "QUARTER": "2023Q3",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.4917855953070243,
+    "nim_median": 3.2600957287458416,
+    "n_banks": 463
+  },
+  {
+    "QUARTER": "2023Q4",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.7034654997070438,
+    "nim_median": 3.5466382553637716,
+    "n_banks": 460
+  },
+  {
+    "QUARTER": "2023Q4",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.748935015520205,
+    "nim_median": 3.536258212262794,
+    "n_banks": 460
+  },
+  {
+    "QUARTER": "2023Q4",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.6228649920037284,
+    "nim_median": 3.5730936866951604,
+    "n_banks": 459
+  },
+  {
+    "QUARTER": "2023Q4",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.6479541344349165,
+    "nim_median": 3.6024525809953474,
+    "n_banks": 460
+  },
+  {
+    "QUARTER": "2023Q4",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.561279990656564,
+    "nim_median": 3.4100115123864754,
+    "n_banks": 459
+  },
+  {
+    "QUARTER": "2023Q4",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.534325514250149,
+    "nim_median": 3.4910942561797107,
+    "n_banks": 460
+  },
+  {
+    "QUARTER": "2023Q4",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.5241606762569964,
+    "nim_median": 3.4475512777095476,
+    "n_banks": 459
+  },
+  {
+    "QUARTER": "2023Q4",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.4915850518230767,
+    "nim_median": 3.414059459598551,
+    "n_banks": 460
+  },
+  {
+    "QUARTER": "2023Q4",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.505444372822285,
+    "nim_median": 3.2546480183779343,
+    "n_banks": 459
+  },
+  {
+    "QUARTER": "2023Q4",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.4928357207943206,
+    "nim_median": 3.2230993515669515,
+    "n_banks": 460
+  },
+  {
+    "QUARTER": "2024Q1",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.7189003218906103,
+    "nim_median": 3.5882687508483846,
+    "n_banks": 458
+  },
+  {
+    "QUARTER": "2024Q1",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.792225053232981,
+    "nim_median": 3.413354121168375,
+    "n_banks": 458
+  },
+  {
+    "QUARTER": "2024Q1",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.5386731261774864,
+    "nim_median": 3.440559546830894,
+    "n_banks": 457
+  },
+  {
+    "QUARTER": "2024Q1",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.591254440958262,
+    "nim_median": 3.5253534667146966,
+    "n_banks": 458
+  },
+  {
+    "QUARTER": "2024Q1",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.4184124867867425,
+    "nim_median": 3.3297426148785667,
+    "n_banks": 458
+  },
+  {
+    "QUARTER": "2024Q1",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.444256547238575,
+    "nim_median": 3.3663068138335563,
+    "n_banks": 457
+  },
+  {
+    "QUARTER": "2024Q1",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.3578403752686956,
+    "nim_median": 3.2576331142028474,
+    "n_banks": 458
+  },
+  {
+    "QUARTER": "2024Q1",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.3517149145488734,
+    "nim_median": 3.249403326100755,
+    "n_banks": 457
+  },
+  {
+    "QUARTER": "2024Q1",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.3097274487696917,
+    "nim_median": 3.1271817365444274,
+    "n_banks": 458
+  },
+  {
+    "QUARTER": "2024Q1",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.3075919228864645,
+    "nim_median": 3.061377602264394,
+    "n_banks": 458
+  },
+  {
+    "QUARTER": "2024Q2",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.73300519540733,
+    "nim_median": 3.618705926017568,
+    "n_banks": 455
+  },
+  {
+    "QUARTER": "2024Q2",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.830262409058675,
+    "nim_median": 3.4726457705119405,
+    "n_banks": 455
+  },
+  {
+    "QUARTER": "2024Q2",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.5853271766375996,
+    "nim_median": 3.5056989433218417,
+    "n_banks": 454
+  },
+  {
+    "QUARTER": "2024Q2",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.5968138784856305,
+    "nim_median": 3.5305138190284047,
+    "n_banks": 455
+  },
+  {
+    "QUARTER": "2024Q2",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.4704375979377646,
+    "nim_median": 3.393354680417516,
+    "n_banks": 455
+  },
+  {
+    "QUARTER": "2024Q2",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.511561570681755,
+    "nim_median": 3.3915438283719332,
+    "n_banks": 454
+  },
+  {
+    "QUARTER": "2024Q2",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.3717478496327327,
+    "nim_median": 3.308290290884846,
+    "n_banks": 455
+  },
+  {
+    "QUARTER": "2024Q2",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.393685964893765,
+    "nim_median": 3.259618811702982,
+    "n_banks": 454
+  },
+  {
+    "QUARTER": "2024Q2",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.3522411477843073,
+    "nim_median": 3.1802131845123816,
+    "n_banks": 455
+  },
+  {
+    "QUARTER": "2024Q2",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.32299311595941,
+    "nim_median": 3.0835508898180697,
+    "n_banks": 455
+  },
+  {
+    "QUARTER": "2024Q3",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.7604157408262613,
+    "nim_median": 3.646939710518345,
+    "n_banks": 453
+  },
+  {
+    "QUARTER": "2024Q3",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.8569317065545725,
+    "nim_median": 3.490218584651402,
+    "n_banks": 453
+  },
+  {
+    "QUARTER": "2024Q3",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.6148330469238794,
+    "nim_median": 3.5631885745825302,
+    "n_banks": 452
+  },
+  {
+    "QUARTER": "2024Q3",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.6019962149259688,
+    "nim_median": 3.511066761622418,
+    "n_banks": 453
+  },
+  {
+    "QUARTER": "2024Q3",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.486507436792901,
+    "nim_median": 3.4337693503841873,
+    "n_banks": 452
+  },
+  {
+    "QUARTER": "2024Q3",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.5476197349767644,
+    "nim_median": 3.4153038617584732,
+    "n_banks": 453
+  },
+  {
+    "QUARTER": "2024Q3",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.3660599455178795,
+    "nim_median": 3.3128088258612767,
+    "n_banks": 452
+  },
+  {
+    "QUARTER": "2024Q3",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.443743380962675,
+    "nim_median": 3.29109378673089,
+    "n_banks": 453
+  },
+  {
+    "QUARTER": "2024Q3",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.3711740790199096,
+    "nim_median": 3.1771198587720058,
+    "n_banks": 452
+  },
+  {
+    "QUARTER": "2024Q3",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.3526350795433832,
+    "nim_median": 3.1349906931737066,
+    "n_banks": 453
+  },
+  {
+    "QUARTER": "2024Q4",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.7244594744797874,
+    "nim_median": 3.595657406570517,
+    "n_banks": 450
+  },
+  {
+    "QUARTER": "2024Q4",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.62954001273576,
+    "nim_median": 3.5349759407247636,
+    "n_banks": 450
+  },
+  {
+    "QUARTER": "2024Q4",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.8963905197877624,
+    "nim_median": 3.5965055406373327,
+    "n_banks": 449
+  },
+  {
+    "QUARTER": "2024Q4",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.634528631995824,
+    "nim_median": 3.5670847098971725,
+    "n_banks": 450
+  },
+  {
+    "QUARTER": "2024Q4",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.533037356752324,
+    "nim_median": 3.4536574779244384,
+    "n_banks": 449
+  },
+  {
+    "QUARTER": "2024Q4",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.5475211251102747,
+    "nim_median": 3.429884628532163,
+    "n_banks": 450
+  },
+  {
+    "QUARTER": "2024Q4",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.45351979995261,
+    "nim_median": 3.374732684494276,
+    "n_banks": 449
+  },
+  {
+    "QUARTER": "2024Q4",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.481000833754003,
+    "nim_median": 3.3375323503960974,
+    "n_banks": 450
+  },
+  {
+    "QUARTER": "2024Q4",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.4059744664679026,
+    "nim_median": 3.2314787733980963,
+    "n_banks": 449
+  },
+  {
+    "QUARTER": "2024Q4",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.390117468591385,
+    "nim_median": 3.182206196704528,
+    "n_banks": 450
+  },
+  {
+    "QUARTER": "2025Q1",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.7469575345471777,
+    "nim_median": 3.6428246592132876,
+    "n_banks": 448
+  },
+  {
+    "QUARTER": "2025Q1",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.6762498296384827,
+    "nim_median": 3.656591656369319,
+    "n_banks": 447
+  },
+  {
+    "QUARTER": "2025Q1",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.9848902986375703,
+    "nim_median": 3.67286616379724,
+    "n_banks": 447
+  },
+  {
+    "QUARTER": "2025Q1",
+    "SIZE_DECILE": 4,
+    "nim_mean": 3.748888992835822,
+    "nim_median": 3.763756879892013,
+    "n_banks": 447
+  },
+  {
+    "QUARTER": "2025Q1",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.6057728897706993,
+    "nim_median": 3.5473005384793845,
+    "n_banks": 447
+  },
+  {
+    "QUARTER": "2025Q1",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.6479829425741377,
+    "nim_median": 3.5481988334720937,
+    "n_banks": 447
+  },
+  {
+    "QUARTER": "2025Q1",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.5555100297723925,
+    "nim_median": 3.4872005024476507,
+    "n_banks": 447
+  },
+  {
+    "QUARTER": "2025Q1",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.586766314324073,
+    "nim_median": 3.5029846272193077,
+    "n_banks": 447
+  },
+  {
+    "QUARTER": "2025Q1",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.5313697566915287,
+    "nim_median": 3.3632176669761997,
+    "n_banks": 447
+  },
+  {
+    "QUARTER": "2025Q1",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.4710792132502712,
+    "nim_median": 3.283190462373691,
+    "n_banks": 447
+  },
+  {
+    "QUARTER": "2025Q2",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.8071048691672784,
+    "nim_median": 3.7361758251262143,
+    "n_banks": 443
+  },
+  {
+    "QUARTER": "2025Q2",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.751144541421754,
+    "nim_median": 3.676223760866633,
+    "n_banks": 443
+  },
+  {
+    "QUARTER": "2025Q2",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.7972479031436923,
+    "nim_median": 3.8008901509980064,
+    "n_banks": 443
+  },
+  {
+    "QUARTER": "2025Q2",
+    "SIZE_DECILE": 4,
+    "nim_mean": 4.102573346154591,
+    "nim_median": 3.8171924810377047,
+    "n_banks": 443
+  },
+  {
+    "QUARTER": "2025Q2",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.712154898362496,
+    "nim_median": 3.652991252013816,
+    "n_banks": 443
+  },
+  {
+    "QUARTER": "2025Q2",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.75632309533965,
+    "nim_median": 3.648588064575149,
+    "n_banks": 443
+  },
+  {
+    "QUARTER": "2025Q2",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.608753642121195,
+    "nim_median": 3.5660379396156667,
+    "n_banks": 443
+  },
+  {
+    "QUARTER": "2025Q2",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.7072162279952185,
+    "nim_median": 3.60246911489513,
+    "n_banks": 443
+  },
+  {
+    "QUARTER": "2025Q2",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.6181683864058667,
+    "nim_median": 3.443643946697425,
+    "n_banks": 443
+  },
+  {
+    "QUARTER": "2025Q2",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.521355741328951,
+    "nim_median": 3.3353351762637327,
+    "n_banks": 443
+  },
+  {
+    "QUARTER": "2025Q3",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.859801439489059,
+    "nim_median": 3.7724857626332473,
+    "n_banks": 439
+  },
+  {
+    "QUARTER": "2025Q3",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.797721767807508,
+    "nim_median": 3.714988759219412,
+    "n_banks": 439
+  },
+  {
+    "QUARTER": "2025Q3",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.827292827787957,
+    "nim_median": 3.809385278039799,
+    "n_banks": 439
+  },
+  {
+    "QUARTER": "2025Q3",
+    "SIZE_DECILE": 4,
+    "nim_mean": 4.2144961967815,
+    "nim_median": 3.904942426879642,
+    "n_banks": 438
+  },
+  {
+    "QUARTER": "2025Q3",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.761657037008453,
+    "nim_median": 3.7229880780543096,
+    "n_banks": 439
+  },
+  {
+    "QUARTER": "2025Q3",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.7655699799808127,
+    "nim_median": 3.6755006653636033,
+    "n_banks": 439
+  },
+  {
+    "QUARTER": "2025Q3",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.720892742706734,
+    "nim_median": 3.6510916842453676,
+    "n_banks": 438
+  },
+  {
+    "QUARTER": "2025Q3",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.7452191005748134,
+    "nim_median": 3.654308276275059,
+    "n_banks": 439
+  },
+  {
+    "QUARTER": "2025Q3",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.744277665887187,
+    "nim_median": 3.510715764779511,
+    "n_banks": 439
+  },
+  {
+    "QUARTER": "2025Q3",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.5805014459014384,
+    "nim_median": 3.4004004768006912,
+    "n_banks": 439
+  },
+  {
+    "QUARTER": "2025Q4",
+    "SIZE_DECILE": 1,
+    "nim_mean": 3.9881565708943496,
+    "nim_median": 3.748306767363753,
+    "n_banks": 435
+  },
+  {
+    "QUARTER": "2025Q4",
+    "SIZE_DECILE": 2,
+    "nim_mean": 3.84356801038778,
+    "nim_median": 3.780989403945891,
+    "n_banks": 434
+  },
+  {
+    "QUARTER": "2025Q4",
+    "SIZE_DECILE": 3,
+    "nim_mean": 3.9083214211304247,
+    "nim_median": 3.9152649051574127,
+    "n_banks": 435
+  },
+  {
+    "QUARTER": "2025Q4",
+    "SIZE_DECILE": 4,
+    "nim_mean": 4.18867308032797,
+    "nim_median": 3.894607486175585,
+    "n_banks": 434
+  },
+  {
+    "QUARTER": "2025Q4",
+    "SIZE_DECILE": 5,
+    "nim_mean": 3.8284640130538437,
+    "nim_median": 3.7936908653151336,
+    "n_banks": 435
+  },
+  {
+    "QUARTER": "2025Q4",
+    "SIZE_DECILE": 6,
+    "nim_mean": 3.8323265988823043,
+    "nim_median": 3.7241387463029856,
+    "n_banks": 434
+  },
+  {
+    "QUARTER": "2025Q4",
+    "SIZE_DECILE": 7,
+    "nim_mean": 3.7192528200140798,
+    "nim_median": 3.6944739965155513,
+    "n_banks": 434
+  },
+  {
+    "QUARTER": "2025Q4",
+    "SIZE_DECILE": 8,
+    "nim_mean": 3.770232105775446,
+    "nim_median": 3.708835432027032,
+    "n_banks": 435
+  },
+  {
+    "QUARTER": "2025Q4",
+    "SIZE_DECILE": 9,
+    "nim_mean": 3.783577104822353,
+    "nim_median": 3.5518976666191646,
+    "n_banks": 434
+  },
+  {
+    "QUARTER": "2025Q4",
+    "SIZE_DECILE": 10,
+    "nim_mean": 3.6311080469545947,
+    "nim_median": 3.4499984483826434,
+    "n_banks": 435
+  }
+]

@@ -1,0 +1,9 @@
+source_id,required,dataset,primary_url,download_mode,frequency,unit,key_id,notes
+fdic_financials,yes,FDIC BankFind financials,https://api.fdic.gov/banks/financials,api,quarterly,bank-quarter,CERT + REPDTE,Core panel
+fdic_sod,yes,FDIC Summary of Deposits,https://api.fdic.gov/banks/sod,api,annual,branch-year,bank cert + year,Use annual June 30 snapshot
+fdic_history,yes,FDIC structure/history,https://api.fdic.gov/banks/history,api,event,bank-event,cert + event date,For acquisition-driven growth event study
+fdic_institutions,optional,FDIC institutions/locations,https://api.fdic.gov/banks/institutions,api,weekly,bank or location,CERT,Useful for bank roster and sanity checks
+fdic_docs,yes,FDIC API docs,https://api.fdic.gov/banks/docs,html,ad hoc,metadata,none,Fetch metadata first
+ffiec_bulk,optional,FFIEC Call Report and UBPR bulk downloads,https://cdr.ffiec.gov/public/pws/downloadbulkdata.aspx,manual or scripted when direct url known,quarterly,bank-quarter,CERT + quarter,Use to enrich funding-cost and peer data
+fed_h15,yes,Federal Reserve H.15 data download page,https://www.federalreserve.gov/datadownload/Choose.aspx?rel=H15,official page,daily/weekly/monthly,rate-date,date,Repo convenience script uses FRED CSV endpoints
+historical_sod,optional,FDIC historical SOD 1987-1993,https://www.fdic.gov/foia/sod/,manual,annual,branch-year,bank cert + year,Only needed for long pre-1994 history

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>banknim &mdash; Bank Size, Growth &amp; Net Interest Margin</title>
+  <script src="js/theme.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+</head>
+<body data-page="home">
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="site-logo">bank<span class="logo-accent">nim</span></a>
+      <div class="header-controls">
+        <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle navigation">&#9776;</button>
+        <button id="themeToggle" class="theme-toggle" onclick="rcToggleTheme()" aria-label="Toggle theme">&#9790;</button>
+      </div>
+      <nav><ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="models.html">Models</a></li>
+        <li><a href="data.html">Data</a></li>
+      </ul></nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>Bank Size, Growth &amp; Net Interest Margin</h1>
+      <p class="subtitle">
+        Does being big or becoming bigger compress bank profitability? A reproducible
+        public-data pipeline studying 8,032 FDIC-insured banks across 64 quarters
+        (2010&ndash;2025).
+      </p>
+      <div class="stats-row">
+        <div class="stat-card"><div class="stat-value">8,032</div><div class="stat-label">Banks</div></div>
+        <div class="stat-card"><div class="stat-value">373,220</div><div class="stat-label">Observations</div></div>
+        <div class="stat-card"><div class="stat-value">64</div><div class="stat-label">Quarters</div></div>
+        <div class="stat-card"><div class="stat-value">9</div><div class="stat-label">Result Sections</div></div>
+        <div class="stat-card"><div class="stat-value">6</div><div class="stat-label">Robustness Specs</div></div>
+        <div class="stat-card"><div class="stat-value">8</div><div class="stat-label">Extensions</div></div>
+      </div>
+    </div>
+  </section>
+
+  <main class="content">
+
+    <!-- Key Findings -->
+    <section class="section">
+      <div class="section-header"><h2>Key Findings</h2></div>
+      <div class="finding-grid">
+        <div class="finding-card">
+          <div class="fc-value negative">&minus;0.090</div>
+          <div class="fc-label">Within-Bank Size&rarr;NIM</div>
+          <div class="fc-source">FE panel, 372k obs</div>
+        </div>
+        <div class="finding-card">
+          <div class="fc-value negative">&minus;0.085</div>
+          <div class="fc-label">Between-Bank Size&rarr;NIM</div>
+          <div class="fc-source">Bank means, 8k banks</div>
+        </div>
+        <div class="finding-card">
+          <div class="fc-value positive">+0.205</div>
+          <div class="fc-label">Size&rarr;ROA (H6 Offset)</div>
+          <div class="fc-source">Large banks earn more overall</div>
+        </div>
+        <div class="finding-card">
+          <div class="fc-value negative">&minus;0.012</div>
+          <div class="fc-label">Size&times;Rate Hike&rarr;NIM</div>
+          <div class="fc-source">NIM penalty worse when rates rise</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NIM Trend by Size Decile -->
+    <section class="section">
+      <div class="chart-container">
+        <h3>NIM Trend by Size Decile</h3>
+        <p class="chart-subtitle">Mean net interest margin by quarter, grouped by bank size decile (1 = smallest, 10 = largest). 8,032 banks, 64 quarters, 2010&ndash;2025.</p>
+        <div class="chart-canvas-wrap tall"><canvas id="nimTrendChart"></canvas></div>
+        <p class="chart-note">Each line represents one size decile of banks. The persistent gap between small-bank (top) and large-bank (bottom) lines reflects the cross-sectional size penalty.</p>
+      </div>
+    </section>
+
+    <!-- Core Insight -->
+    <section class="section">
+      <div class="insight-box">
+        <p><strong>The core finding:</strong> larger banks have lower NIM both cross-sectionally and within-bank over time. But this is not the full story &mdash; large banks offset the NIM penalty with higher fee income and noninterest revenue, producing higher overall ROA. The NIM penalty is real but the earnings model is different, not worse.</p>
+        <p style="margin-bottom:0.2rem;"><strong>Time variation matters:</strong> in rolling 20-quarter fixed-effects windows, the within-bank size penalty weakens to about <strong>&minus;0.033</strong> in the mid-2010s, steepens to about <strong>&minus;0.144</strong> in 2019&ndash;2024, and then eases in the latest window.</p>
+      </div>
+    </section>
+
+    <!-- Cross-Section Binscatter -->
+    <section class="section">
+      <div class="chart-container">
+        <h3>Cross-Section: NIM vs. Bank Size</h3>
+        <p class="chart-subtitle">Binscatter of average NIM against average log assets (20 equal-sized bins). The downward slope visualizes the between-bank size penalty.</p>
+        <div class="chart-canvas-wrap"><canvas id="binscatterChart"></canvas></div>
+      </div>
+    </section>
+
+    <!-- Gateway cards -->
+    <section class="section">
+      <div class="gateway-grid">
+        <div class="gateway-card">
+          <h3>Models &amp; Results</h3>
+          <p>
+            Nine result sections from baseline fixed-effects through rate-cycle heterogeneity,
+            acquisition event studies, threshold crossings, rolling time-varying coefficients,
+            and the extension battery. Full coefficient tables with significance stars,
+            confidence intervals, and dynamic interpretation notes.
+          </p>
+          <div class="gateway-stats">
+            <div class="gateway-stat"><div class="gs-value">9</div><div class="gs-label">Sections</div></div>
+            <div class="gateway-stat"><div class="gs-value">6</div><div class="gs-label">Robustness Specs</div></div>
+            <div class="gateway-stat"><div class="gs-value">8</div><div class="gs-label">Extensions</div></div>
+          </div>
+          <a href="models.html" class="cta-btn">Explore models &amp; results &rarr;</a>
+        </div>
+        <div class="gateway-card">
+          <h3>Data &amp; Distributions</h3>
+          <p>
+            Distribution plots for assets, NIM, and growth. Size-decile summary table.
+            Complete data-source documentation and reproducibility notes for the full
+            FDIC-based pipeline.
+          </p>
+          <div class="gateway-stats">
+            <div class="gateway-stat"><div class="gs-value">373k</div><div class="gs-label">Observations</div></div>
+            <div class="gateway-stat"><div class="gs-value">4</div><div class="gs-label">Data Sources</div></div>
+            <div class="gateway-stat"><div class="gs-value">10</div><div class="gs-label">Variables</div></div>
+          </div>
+          <a href="data.html" class="cta-btn">Explore data &amp; distributions &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reproducibility -->
+    <section class="section">
+      <div class="card">
+        <h3 style="margin-top:0;">Reproducibility</h3>
+        <p style="margin-bottom:0;">Every data source is free and federally published. Every download is scripted. The full pipeline &mdash; from raw FDIC data through panel construction, model estimation, and robustness battery &mdash; can be reproduced from scratch. See the <a href="https://github.com/smkwray/banknim">GitHub repository</a> for setup instructions.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer"><div class="footer-inner"><span>banknim &middot; MIT License &middot; Shane Wray 2026</span><a href="https://github.com/smkwray/banknim">GitHub</a></div></footer>
+
+  <script>
+    rcChartDefaults();
+    var charts = [];
+
+    function buildCharts() {
+      charts.forEach(function(c){ c.destroy(); });
+      charts = [];
+      var C = rcColors();
+
+      /* NIM Trend by Size Decile — loaded from data */
+      fetch('data/nim_trend_by_size.json')
+        .then(function(r){ return r.json(); })
+        .then(function(data){
+          var quarters = [];
+          var seen = {};
+          data.forEach(function(d){ if(!seen[d.QUARTER]){ quarters.push(d.QUARTER); seen[d.QUARTER]=1; }});
+
+          var datasets = [];
+          for (var dec = 1; dec <= 10; dec++) {
+            var vals = data.filter(function(d){ return d.SIZE_DECILE === dec; })
+                          .map(function(d){ return d.nim_mean; });
+            datasets.push({
+              label: 'Decile ' + dec,
+              data: vals,
+              borderColor: C.palette[(dec-1) % C.palette.length],
+              backgroundColor: 'transparent',
+              borderWidth: dec === 1 || dec === 10 ? 2.5 : 1.5,
+              pointRadius: 0,
+              tension: 0.3
+            });
+          }
+          var ch = new Chart(document.getElementById('nimTrendChart'), {
+            type: 'line',
+            data: { labels: quarters, datasets: datasets },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              interaction: { mode: 'index', intersect: false },
+              plugins: {
+                legend: { position: 'right', labels: { boxWidth: 12, font: { size: 11 } } },
+                tooltip: { callbacks: { label: function(ctx){ return ctx.dataset.label + ': ' + ctx.parsed.y.toFixed(2) + '%'; } } }
+              },
+              scales: {
+                y: { title: { display: true, text: 'NIM (%)' }, grid: { color: C.grid } },
+                x: { grid: { display: false }, ticks: { maxTicksLimit: 16, font: { size: 10 } } }
+              }
+            }
+          });
+          charts.push(ch);
+        });
+
+      /* Binscatter */
+      fetch('data/cross_section.json')
+        .then(function(r){ return r.json(); })
+        .then(function(data){
+          var bins = data.binscatter;
+          var ch = new Chart(document.getElementById('binscatterChart'), {
+            type: 'scatter',
+            data: {
+              datasets: [{
+                label: 'Bin average',
+                data: bins.map(function(b){ return { x: b.avg_ln_assets, y: b.avg_nim }; }),
+                backgroundColor: C.accent,
+                borderColor: C.accent,
+                pointRadius: 6,
+                pointHoverRadius: 8
+              }]
+            },
+            options: {
+              responsive: true,
+              plugins: {
+                legend: { display: false },
+                tooltip: { callbacks: { label: function(ctx){ return 'NIM: ' + ctx.parsed.y.toFixed(2) + '% | Ln(Assets): ' + ctx.parsed.x.toFixed(1); } } }
+              },
+              scales: {
+                x: { title: { display: true, text: 'Average Ln(Assets)' }, grid: { color: C.grid } },
+                y: { title: { display: true, text: 'Average NIM (%)' }, grid: { color: C.grid } }
+              }
+            }
+          });
+          charts.push(ch);
+        });
+    }
+
+    buildCharts();
+    window.rcRebuildCharts = function(){ rcChartDefaults(); buildCharts(); };
+  </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+{
+  "project": "NimScale",
+  "sample_start": "2010-03-31",
+  "sample_end": "2025-12-31",
+  "n_obs": 373220,
+  "n_banks": 8032,
+  "n_quarters": 64,
+  "nim_mean": 3.664,
+  "nim_median": 3.6175,
+  "avg_assets_millions": 3198.6,
+  "median_assets_millions": 213.7,
+  "models_fitted": [
+    "M1: Within-bank FE size",
+    "M2: Between-bank means",
+    "M3: Growth",
+    "M4: Franchise dilution",
+    "M5: Rate-cycle heterogeneity",
+    "M6: Acquisition event study",
+    "M7: Threshold crossing"
+  ],
+  "headline_results": {
+    "within_bank_size_nim": {
+      "coef": -0.09,
+      "p": "<0.001",
+      "interpretation": "When a bank grows, its NIM falls"
+    },
+    "between_bank_size_nim": {
+      "coef": -0.085,
+      "p": "<0.001",
+      "interpretation": "Banks with larger average size have lower average NIM"
+    },
+    "roa_offsets_nim": {
+      "coef": 0.205,
+      "p": "<0.001",
+      "interpretation": "Large banks offset lower NIM with higher overall ROA"
+    },
+    "rate_cycle": {
+      "coef": -0.012,
+      "p": "<0.001",
+      "interpretation": "Size penalty on NIM strengthens when rates rise"
+    },
+    "lagged_size_effect": {
+      "coef": -0.119,
+      "p": "<0.001",
+      "interpretation": "Size effect strengthens with lagged controls"
+    }
+  }
+}
