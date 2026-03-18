@@ -1,5 +1,7 @@
 # Bank Size, Growth, and Net Interest Margin
 
+[![CI](https://github.com/smkwray/banknim/actions/workflows/ci.yml/badge.svg)](https://github.com/smkwray/banknim/actions/workflows/ci.yml)
+
 **https://smkwray.github.io/banknim/**
 
 A reproducible public-data pipeline studying the relationship between bank size, asset growth, and net interest margin (NIM) across 8,032 FDIC-insured commercial banks over 64 quarters (2010–2025).
@@ -182,6 +184,15 @@ cp output/frontend/*.json docs/data/
 
 # run tests
 python -B -m pytest -q
+```
+
+Or use the Make targets:
+
+```bash
+make setup
+source .env
+make all
+make test
 ```
 
 ## License
