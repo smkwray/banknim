@@ -8,6 +8,23 @@ version = "0.1.0"
 description = "Seed repo for a public-data project on bank NIM, size, and growth."
 readme = "README.md"
 requires-python = ">=3.10"
+dependencies = [
+    "pandas>=2.2",
+    "numpy>=1.26",
+    "requests>=2.32",
+    "PyYAML>=6.0",
+    "pyarrow>=15.0",
+    "statsmodels>=0.14",
+    "linearmodels>=5.4",
+    "matplotlib>=3.9",
+    "openpyxl>=3.1",
+    "tqdm>=4.66",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=8.0",
+]
 
 [tool.setuptools]
 package-dir = {"" = "src"}

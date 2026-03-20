@@ -54,9 +54,7 @@ def main() -> None:
                 page_size=cfg["fdic"]["page_size"],
             )
         except Exception as exc:
-            print(f"warning: SOD api failed for {year}: {exc}")
-            print("manual fallback: use the SOD custom download page and stage the file in data/raw/fdic_sod/")
-            continue
+            raise RuntimeError(f"SOD API failed for {year}; aborting scripted pipeline") from exc
 
         out_path = raw_dir / f"sod_{year}.csv"
         df.to_csv(out_path, index=False)

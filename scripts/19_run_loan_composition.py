@@ -19,6 +19,7 @@ from nimscale.bank_panel import winsorize_series
 from nimscale.io import ensure_dir
 from nimscale.regression import fit_panel_fe, tidy_linearmodels
 from nimscale.settings import load_config, project_root
+from nimscale.validation import assert_nonempty_sample, require_columns, winsorize_required
 
 
 RCCI_MEMBER_RE = re.compile(r"FFIEC CDR Call Schedule RCCI (\d{8})\.txt$")
@@ -111,9 +112,10 @@ def prep_panel(cfg: dict) -> pd.DataFrame:
     df["CERT"] = pd.to_numeric(df["CERT"], errors="coerce").astype("Int64").astype(str)
     df["REPDTE"] = pd.to_datetime(df["REPDTE"])
     wp = cfg["project"]["winsor_pct"]
+    require_columns(df, ["NIM", "EQ_RATIO", "LN_ASSETS", "ASSET"], "loan composition prep")
 
-    df["NIM_W"] = winsorize_series(df["NIM"], p=wp)
-    df["EQ_RATIO_W"] = winsorize_series(df["EQ_RATIO"], p=wp) if "EQ_RATIO" in df.columns else 0.0
+    df["NIM_W"] = winsorize_required(df, "NIM", p=wp, context="loan composition prep")
+    df["EQ_RATIO_W"] = winsorize_required(df, "EQ_RATIO", p=wp, context="loan composition prep")
     return df
 
 
@@ -160,6 +162,7 @@ def main() -> None:
             "CONSUMER_SHARE_W",
         ]
     ).copy()
+    assert_nonempty_sample(sub, "loan composition sample", min_rows=1, entity_col="CERT", min_entities=2)
     formula = (
         "NIM_W ~ 1 + LN_ASSETS + EQ_RATIO_W + "
         "CI_SHARE_W + RESIDENTIAL_SHARE_W + CRE_SHARE_W + CONSUMER_SHARE_W + "
@@ -167,6 +170,7 @@ def main() -> None:
     )
     res = fit_panel_fe(sub, formula=formula, entity_col="CERT", time_col="REPDTE")
     out = tidy_linearmodels(res, "loan_mix_fe")
+    assert_nonempty_sample(out, "loan composition result export")
     upsert_extension_results(table_dir, out)
 
     print(

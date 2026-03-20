@@ -199,6 +199,30 @@ code { font-family: var(--font-mono); font-size: 0.875em; background: var(--colo
 .chart-canvas-wrap.tall { min-height: 500px; }
 .chart-note { font-size: 0.8rem; color: var(--color-text-light); margin-top: 0.75rem; font-style: italic; }
 
+/* -- Geography -- */
+.geography-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr); gap: 1.5rem; margin: 1.5rem 0; }
+.geography-card { overflow: hidden; }
+.geo-summary-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.75rem; margin-bottom: 1.25rem; }
+.geo-summary-chip { background: var(--color-bg-alt); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 0.85rem 0.95rem; }
+.geo-chip-label { display: block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-secondary); }
+.geo-chip-value { display: block; font-size: 1.1rem; font-weight: 800; font-family: var(--font-mono); color: var(--color-heading); margin-top: 0.2rem; }
+.geo-controls { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.geo-toggle-group { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+.geo-toggle { background: var(--color-bg-alt); border: 1px solid var(--color-border); border-radius: 999px; color: var(--color-text-secondary); cursor: pointer; font-family: var(--font-sans); font-size: 0.82rem; font-weight: 700; padding: 0.5rem 0.85rem; transition: all var(--transition); }
+.geo-toggle:hover { color: var(--color-heading); border-color: var(--color-accent); }
+.geo-toggle.active { background: rgba(83,126,197,0.12); border-color: var(--color-accent); color: var(--color-accent); }
+[data-theme="dark"] .geo-toggle.active { background: rgba(123,160,224,0.16); }
+.geo-legend { display: flex; align-items: center; gap: 0.75rem; color: var(--color-text-secondary); font-size: 0.8rem; margin-bottom: 1rem; }
+.geo-legend-bar { flex: 1; min-width: 160px; height: 12px; border-radius: 999px; border: 1px solid var(--color-border); background: linear-gradient(90deg, #edf3ff 0%, var(--color-accent) 100%); }
+[data-theme="dark"] .geo-legend-bar { background: linear-gradient(90deg, #20324d 0%, var(--color-accent) 100%); }
+.geo-map-wrap { overflow-x: auto; padding-bottom: 0.25rem; }
+.geo-state-grid { display: grid; grid-template-columns: repeat(17, minmax(36px, 1fr)); grid-template-rows: repeat(6, 56px); gap: 0.45rem; min-width: 780px; }
+.geo-state-tile { appearance: none; border: 1px solid rgba(255,255,255,0.14); border-radius: 12px; color: #fff; cursor: default; display: flex; flex-direction: column; justify-content: space-between; padding: 0.5rem; box-shadow: var(--shadow-sm); text-align: left; }
+.geo-state-code { font-size: 0.75rem; font-weight: 800; letter-spacing: 0.03em; }
+.geo-state-value { font-size: 0.72rem; font-family: var(--font-mono); opacity: 0.95; }
+.geo-muted { color: var(--color-text-light); font-size: 0.78rem; }
+.geo-empty { background: var(--color-bg-alt); border: 1px dashed var(--color-border); border-radius: var(--radius); color: var(--color-text-secondary); font-size: 0.9rem; margin-top: 0.75rem; padding: 1rem; }
+
 /* -- Tables -- */
 .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 1rem 0; }
 .data-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin: 1rem 0; }
@@ -271,6 +295,9 @@ code { font-family: var(--font-mono); font-size: 0.875em; background: var(--colo
   .gateway-grid { gap: 1.25rem; }
   .chart-container { padding: 1rem; }
   .content { padding: 1.5rem 1rem 3rem; }
+  .geography-grid { grid-template-columns: 1fr; }
+  .geo-summary-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .geo-state-grid { min-width: 700px; }
   .data-table { font-size: 0.8rem; }
   .data-table th, .data-table td { padding: 0.5rem 0.5rem; }
   .finding-grid { grid-template-columns: repeat(2, 1fr); }
@@ -281,6 +308,8 @@ code { font-family: var(--font-mono); font-size: 0.875em; background: var(--colo
   .stats-row { grid-template-columns: 1fr; }
   .stat-card .stat-value { font-size: 1.5rem; }
   .finding-grid { grid-template-columns: 1fr; }
+  .geo-summary-row { grid-template-columns: 1fr; }
+  .geo-state-grid { min-width: 640px; grid-template-rows: repeat(6, 52px); }
 }
 
 @media print {

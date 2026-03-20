@@ -18,6 +18,7 @@ from nimscale.bank_panel import winsorize_series
 from nimscale.io import ensure_dir
 from nimscale.regression import fit_between_ols, fit_panel_fe, tidy_linearmodels, tidy_statsmodels
 from nimscale.settings import load_config, project_root
+from nimscale.validation import assert_nonempty_sample, require_columns, winsorize_required
 
 
 def prep_panel(cfg: dict) -> pd.DataFrame:
@@ -26,11 +27,18 @@ def prep_panel(cfg: dict) -> pd.DataFrame:
     df["CERT"] = df["CERT"].astype(str)
     df["REPDTE"] = pd.to_datetime(df["REPDTE"])
     wp = cfg["project"]["winsor_pct"]
-    df["NIM_W"] = winsorize_series(df["NIM"], p=wp)
-    df["EQ_RATIO_W"] = winsorize_series(df["EQ_RATIO"], p=wp) if "EQ_RATIO" in df.columns else 0.0
-    df["LOANS_SHARE_W"] = winsorize_series(df["LOANS_SHARE"], p=wp) if "LOANS_SHARE" in df.columns else 0.0
-    df["ASSET_GROWTH_QOQ_W"] = winsorize_series(df["ASSET_GROWTH_QOQ"], p=wp) if "ASSET_GROWTH_QOQ" in df.columns else np.nan
-    df["DEP_GROWTH_QOQ_W"] = winsorize_series(df["DEP_GROWTH_QOQ"], p=wp) if "DEP_GROWTH_QOQ" in df.columns else np.nan
+    require_columns(df, ["NIM", "LN_ASSETS", "EQ_RATIO", "LOANS_SHARE"], "robustness prep")
+    df["NIM_W"] = winsorize_required(df, "NIM", p=wp, context="robustness prep")
+    df["EQ_RATIO_W"] = winsorize_required(df, "EQ_RATIO", p=wp, context="robustness prep")
+    df["LOANS_SHARE_W"] = winsorize_required(df, "LOANS_SHARE", p=wp, context="robustness prep")
+    if "ASSET_GROWTH_QOQ" in df.columns:
+        df["ASSET_GROWTH_QOQ_W"] = winsorize_required(df, "ASSET_GROWTH_QOQ", p=wp, context="robustness growth model")
+    else:
+        df["ASSET_GROWTH_QOQ_W"] = np.nan
+    if "DEP_GROWTH_QOQ" in df.columns:
+        df["DEP_GROWTH_QOQ_W"] = winsorize_required(df, "DEP_GROWTH_QOQ", p=wp, context="robustness growth model")
+    else:
+        df["DEP_GROWTH_QOQ_W"] = np.nan
     return df
 
 
@@ -164,11 +172,9 @@ def robustness_first_diff(df: pd.DataFrame) -> list[pd.DataFrame]:
 # ── Robustness: growth model with winsorized panel ────────────────────────────
 
 def robustness_growth_winsorized(df: pd.DataFrame) -> list[pd.DataFrame]:
-    panel_df = df.dropna(subset=["NIM_W", "ASSET_GROWTH_QOQ_W"]).copy()
-    if "DEP_GROWTH_QOQ_W" in panel_df.columns:
-        panel_df["DEP_GROWTH_QOQ_W"] = panel_df["DEP_GROWTH_QOQ_W"].fillna(0.0)
-    else:
-        panel_df["DEP_GROWTH_QOQ_W"] = 0.0
+    require_columns(df, ["ASSET_GROWTH_QOQ", "DEP_GROWTH_QOQ"], "robustness growth model")
+    panel_df = df.dropna(subset=["NIM_W", "ASSET_GROWTH_QOQ_W", "DEP_GROWTH_QOQ_W"]).copy()
+    assert_nonempty_sample(panel_df, "robustness growth sample", min_rows=1, entity_col="CERT", min_entities=2)
 
     results = []
     formula = (
@@ -218,6 +224,7 @@ def main() -> None:
     all_results.extend(robustness_growth_winsorized(df))
 
     out = pd.concat(all_results, ignore_index=True)
+    assert_nonempty_sample(out, "robustness result export")
     out.to_csv(table_dir / "robustness_results.csv", index=False)
     print(f"\nsaved {table_dir / 'robustness_results.csv'} ({len(out)} rows, {out['model'].nunique()} models)")
 

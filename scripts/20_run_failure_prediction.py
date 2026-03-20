@@ -14,8 +14,8 @@ import pandas as pd
 import statsmodels.api as sm
 import statsmodels.formula.api as smf
 
-from nimscale.bank_panel import winsorize_series
 from nimscale.settings import load_config, project_root
+from nimscale.validation import assert_nonempty_sample, require_columns, winsorize_required
 
 
 FAILURE_DESCS = {
@@ -33,10 +33,11 @@ def prep_panel(cfg: dict) -> pd.DataFrame:
     df["REPDTE"] = pd.to_datetime(df["REPDTE"])
     df["QUARTER"] = df["REPDTE"].dt.to_period("Q").astype(str)
     wp = cfg["project"]["winsor_pct"]
-    df["NIM_W"] = winsorize_series(df["NIM"], p=wp)
-    df["ROA_W"] = winsorize_series(df["ROA"], p=wp) if "ROA" in df.columns else 0.0
-    df["EQ_RATIO_W"] = winsorize_series(df["EQ_RATIO"], p=wp) if "EQ_RATIO" in df.columns else 0.0
-    df["LOANS_SHARE_W"] = winsorize_series(df["LOANS_SHARE"], p=wp) if "LOANS_SHARE" in df.columns else 0.0
+    require_columns(df, ["NIM", "ROA", "EQ_RATIO", "LOANS_SHARE", "LN_ASSETS"], "distress prep")
+    df["NIM_W"] = winsorize_required(df, "NIM", p=wp, context="distress prep")
+    df["ROA_W"] = winsorize_required(df, "ROA", p=wp, context="distress prep")
+    df["EQ_RATIO_W"] = winsorize_required(df, "EQ_RATIO", p=wp, context="distress prep")
+    df["LOANS_SHARE_W"] = winsorize_required(df, "LOANS_SHARE", p=wp, context="distress prep")
     return df
 
 
@@ -127,11 +128,13 @@ def main() -> None:
     events = load_distress_events(cfg, include_assisted=args.include_assisted)
     sample = build_forward_distress_sample(panel, events, horizon_q=4)
     model_df = sample.dropna(subset=["DISTRESS_NEXT_4Q", "NIM_W", "ROA_W", "EQ_RATIO_W", "LOANS_SHARE_W", "LN_ASSETS"]).copy()
+    assert_nonempty_sample(model_df, "distress sample", min_rows=1, entity_col="CERT", min_entities=2)
 
     formula = "DISTRESS_NEXT_4Q ~ NIM_W + ROA_W + EQ_RATIO_W + LOANS_SHARE_W + LN_ASSETS + C(QUARTER)"
     model = smf.glm(formula=formula, data=model_df, family=sm.families.Binomial())
     res = model.fit(cov_type="cluster", cov_kwds={"groups": model_df["CERT"]})
     out = tidy_glm(res, "distress_logit")
+    assert_nonempty_sample(out, "distress result export")
     upsert_extension_results(table_dir, out)
 
     event_rate = model_df["DISTRESS_NEXT_4Q"].mean()

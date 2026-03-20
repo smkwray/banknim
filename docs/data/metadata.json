@@ -20,27 +20,27 @@
   ],
   "headline_results": {
     "within_bank_size_nim": {
-      "coef": -0.09,
+      "coef": -0.0901650600705631,
       "p": "<0.001",
       "interpretation": "When a bank grows, its NIM falls"
     },
     "between_bank_size_nim": {
-      "coef": -0.085,
+      "coef": -0.085095124991912,
       "p": "<0.001",
       "interpretation": "Banks with larger average size have lower average NIM"
     },
     "roa_offsets_nim": {
-      "coef": 0.205,
+      "coef": 0.2045389097512196,
       "p": "<0.001",
       "interpretation": "Large banks offset lower NIM with higher overall ROA"
     },
     "rate_cycle": {
-      "coef": -0.012,
+      "coef": -0.0116424408998958,
       "p": "<0.001",
       "interpretation": "Size penalty on NIM strengthens when rates rise"
     },
     "lagged_size_effect": {
-      "coef": -0.119,
+      "coef": -0.1192474131038424,
       "p": "<0.001",
       "interpretation": "Size effect strengthens with lagged controls"
     }

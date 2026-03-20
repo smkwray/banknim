@@ -30,14 +30,14 @@
     <div class="hero-inner">
       <h1>Bank Size, Growth &amp; Net Interest Margin</h1>
       <p class="subtitle">
-        Does being big or becoming bigger compress bank profitability? A reproducible
-        public-data pipeline studying 8,032 FDIC-insured banks across 64 quarters
-        (2010&ndash;2025).
+        How are bank size and bank growth associated with net interest margin? A
+        scripted public-data pipeline studying FDIC-insured banks across 2010&ndash;2025,
+        with explicit external-data prerequisites and robustness caveats.
       </p>
       <div class="stats-row">
-        <div class="stat-card"><div class="stat-value">8,032</div><div class="stat-label">Banks</div></div>
-        <div class="stat-card"><div class="stat-value">373,220</div><div class="stat-label">Observations</div></div>
-        <div class="stat-card"><div class="stat-value">64</div><div class="stat-label">Quarters</div></div>
+        <div class="stat-card"><div class="stat-value" id="statBanks">8,032</div><div class="stat-label">Banks</div></div>
+        <div class="stat-card"><div class="stat-value" id="statObs">373,220</div><div class="stat-label">Observations</div></div>
+        <div class="stat-card"><div class="stat-value" id="statQuarters">64</div><div class="stat-label">Quarters</div></div>
         <div class="stat-card"><div class="stat-value">9</div><div class="stat-label">Result Sections</div></div>
         <div class="stat-card"><div class="stat-value">6</div><div class="stat-label">Robustness Specs</div></div>
         <div class="stat-card"><div class="stat-value">8</div><div class="stat-label">Extensions</div></div>
@@ -51,22 +51,22 @@
     <section class="section">
       <div class="section-header"><h2>Key Findings</h2></div>
       <div class="finding-grid">
-        <div class="finding-card">
+        <div class="finding-card" data-headline="within_bank_size_nim">
           <div class="fc-value negative">&minus;0.090</div>
           <div class="fc-label">Within-Bank Size&rarr;NIM</div>
           <div class="fc-source">FE panel, 372k obs</div>
         </div>
-        <div class="finding-card">
+        <div class="finding-card" data-headline="between_bank_size_nim">
           <div class="fc-value negative">&minus;0.085</div>
           <div class="fc-label">Between-Bank Size&rarr;NIM</div>
           <div class="fc-source">Bank means, 8k banks</div>
         </div>
-        <div class="finding-card">
+        <div class="finding-card" data-headline="roa_offsets_nim">
           <div class="fc-value positive">+0.205</div>
           <div class="fc-label">Size&rarr;ROA (H6 Offset)</div>
           <div class="fc-source">Large banks earn more overall</div>
         </div>
-        <div class="finding-card">
+        <div class="finding-card" data-headline="rate_cycle">
           <div class="fc-value negative">&minus;0.012</div>
           <div class="fc-label">Size&times;Rate Hike&rarr;NIM</div>
           <div class="fc-source">NIM penalty worse when rates rise</div>
@@ -87,7 +87,8 @@
     <!-- Core Insight -->
     <section class="section">
       <div class="insight-box">
-        <p><strong>The core finding:</strong> larger banks have lower NIM both cross-sectionally and within-bank over time. But this is not the full story &mdash; large banks offset the NIM penalty with higher fee income and noninterest revenue, producing higher overall ROA. The NIM penalty is real but the earnings model is different, not worse.</p>
+        <p><strong>The core finding:</strong> larger banks have lower NIM both cross-sectionally and within-bank over time. But this is not the full story &mdash; large banks offset the NIM penalty with higher fee income and noninterest revenue, producing higher overall ROA. The earnings model looks different, not necessarily worse.</p>
+        <p><strong>Key caveat:</strong> the raw-NIM specification makes the size coefficient insignificant, so the strongest reassurance comes from the first-difference and lagged-control specifications rather than the winsorized baseline alone.</p>
         <p style="margin-bottom:0.2rem;"><strong>Time variation matters:</strong> in rolling 20-quarter fixed-effects windows, the within-bank size penalty weakens to about <strong>&minus;0.033</strong> in the mid-2010s, steepens to about <strong>&minus;0.144</strong> in 2019&ndash;2024, and then eases in the latest window.</p>
       </div>
     </section>
@@ -140,7 +141,7 @@
     <section class="section">
       <div class="card">
         <h3 style="margin-top:0;">Reproducibility</h3>
-        <p style="margin-bottom:0;">Every data source is free and federally published. Every download is scripted. The full pipeline &mdash; from raw FDIC data through panel construction, model estimation, and robustness battery &mdash; can be reproduced from scratch. See the <a href="https://github.com/smkwray/banknim">GitHub repository</a> for setup instructions.</p>
+        <p style="margin-bottom:0;">Every data source is free and federally published. The pipeline is scripted end to end, but full reruns still depend on external-data availability and explicit setup prerequisites. See the <a href="https://github.com/smkwray/banknim">GitHub repository</a> for setup instructions.</p>
       </div>
     </section>
 
@@ -151,6 +152,26 @@
   <script>
     rcChartDefaults();
     var charts = [];
+
+    function formatCoef(value) {
+      if (value === null || value === undefined || Number.isNaN(value)) return 'n/a';
+      var abs = Math.abs(value).toFixed(3);
+      return (value >= 0 ? '+' : '&minus;') + abs;
+    }
+
+    function applyMetadata(metadata) {
+      document.getElementById('statBanks').textContent = metadata.n_banks.toLocaleString();
+      document.getElementById('statObs').textContent = metadata.n_obs.toLocaleString();
+      document.getElementById('statQuarters').textContent = metadata.n_quarters.toLocaleString();
+
+      document.querySelectorAll('[data-headline]').forEach(function(card) {
+        var key = card.getAttribute('data-headline');
+        var payload = metadata.headline_results[key];
+        if (!payload) return;
+        var valueNode = card.querySelector('.fc-value');
+        if (valueNode) valueNode.innerHTML = formatCoef(payload.coef);
+      });
+    }
 
     function buildCharts() {
       charts.forEach(function(c){ c.destroy(); });
@@ -231,6 +252,10 @@
           charts.push(ch);
         });
     }
+
+    fetch('data/metadata.json')
+      .then(function(r){ return r.json(); })
+      .then(applyMetadata);
 
     buildCharts();
     window.rcRebuildCharts = function(){ rcChartDefaults(); buildCharts(); };

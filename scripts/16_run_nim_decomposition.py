@@ -16,6 +16,7 @@ from nimscale.bank_panel import winsorize_series
 from nimscale.io import ensure_dir
 from nimscale.regression import fit_panel_fe, tidy_linearmodels
 from nimscale.settings import load_config, project_root
+from nimscale.validation import assert_nonempty_sample, require_columns, winsorize_required
 
 
 def prep_panel(cfg: dict) -> pd.DataFrame:
@@ -24,9 +25,14 @@ def prep_panel(cfg: dict) -> pd.DataFrame:
     df["CERT"] = df["CERT"].astype(str)
     df["REPDTE"] = pd.to_datetime(df["REPDTE"])
     wp = cfg["project"]["winsor_pct"]
+    require_columns(
+        df,
+        ["EQ_RATIO", "LOANS_SHARE", "NIMY", "INTINCY", "INTEXPY", "ASSET", "LN_ASSETS"],
+        "nim decomposition prep",
+    )
 
-    df["EQ_RATIO_W"] = winsorize_series(df["EQ_RATIO"], p=wp) if "EQ_RATIO" in df.columns else 0.0
-    df["LOANS_SHARE_W"] = winsorize_series(df["LOANS_SHARE"], p=wp) if "LOANS_SHARE" in df.columns else 0.0
+    df["EQ_RATIO_W"] = winsorize_required(df, "EQ_RATIO", p=wp, context="nim decomposition prep")
+    df["LOANS_SHARE_W"] = winsorize_required(df, "LOANS_SHARE", p=wp, context="nim decomposition prep")
 
     # FDIC financials sometimes expose interest income/expense already scaled
     # to average assets. Detect that case using the NIM identity to avoid
@@ -49,6 +55,7 @@ def prep_panel(cfg: dict) -> pd.DataFrame:
 
 def run_model(df: pd.DataFrame, dep_var: str, model_name: str) -> pd.DataFrame:
     sub = df.dropna(subset=[dep_var, "LN_ASSETS", "EQ_RATIO_W", "LOANS_SHARE_W"]).copy()
+    assert_nonempty_sample(sub, model_name, min_rows=1, entity_col="CERT", min_entities=2)
     formula = f"{dep_var} ~ 1 + LN_ASSETS + EQ_RATIO_W + LOANS_SHARE_W + EntityEffects + TimeEffects"
     res = fit_panel_fe(sub, formula=formula, entity_col="CERT", time_col="REPDTE")
     out = tidy_linearmodels(res, model_name)
@@ -73,6 +80,7 @@ def main() -> None:
         run_model(df, "INT_EXPENSE_RATIO_W", "int_expense_fe"),
     ]
     out = pd.concat(results, ignore_index=True)
+    assert_nonempty_sample(out, "nim decomposition result export")
     out.to_csv(table_dir / "nim_decomposition_results.csv", index=False)
     print(f"saved {table_dir / 'nim_decomposition_results.csv'}")
 

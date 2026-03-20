@@ -17,6 +17,7 @@ from nimscale.bank_panel import winsorize_series
 from nimscale.io import ensure_dir
 from nimscale.regression import fit_panel_fe, tidy_linearmodels
 from nimscale.settings import load_config, project_root
+from nimscale.validation import assert_nonempty_sample, require_columns, winsorize_required
 
 
 def find_first_crossing(df: pd.DataFrame, bank_col: str, date_col: str, flag_col: str) -> pd.DataFrame:
@@ -51,6 +52,7 @@ def run_threshold_event_study(
     if es[bank_col].nunique() < 10:
         print(f"  {model_name}: too few crossers ({es[bank_col].nunique()}), skipping")
         return None
+    assert_nonempty_sample(es, model_name, min_rows=1, entity_col=bank_col, min_entities=10)
 
     print(f"  {model_name}: {len(es):,} obs, {es[bank_col].nunique():,} banks, window=[-{window},+{window}]")
 
@@ -111,13 +113,11 @@ def main() -> None:
     df["CERT"] = df["CERT"].astype(str)
     df["REPDTE"] = pd.to_datetime(df["REPDTE"])
 
+    require_columns(df, ["NIM", "LN_ASSETS", "EQ_RATIO", "LOANS_SHARE"], "threshold-crossing models")
     wp = cfg["project"]["winsor_pct"]
     df["NIM_W"] = winsorize_series(df["NIM"], p=wp)
-    for col, default in [("EQ_RATIO", "EQ_RATIO_W"), ("LOANS_SHARE", "LOANS_SHARE_W")]:
-        if col in df.columns:
-            df[default] = winsorize_series(df[col], p=wp)
-        else:
-            df[default] = 0.0
+    df["EQ_RATIO_W"] = winsorize_required(df, "EQ_RATIO", p=wp, context="threshold-crossing models")
+    df["LOANS_SHARE_W"] = winsorize_required(df, "LOANS_SHARE", p=wp, context="threshold-crossing models")
 
     results = []
 

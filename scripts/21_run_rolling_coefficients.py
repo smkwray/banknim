@@ -12,10 +12,10 @@ import argparse
 
 import pandas as pd
 
-from nimscale.bank_panel import winsorize_series
 from nimscale.io import ensure_dir
 from nimscale.regression import fit_panel_fe, tidy_linearmodels
 from nimscale.settings import load_config, project_root
+from nimscale.validation import assert_nonempty_sample, require_columns, winsorize_required
 
 
 WINDOW_QUARTERS = 20
@@ -27,10 +27,13 @@ def prep_panel(cfg: dict) -> pd.DataFrame:
     df["CERT"] = df["CERT"].astype(str)
     df["REPDTE"] = pd.to_datetime(df["REPDTE"])
     wp = cfg["project"]["winsor_pct"]
-    df["NIM_W"] = winsorize_series(df["NIM"], p=wp)
-    df["EQ_RATIO_W"] = winsorize_series(df["EQ_RATIO"], p=wp) if "EQ_RATIO" in df.columns else 0.0
-    df["LOANS_SHARE_W"] = winsorize_series(df["LOANS_SHARE"], p=wp) if "LOANS_SHARE" in df.columns else 0.0
-    return df.dropna(subset=["NIM_W", "LN_ASSETS", "EQ_RATIO_W", "LOANS_SHARE_W"]).copy()
+    require_columns(df, ["NIM", "EQ_RATIO", "LOANS_SHARE", "LN_ASSETS"], "rolling coefficients prep")
+    df["NIM_W"] = winsorize_required(df, "NIM", p=wp, context="rolling coefficients prep")
+    df["EQ_RATIO_W"] = winsorize_required(df, "EQ_RATIO", p=wp, context="rolling coefficients prep")
+    df["LOANS_SHARE_W"] = winsorize_required(df, "LOANS_SHARE", p=wp, context="rolling coefficients prep")
+    out = df.dropna(subset=["NIM_W", "LN_ASSETS", "EQ_RATIO_W", "LOANS_SHARE_W"]).copy()
+    assert_nonempty_sample(out, "rolling coefficients prep", min_rows=1, entity_col="CERT", min_entities=2)
+    return out
 
 
 def run_rolling_fe(panel: pd.DataFrame, window_quarters: int) -> pd.DataFrame:
@@ -46,6 +49,7 @@ def run_rolling_fe(panel: pd.DataFrame, window_quarters: int) -> pd.DataFrame:
         start = window[0]
         end = window[-1]
         sub = panel[panel["REPDTE"].isin(window)].copy()
+        assert_nonempty_sample(sub, f"rolling window {start.date()} to {end.date()}", min_rows=1, entity_col="CERT", min_entities=2)
         res = fit_panel_fe(sub, formula=formula, entity_col="CERT", time_col="REPDTE")
         tidy = tidy_linearmodels(res, "rolling_within_fe_size")
         tidy["window_start"] = start
@@ -74,6 +78,7 @@ def main() -> None:
 
     panel = prep_panel(cfg)
     out = run_rolling_fe(panel, window_quarters=args.window_quarters)
+    assert_nonempty_sample(out, "rolling coefficient result export")
     path = table_dir / "rolling_coefficients_results.csv"
     out.to_csv(path, index=False)
     print(f"saved {path}")

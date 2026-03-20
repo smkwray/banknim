@@ -10,13 +10,49 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 import json
+import argparse
 
 import numpy as np
 import pandas as pd
 
 from nimscale.bank_panel import winsorize_series
+from nimscale.geography import build_geography_payload
 from nimscale.io import ensure_dir
 from nimscale.settings import load_config, project_root
+
+
+HEADLINE_RESULT_SPECS = {
+    "within_bank_size_nim": {
+        "file": "regression_results.csv",
+        "model": "within_fe_size",
+        "term": "LN_ASSETS",
+        "interpretation": "When a bank grows, its NIM falls",
+    },
+    "between_bank_size_nim": {
+        "file": "regression_results.csv",
+        "model": "between_bank_means",
+        "term": "AVG_LN_ASSETS",
+        "interpretation": "Banks with larger average size have lower average NIM",
+    },
+    "roa_offsets_nim": {
+        "file": "extension_results.csv",
+        "model": "h6_roa_fe",
+        "term": "LN_ASSETS",
+        "interpretation": "Large banks offset lower NIM with higher overall ROA",
+    },
+    "rate_cycle": {
+        "file": "rate_cycle_results.csv",
+        "model": "rate_cycle_fedfunds",
+        "term": "LN_ASSETS_x_FEDFUNDS",
+        "interpretation": "Size penalty on NIM strengthens when rates rise",
+    },
+    "lagged_size_effect": {
+        "file": "extension_results.csv",
+        "model": "rob_lagged_controls_fe",
+        "term": "LN_ASSETS",
+        "interpretation": "Size effect strengthens with lagged controls",
+    },
+}
 
 
 def json_safe(obj):
@@ -38,6 +74,58 @@ def write_json(data, path: Path) -> None:
     with open(path, "w") as f:
         json.dump(data, f, default=json_safe, indent=2)
     print(f"  {path.name} ({path.stat().st_size / 1024:.0f} KB)")
+
+
+def format_public_p_value(value) -> str | None:
+    if pd.isna(value):
+        return None
+    value = float(value)
+    if value < 0.001:
+        return "<0.001"
+    return f"{value:.3f}"
+
+
+def load_result_table(table_dir: Path, cache: dict[str, pd.DataFrame], file_name: str) -> pd.DataFrame:
+    if file_name not in cache:
+        path = table_dir / file_name
+        if not path.exists():
+            raise FileNotFoundError(path)
+        cache[file_name] = pd.read_csv(path)
+    return cache[file_name]
+
+
+def lookup_result_row(
+    table_dir: Path,
+    cache: dict[str, pd.DataFrame],
+    *,
+    file_name: str,
+    model: str,
+    term: str,
+) -> pd.Series:
+    df = load_result_table(table_dir, cache, file_name)
+    rows = df[(df["model"] == model) & (df["term"] == term)]
+    if rows.empty:
+        raise KeyError(f"Missing result row for {file_name} / {model} / {term}")
+    return rows.iloc[0]
+
+
+def build_headline_results(table_dir: Path) -> dict[str, dict[str, object]]:
+    cache: dict[str, pd.DataFrame] = {}
+    headlines: dict[str, dict[str, object]] = {}
+    for key, spec in HEADLINE_RESULT_SPECS.items():
+        row = lookup_result_row(
+            table_dir,
+            cache,
+            file_name=spec["file"],
+            model=spec["model"],
+            term=spec["term"],
+        )
+        headlines[key] = {
+            "coef": float(row["coef"]),
+            "p": format_public_p_value(row["p_value"]),
+            "interpretation": spec["interpretation"],
+        }
+    return headlines
 
 
 # ── 1. Consolidated model results ─────────────────────────────────────────────
@@ -249,7 +337,7 @@ def export_cross_section(panel: pd.DataFrame, out_dir: Path) -> None:
 
 # ── 8. Panel metadata ────────────────────────────────────────────────────────
 
-def export_metadata(panel: pd.DataFrame, cfg: dict, out_dir: Path) -> None:
+def export_metadata(panel: pd.DataFrame, cfg: dict, table_dir: Path, out_dir: Path) -> None:
     meta = {
         "project": cfg["project"]["name"],
         "sample_start": str(panel["REPDTE"].min().date()),
@@ -270,13 +358,7 @@ def export_metadata(panel: pd.DataFrame, cfg: dict, out_dir: Path) -> None:
             "M6: Acquisition event study",
             "M7: Threshold crossing",
         ],
-        "headline_results": {
-            "within_bank_size_nim": {"coef": -0.090, "p": "<0.001", "interpretation": "When a bank grows, its NIM falls"},
-            "between_bank_size_nim": {"coef": -0.085, "p": "<0.001", "interpretation": "Banks with larger average size have lower average NIM"},
-            "roa_offsets_nim": {"coef": 0.205, "p": "<0.001", "interpretation": "Large banks offset lower NIM with higher overall ROA"},
-            "rate_cycle": {"coef": -0.012, "p": "<0.001", "interpretation": "Size penalty on NIM strengthens when rates rise"},
-            "lagged_size_effect": {"coef": -0.119, "p": "<0.001", "interpretation": "Size effect strengthens with lagged controls"},
-        },
+        "headline_results": build_headline_results(table_dir),
     }
     write_json(meta, out_dir / "metadata.json")
 
@@ -358,12 +440,23 @@ def export_rolling_coefficients(table_dir: Path, out_dir: Path) -> None:
     )
 
 
+# ── 11. Geography summaries ──────────────────────────────────────────────────
+
+def export_geography(panel: pd.DataFrame, cfg: dict, out_dir: Path) -> None:
+    payload = build_geography_payload(panel, cfg, project_root())
+    write_json(payload, out_dir / "geography.json")
+
+
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main() -> None:
-    cfg = load_config()
+    parser = argparse.ArgumentParser(description="Export frontend JSON artifacts.")
+    parser.add_argument("--config", default=None)
+    args = parser.parse_args()
+
+    cfg = load_config(args.config)
     table_dir = project_root() / cfg["paths"]["tables"]
-    out_dir = ensure_dir(project_root() / "output" / "frontend")
+    out_dir = ensure_dir(project_root() / cfg["paths"].get("frontend", "output/frontend"))
 
     print("Exporting frontend data:")
 
@@ -378,7 +471,8 @@ def main() -> None:
     export_threshold_crossing(table_dir, out_dir)
     export_distributions(panel, out_dir)
     export_cross_section(panel, out_dir)
-    export_metadata(panel, cfg, out_dir)
+    export_geography(panel, cfg, out_dir)
+    export_metadata(panel, cfg, table_dir, out_dir)
     export_robustness_comparison(table_dir, out_dir)
     export_rolling_coefficients(table_dir, out_dir)
 

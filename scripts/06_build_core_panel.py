@@ -23,6 +23,7 @@ from nimscale.bank_panel import (
 )
 from nimscale.io import ensure_dir
 from nimscale.settings import load_config, project_root
+from nimscale.validation import ValidationError, assert_merge_coverage, assert_nonempty_sample
 
 
 def main() -> None:
@@ -50,8 +51,20 @@ def main() -> None:
 
     cols = infer_main_columns(df, cfg)
     df[cols["date"]] = parse_fdic_quarter_date(df[cols["date"]])
-    df = df.dropna(subset=[cols["bank_id"], cols["date"], cols["assets"]]).copy()
+    required_cols = [cols["bank_id"], cols["date"], cols["assets"]]
+    missing_required = {
+        col: int(df[col].isna().sum())
+        for col in required_cols
+        if int(df[col].isna().sum()) > 0
+    }
+    if missing_required:
+        raise ValidationError(f"core panel build: required parsed fields contain missing values {missing_required}")
+
     df = df.sort_values([cols["bank_id"], cols["date"]])
+
+    dupes = df[df.duplicated(subset=[cols["bank_id"], cols["date"]], keep=False)].copy()
+    duplicate_key_count = len(dupes[[cols["bank_id"], cols["date"]]].drop_duplicates()) if not dupes.empty else 0
+    dupes.to_csv(table_dir / "duplicate_keys.csv", index=False)
 
     before = len(df)
     df = df.drop_duplicates(subset=[cols["bank_id"], cols["date"]], keep="first").copy()
@@ -72,6 +85,9 @@ def main() -> None:
     if rates_path.exists():
         rates = pd.read_parquet(rates_path)
         panel = merge_rates(panel, rates, date_col=cols["date"])
+        assert_merge_coverage(panel, ["FEDFUNDS", "SLOPE_10Y_3M"], "core panel rate merge")
+
+    assert_nonempty_sample(panel, "core panel build", min_rows=1, entity_col=cols["bank_id"], min_entities=1)
 
     out_path = interim_dir / "bank_panel.parquet"
     panel.to_parquet(out_path, index=False)
@@ -80,6 +96,8 @@ def main() -> None:
         [
             {"metric": "rows_before_dedup", "value": before},
             {"metric": "rows_after_dedup", "value": after},
+            {"metric": "duplicate_row_count", "value": len(dupes)},
+            {"metric": "duplicate_key_count", "value": duplicate_key_count},
             {"metric": "unique_banks", "value": panel[cols["bank_id"]].nunique()},
             {"metric": "unique_quarters", "value": panel[cols["date"]].nunique()},
             {"metric": "min_date", "value": str(panel[cols["date"]].min().date())},
@@ -87,9 +105,6 @@ def main() -> None:
         ]
     )
     summary.to_csv(table_dir / "core_sample_summary.csv", index=False)
-
-    dupes = df[df.duplicated(subset=[cols["bank_id"], cols["date"]], keep=False)].copy()
-    dupes.to_csv(table_dir / "duplicate_keys.csv", index=False)
 
     missing = panel.isna().mean().reset_index()
     missing.columns = ["column", "missing_share"]

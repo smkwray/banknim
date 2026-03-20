@@ -4,13 +4,13 @@
 
 **https://smkwray.github.io/banknim/**
 
-A reproducible public-data pipeline studying the relationship between bank size, asset growth, and net interest margin (NIM) across 8,032 FDIC-insured commercial banks over 64 quarters (2010–2025).
+A scripted public-data pipeline studying the relationship between bank size, asset growth, and net interest margin (NIM) across 8,032 FDIC-insured commercial banks over 64 quarters (2010–2025).
 
 ---
 
 ## What this project does
 
-This project estimates whether bank size causes lower net interest margins, and if so, whether the effect operates through being big (cross-sectional), becoming bigger (within-bank growth), franchise dilution, rate-cycle amplification, regulatory threshold crossing, or time-varying size effects. Every data source is free, every download is scripted, and every result can be reproduced from scratch.
+This project estimates how bank size is associated with net interest margins, and whether the relationship operates through being big (cross-sectional), becoming bigger (within-bank growth), franchise dilution, rate-cycle amplification, regulatory threshold crossing, or time-varying size effects. Every data source is free, the pipeline is scripted end to end, and full reruns depend on external-data availability plus the documented setup prerequisites.
 
 ## Research question
 
@@ -21,6 +21,12 @@ This project estimates whether bank size causes lower net interest margins, and 
 ## Findings
 
 Results are organized by hypothesis. All coefficient estimates come from panel models on 373,220 bank-quarter observations unless otherwise noted.
+
+### Headline caveat
+
+- **Raw NIM (no winsorization):** size effect is insignificant (−0.01, p=0.87)
+- The most reassuring evidence comes from first-difference (−0.11, p<0.001) and lagged-controls (−0.12, p<0.001) specifications
+- The baseline winsorized result is informative, but it should not be read in isolation
 
 ### H1: Between-bank size penalty
 
@@ -89,7 +95,6 @@ Results are organized by hypothesis. All coefficient estimates come from panel m
 
 ### Robustness flag
 
-- **Raw NIM (no winsorization):** size effect is insignificant (−0.01, p=0.87)
 - The baseline result depends on trimming extreme NIM outliers
 - First-difference (−0.11) and lagged-controls (−0.12) specifications are the most reassuring
 
@@ -147,43 +152,44 @@ banknim/
 
 ```bash
 # set up the environment
-python -m venv .venv
-source .venv/bin/activate
+python3 -m venv "$HOME/venvs/banknim"
+source "$HOME/venvs/banknim/bin/activate"
+pip install -e .[test]
 pip install -r requirements.txt
 source .env
 
 # download raw data
-python -B scripts/00_fetch_metadata.py
-python -B scripts/01_download_fdic_financials.py --start 2010-03-31 --end 2025-12-31
-python -B scripts/02_download_fdic_sod.py --start-year 2010 --end-year 2025
-python -B scripts/03_download_fdic_history.py --start-date 2010-01-01 --end-date 2025-12-31
-python -B scripts/04_download_rates.py
+python3 -B scripts/00_fetch_metadata.py
+python3 -B scripts/01_download_fdic_financials.py --start 2010-03-31 --end 2025-12-31
+python3 -B scripts/02_download_fdic_sod.py --start-year 2010 --end-year 2025
+python3 -B scripts/03_download_fdic_history.py --start-date 2010-01-01 --end-date 2025-12-31
+python3 -B scripts/04_download_rates.py
 
 # build panels
-python -B scripts/06_build_core_panel.py
-python -B scripts/07_build_sod_panel.py
+python3 -B scripts/06_build_core_panel.py
+python3 -B scripts/07_build_sod_panel.py
 
 # run models
-python -B scripts/08_run_baseline_regressions.py
-python -B scripts/09_event_study_acquirers.py
-python -B scripts/10_run_franchise_dilution.py
-python -B scripts/11_run_rate_cycle.py
-python -B scripts/12_run_threshold_crossing.py
-python -B scripts/13_run_robustness.py
-python -B scripts/14_run_extensions.py
-python -B scripts/16_run_nim_decomposition.py
-python -B scripts/17_run_equity_as_outcome.py
-python -B scripts/18_run_efficiency.py
-python -B scripts/19_run_loan_composition.py
-python -B scripts/20_run_failure_prediction.py
-python -B scripts/21_run_rolling_coefficients.py
+python3 -B scripts/08_run_baseline_regressions.py
+python3 -B scripts/09_event_study_acquirers.py
+python3 -B scripts/10_run_franchise_dilution.py
+python3 -B scripts/11_run_rate_cycle.py
+python3 -B scripts/12_run_threshold_crossing.py
+python3 -B scripts/13_run_robustness.py
+python3 -B scripts/14_run_extensions.py
+python3 -B scripts/16_run_nim_decomposition.py
+python3 -B scripts/17_run_equity_as_outcome.py
+python3 -B scripts/18_run_efficiency.py
+python3 -B scripts/19_run_loan_composition.py
+python3 -B scripts/20_run_failure_prediction.py
+python3 -B scripts/21_run_rolling_coefficients.py
 
 # export frontend data for the site
-python -B scripts/15_export_frontend_data.py
+python3 -B scripts/15_export_frontend_data.py
 cp output/frontend/*.json docs/data/
 
 # run tests
-python -B -m pytest -q
+python3 -B -m pytest -q
 ```
 
 Or use the Make targets:

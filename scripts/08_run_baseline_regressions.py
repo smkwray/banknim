@@ -14,10 +14,15 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import pandas as pd
 
-from nimscale.bank_panel import winsorize_series
 from nimscale.io import ensure_dir
 from nimscale.regression import fit_between_ols, fit_panel_fe, tidy_linearmodels, tidy_statsmodels
 from nimscale.settings import load_config, project_root
+from nimscale.validation import (
+    assert_merge_coverage,
+    assert_nonempty_sample,
+    require_columns,
+    winsorize_required,
+)
 
 
 def make_size_quantile_figure(df: pd.DataFrame, fig_dir: Path) -> None:
@@ -72,40 +77,30 @@ def main() -> None:
     df["CERT"] = df["CERT"].astype(str)
     df["REPDTE"] = pd.to_datetime(df["REPDTE"])
 
-    # Minimal required columns
-    need = ["CERT", "REPDTE", "NIM", "LN_ASSETS"]
-    missing = [c for c in need if c not in df.columns]
-    if missing:
-        raise KeyError(f"Missing required columns for baseline models: {missing}")
+    need = [
+        "CERT",
+        "REPDTE",
+        "NIM",
+        "LN_ASSETS",
+        "EQ_RATIO",
+        "LOANS_SHARE",
+        "ASSET_GROWTH_QOQ",
+        "DEP_GROWTH_QOQ",
+        "FEDFUNDS",
+        "SLOPE_10Y_3M",
+    ]
+    require_columns(df, need, "baseline models")
 
-    if "EQ_RATIO" in df.columns:
-        df["EQ_RATIO_W"] = winsorize_series(df["EQ_RATIO"], p=cfg["project"]["winsor_pct"])
-    else:
-        df["EQ_RATIO_W"] = 0.0
-
-    if "LOANS_SHARE" in df.columns:
-        df["LOANS_SHARE_W"] = winsorize_series(df["LOANS_SHARE"], p=cfg["project"]["winsor_pct"])
-    else:
-        df["LOANS_SHARE_W"] = 0.0
-
-    if "ASSET_GROWTH_QOQ" in df.columns:
-        df["ASSET_GROWTH_QOQ_W"] = winsorize_series(df["ASSET_GROWTH_QOQ"], p=cfg["project"]["winsor_pct"])
-    else:
-        df["ASSET_GROWTH_QOQ_W"] = pd.NA
-
-    if "DEP_GROWTH_QOQ" in df.columns:
-        df["DEP_GROWTH_QOQ_W"] = winsorize_series(df["DEP_GROWTH_QOQ"], p=cfg["project"]["winsor_pct"])
-    else:
-        df["DEP_GROWTH_QOQ_W"] = pd.NA
-
-    df["NIM_W"] = winsorize_series(df["NIM"], p=cfg["project"]["winsor_pct"])
-
-    if "FEDFUNDS" not in df.columns:
-        df["FEDFUNDS"] = 0.0
-    if "SLOPE_10Y_3M" not in df.columns:
-        df["SLOPE_10Y_3M"] = 0.0
+    winsor_pct = cfg["project"]["winsor_pct"]
+    df["EQ_RATIO_W"] = winsorize_required(df, "EQ_RATIO", p=winsor_pct, context="baseline models")
+    df["LOANS_SHARE_W"] = winsorize_required(df, "LOANS_SHARE", p=winsor_pct, context="baseline models")
+    df["ASSET_GROWTH_QOQ_W"] = winsorize_required(df, "ASSET_GROWTH_QOQ", p=winsor_pct, context="baseline growth model")
+    df["DEP_GROWTH_QOQ_W"] = winsorize_required(df, "DEP_GROWTH_QOQ", p=winsor_pct, context="baseline growth model")
+    df["NIM_W"] = winsorize_required(df, "NIM", p=winsor_pct, context="baseline models")
+    assert_merge_coverage(df, ["FEDFUNDS", "SLOPE_10Y_3M"], "baseline rate controls")
 
     panel_df = df.dropna(subset=["NIM_W", "LN_ASSETS"]).copy()
+    assert_nonempty_sample(panel_df, "within-bank FE baseline sample", min_rows=1, entity_col="CERT", min_entities=2)
     between_df = (
         panel_df.groupby("CERT", as_index=False)[
             ["NIM_W", "LN_ASSETS", "EQ_RATIO_W", "LOANS_SHARE_W", "FEDFUNDS", "SLOPE_10Y_3M"]
@@ -134,11 +129,8 @@ def main() -> None:
     between_res = fit_between_ols(between_df, formula=between_formula)
     results.append(tidy_statsmodels(between_res, "between_bank_means"))
 
-    growth_df = panel_df.dropna(subset=["ASSET_GROWTH_QOQ_W"]).copy()
-    if "DEP_GROWTH_QOQ_W" in growth_df.columns:
-        growth_df["DEP_GROWTH_QOQ_W"] = growth_df["DEP_GROWTH_QOQ_W"].fillna(0.0)
-    else:
-        growth_df["DEP_GROWTH_QOQ_W"] = 0.0
+    growth_df = panel_df.dropna(subset=["ASSET_GROWTH_QOQ_W", "DEP_GROWTH_QOQ_W"]).copy()
+    assert_nonempty_sample(growth_df, "growth FE sample", min_rows=1, entity_col="CERT", min_entities=2)
 
     growth_formula = (
         "NIM_W ~ 1 + ASSET_GROWTH_QOQ_W + DEP_GROWTH_QOQ_W + "
@@ -149,6 +141,7 @@ def main() -> None:
     results.append(tidy_linearmodels(growth_res, "growth_fe"))
 
     out = pd.concat(results, ignore_index=True)
+    assert_nonempty_sample(out, "baseline result export")
     out.to_csv(table_dir / "regression_results.csv", index=False)
 
     make_size_quantile_figure(panel_df, fig_dir)

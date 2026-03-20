@@ -70,6 +70,78 @@
       </table></div>
     </section>
 
+    <!-- Geography -->
+    <section class="section" id="geography">
+      <div class="section-header"><h2>Geography</h2><span class="section-tag">Descriptive</span></div>
+      <div class="insight-box">
+        <p><strong>State view:</strong> HQ state from the bank-quarter panel. <strong>CBSA view:</strong> branch-deposit-weighted exposure built from annual SOD and carried forward by SOD year. These are descriptive cuts of the same panel, not separate causal designs.</p>
+      </div>
+
+      <div class="geography-grid">
+        <div class="card geography-card">
+          <div class="geo-summary-row" id="geoSummaryRow">
+            <div class="geo-summary-chip"><span class="geo-chip-label">States</span><span class="geo-chip-value" id="geoStatesCount">&mdash;</span></div>
+            <div class="geo-summary-chip"><span class="geo-chip-label">CBSAs</span><span class="geo-chip-value" id="geoMsasCount">&mdash;</span></div>
+            <div class="geo-summary-chip"><span class="geo-chip-label">Banks Matched</span><span class="geo-chip-value" id="geoMatchedBanks">&mdash;</span></div>
+            <div class="geo-summary-chip"><span class="geo-chip-label">Mapped SOD Rows</span><span class="geo-chip-value" id="geoMappedShare">&mdash;</span></div>
+          </div>
+
+          <div class="geo-controls">
+            <div class="geo-toggle-group" id="geoMetricToggles">
+              <button class="geo-toggle active" type="button" data-metric="avg_nim">Avg NIM</button>
+              <button class="geo-toggle" type="button" data-metric="avg_roa">Avg ROA</button>
+              <button class="geo-toggle" type="button" data-metric="avg_assets_millions">Avg Assets</button>
+              <button class="geo-toggle" type="button" data-metric="n_banks">Bank Count</button>
+            </div>
+            <p class="chart-subtitle" id="geoStateSubtitle">State tiles are colored by average NIM. Hover or focus a tile for details.</p>
+          </div>
+
+          <div class="geo-legend">
+            <span>Lower</span>
+            <div class="geo-legend-bar" id="geoLegendBar"></div>
+            <span>Higher</span>
+          </div>
+
+          <div class="geo-map-wrap">
+            <div class="geo-state-grid" id="stateTileGrid"></div>
+          </div>
+          <div class="geo-empty" id="stateTileEmpty" hidden>Geography export not available yet.</div>
+        </div>
+
+        <div class="card geography-card">
+          <div class="geo-controls">
+            <div>
+              <h3 style="margin-top:0;">CBSA Ranking</h3>
+              <p class="chart-subtitle" id="msaCoverageNote">Top-ranked CBSAs from the branch-deposit-weighted exposure view.</p>
+            </div>
+            <div class="geo-toggle-group" id="msaSortToggles">
+              <button class="geo-toggle active" type="button" data-sort="avg_nim">Avg NIM</button>
+              <button class="geo-toggle" type="button" data-sort="avg_roa">Avg ROA</button>
+              <button class="geo-toggle" type="button" data-sort="avg_assets_millions">Avg Assets</button>
+              <button class="geo-toggle" type="button" data-sort="n_banks">Bank Count</button>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table class="data-table" id="msaTable">
+              <thead><tr>
+                <th>Rank</th>
+                <th>CBSA</th>
+                <th>Type</th>
+                <th class="num">Avg NIM</th>
+                <th class="num">Avg ROA</th>
+                <th class="num">Avg Assets ($M)</th>
+                <th class="num">Banks</th>
+                <th class="num">Matched Dep Share</th>
+              </tr></thead>
+              <tbody id="msaTableBody"></tbody>
+            </table>
+          </div>
+          <div class="geo-empty" id="msaTableEmpty" hidden>No CBSA geography export available.</div>
+        </div>
+      </div>
+    </section>
+
     <!-- Data sources -->
     <section class="section">
       <div class="section-header"><h2>Data Sources</h2></div>
@@ -93,7 +165,7 @@
       <div class="section-header"><h2>Reproducibility</h2></div>
       <div class="card">
         <h3 style="margin-top:0;">Full Pipeline</h3>
-        <p>Every download is scripted and every result can be reproduced from scratch. The pipeline covers raw FDIC data ingestion, panel construction, variable engineering, model estimation, and robustness checks.</p>
+        <p>The pipeline is scripted end to end, but full reruns still depend on external-data availability and the documented setup prerequisites. It covers raw FDIC data ingestion, panel construction, variable engineering, model estimation, and robustness checks.</p>
         <p style="margin-bottom:0;"><a href="https://github.com/smkwray/banknim" class="cta-btn">View on GitHub &rarr;</a></p>
       </div>
     </section>
@@ -105,6 +177,174 @@
   <script>
     rcChartDefaults();
     var charts = [];
+    var geoStateMetric = 'avg_nim';
+    var geoMsaSort = 'avg_nim';
+    var geoPayload = null;
+    var STATE_TILE_LAYOUT = {
+      WA: [1, 1], MT: [4, 1], ND: [6, 1], MN: [8, 1], WI: [10, 1], MI: [12, 1], VT: [14, 1], NH: [15, 1], ME: [16, 1],
+      OR: [1, 2], ID: [3, 2], WY: [5, 2], SD: [7, 2], IA: [9, 2], IL: [11, 2], IN: [12, 2], OH: [13, 2], PA: [14, 2], NY: [15, 2], MA: [16, 2],
+      CA: [1, 3], NV: [3, 3], UT: [4, 3], CO: [5, 3], NE: [7, 3], MO: [9, 3], KY: [11, 3], WV: [13, 3], VA: [14, 3], MD: [15, 3], NJ: [16, 3], CT: [17, 2], RI: [17, 3],
+      AZ: [2, 4], NM: [4, 4], KS: [6, 4], AR: [8, 4], TN: [10, 4], NC: [12, 4], SC: [13, 4], DE: [15, 4], DC: [16, 4],
+      AK: [1, 5], HI: [2, 5], TX: [5, 5], OK: [7, 5], LA: [8, 5], MS: [9, 5], AL: [10, 5], GA: [11, 5], FL: [13, 5],
+      PR: [15, 5], VI: [16, 5], GU: [13, 6], MP: [14, 6], AS: [15, 6]
+    };
+    var GEO_METRICS = {
+      avg_nim: { label: 'average NIM', formatter: function(v){ return formatPct(v, 2); } },
+      avg_roa: { label: 'average ROA', formatter: function(v){ return formatPct(v, 2); } },
+      avg_assets_millions: { label: 'average assets', formatter: function(v){ return formatMillions(v); } },
+      n_banks: { label: 'bank count', formatter: function(v){ return formatCount(v); } }
+    };
+
+    function formatPct(value, digits) {
+      if (value === null || value === undefined || isNaN(value)) return '&mdash;';
+      return Number(value).toFixed(digits) + '%';
+    }
+
+    function formatMillions(value) {
+      if (value === null || value === undefined || isNaN(value)) return '&mdash;';
+      return Number(value).toLocaleString(undefined, { maximumFractionDigits: 0 }) + 'M';
+    }
+
+    function formatCount(value) {
+      if (value === null || value === undefined || isNaN(value)) return '&mdash;';
+      return Number(value).toLocaleString();
+    }
+
+    function formatShare(value) {
+      if (value === null || value === undefined || isNaN(value)) return '&mdash;';
+      return (Number(value) * 100).toFixed(1) + '%';
+    }
+
+    function setToggleState(containerId, activeValue, attrName) {
+      var buttons = document.querySelectorAll('#' + containerId + ' [data-' + attrName + ']');
+      buttons.forEach(function(btn) {
+        btn.classList.toggle('active', btn.getAttribute('data-' + attrName) === activeValue);
+      });
+    }
+
+    function mixHex(a, b, t) {
+      var ah = a.replace('#', '');
+      var bh = b.replace('#', '');
+      var ar = parseInt(ah.substring(0, 2), 16), ag = parseInt(ah.substring(2, 4), 16), ab = parseInt(ah.substring(4, 6), 16);
+      var br = parseInt(bh.substring(0, 2), 16), bg = parseInt(bh.substring(2, 4), 16), bb = parseInt(bh.substring(4, 6), 16);
+      var rr = Math.round(ar + (br - ar) * t).toString(16).padStart(2, '0');
+      var rg = Math.round(ag + (bg - ag) * t).toString(16).padStart(2, '0');
+      var rb = Math.round(ab + (bb - ab) * t).toString(16).padStart(2, '0');
+      return '#' + rr + rg + rb;
+    }
+
+    function renderStateTiles() {
+      var grid = document.getElementById('stateTileGrid');
+      var empty = document.getElementById('stateTileEmpty');
+      var subtitle = document.getElementById('geoStateSubtitle');
+      if (!grid || !empty || !subtitle) return;
+
+      if (!geoPayload || !geoPayload.states || !geoPayload.states.length) {
+        grid.innerHTML = '';
+        empty.hidden = false;
+        return;
+      }
+
+      empty.hidden = true;
+      grid.innerHTML = '';
+      var C = rcColors();
+      var metric = GEO_METRICS[geoStateMetric];
+      var rows = geoPayload.states.slice().sort(function(a, b) { return a.state_code.localeCompare(b.state_code); });
+      var values = rows.map(function(row) { return Number(row[geoStateMetric]); }).filter(function(v) { return !isNaN(v); });
+      var minValue = Math.min.apply(null, values);
+      var maxValue = Math.max.apply(null, values);
+      var lowColor = rcIsDark() ? '#20324d' : '#edf3ff';
+      var highColor = C.accent;
+
+      subtitle.textContent = 'State tiles are colored by ' + metric.label + '. Hover or focus a tile for details.';
+      rows.forEach(function(row) {
+        var tile = document.createElement('button');
+        var pos = STATE_TILE_LAYOUT[row.state_code] || [18, 6];
+        var rawValue = Number(row[geoStateMetric]);
+        var ratio = maxValue === minValue ? 0.5 : (rawValue - minValue) / (maxValue - minValue);
+        var hasValue = !isNaN(rawValue);
+        tile.className = 'geo-state-tile';
+        tile.type = 'button';
+        tile.style.gridColumn = pos[0];
+        tile.style.gridRow = pos[1];
+        tile.style.background = hasValue ? mixHex(lowColor, highColor, Math.max(0.08, ratio)) : C.muted;
+        tile.innerHTML = '<span class="geo-state-code">' + row.state_code + '</span>' +
+          '<span class="geo-state-value">' + metric.formatter(rawValue) + '</span>';
+        tile.title = row.state_name + ': ' + metric.formatter(rawValue).replace(/&mdash;/g, 'n/a') +
+          ' | Banks: ' + formatCount(row.n_banks) +
+          ' | Obs: ' + formatCount(row.n_obs);
+        grid.appendChild(tile);
+      });
+    }
+
+    function renderMsaTable() {
+      var body = document.getElementById('msaTableBody');
+      var empty = document.getElementById('msaTableEmpty');
+      if (!body || !empty) return;
+
+      if (!geoPayload || !geoPayload.msas || !geoPayload.msas.length) {
+        body.innerHTML = '';
+        empty.hidden = false;
+        return;
+      }
+
+      empty.hidden = true;
+      var rows = geoPayload.msas.slice().sort(function(a, b) {
+        var av = a[geoMsaSort], bv = b[geoMsaSort];
+        if (av === null || av === undefined) return 1;
+        if (bv === null || bv === undefined) return -1;
+        if (bv !== av) return bv - av;
+        return a.cbsa_title.localeCompare(b.cbsa_title);
+      }).slice(0, 20);
+
+      body.innerHTML = rows.map(function(row, index) {
+        return '<tr>' +
+          '<td class="highlight">' + (index + 1) + '</td>' +
+          '<td><strong>' + row.cbsa_title + '</strong><br><span class="geo-muted">CBSA ' + row.cbsa_code + '</span></td>' +
+          '<td>' + row.cbsa_type + '</td>' +
+          '<td class="num">' + formatPct(row.avg_nim, 2) + '</td>' +
+          '<td class="num">' + formatPct(row.avg_roa, 2) + '</td>' +
+          '<td class="num">' + formatMillions(row.avg_assets_millions) + '</td>' +
+          '<td class="num">' + formatCount(row.n_banks) + '</td>' +
+          '<td class="num">' + formatShare(row.matched_dep_share) + '</td>' +
+          '</tr>';
+      }).join('');
+    }
+
+    function renderGeographySummary() {
+      if (!geoPayload || !geoPayload.metadata) return;
+      var metadata = geoPayload.metadata;
+      var mappedShare = metadata.mapped_row_share === undefined ? null : metadata.mapped_row_share;
+      document.getElementById('geoStatesCount').textContent = formatCount(metadata.state_count).replace('&mdash;', '0');
+      document.getElementById('geoMsasCount').textContent = formatCount(metadata.msa_count).replace('&mdash;', '0');
+      document.getElementById('geoMatchedBanks').textContent = formatCount(metadata.matched_panel_bank_count).replace('&mdash;', '0');
+      document.getElementById('geoMappedShare').textContent = formatShare(mappedShare).replace('&mdash;', '0%');
+      document.getElementById('msaCoverageNote').textContent =
+        'CBSAs use branch deposits from annual SOD carried forward by SOD year. Current export covers ' +
+        formatCount(metadata.matched_panel_bank_count).replace('&mdash;', '0') + ' banks and maps ' +
+        formatShare(mappedShare).replace('&mdash;', '0%') + ' of SOD rows through the ' + metadata.crosswalk_vintage + ' Census delineation file.';
+    }
+
+    function renderGeography(payload) {
+      geoPayload = payload;
+      renderGeographySummary();
+      renderStateTiles();
+      renderMsaTable();
+    }
+
+    function loadGeography() {
+      fetch('data/geography.json')
+        .then(function(r) {
+          if (!r.ok) throw new Error('geography fetch failed');
+          return r.json();
+        })
+        .then(function(payload) { renderGeography(payload); })
+        .catch(function() {
+          geoPayload = null;
+          renderStateTiles();
+          renderMsaTable();
+        });
+    }
 
     function buildCharts() {
       charts.forEach(function(c){ c.destroy(); });
@@ -218,7 +458,25 @@
               '</tr>';
           }).join('');
         });
+
+      loadGeography();
     }
+
+    document.getElementById('geoMetricToggles').addEventListener('click', function(evt) {
+      var target = evt.target.closest('[data-metric]');
+      if (!target) return;
+      geoStateMetric = target.getAttribute('data-metric');
+      setToggleState('geoMetricToggles', geoStateMetric, 'metric');
+      renderStateTiles();
+    });
+
+    document.getElementById('msaSortToggles').addEventListener('click', function(evt) {
+      var target = evt.target.closest('[data-sort]');
+      if (!target) return;
+      geoMsaSort = target.getAttribute('data-sort');
+      setToggleState('msaSortToggles', geoMsaSort, 'sort');
+      renderMsaTable();
+    });
 
     buildCharts();
     window.rcRebuildCharts = function(){ rcChartDefaults(); buildCharts(); };

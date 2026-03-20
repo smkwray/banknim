@@ -1,19 +1,19 @@
 project:
-  name: NimScale
-  sample_start: "2010-03-31"
-  sample_end: "2025-12-31"
-  min_bank_quarters: 8
+  name: "NimScale Smoke"
+  sample_start: "2019-03-31"
+  sample_end: "2021-12-31"
+  min_bank_quarters: 4
   winsor_pct: 0.01
 
 paths:
-  raw: "data/raw"
-  external: "data/external"
-  interim: "data/interim"
-  final: "data/final"
-  figures: "output/figures"
-  tables: "output/tables"
-  logs: "output/logs"
-  frontend: "output/frontend"
+  raw: ".smoke/data/raw"
+  external: ".smoke/data/external"
+  interim: ".smoke/data/interim"
+  final: ".smoke/data/final"
+  figures: ".smoke/output/figures"
+  tables: ".smoke/output/tables"
+  logs: ".smoke/output/logs"
+  frontend: ".smoke/output/frontend"
 
 fdic:
   base_url: "https://api.fdic.gov/banks"

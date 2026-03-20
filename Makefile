@@ -1,11 +1,13 @@
-PYTHON ?= python
+PYTHON ?= python3
+SMOKE_CONFIG ?= config/project.smoke.yaml
+PYTEST_ADDOPTS ?= -o cache_dir=/tmp/banknim-pytest-cache
 
 .PHONY: setup metadata download panel core sod history robustness \
-	extensions tier1 tier2 tier3 frontend test all
+	extensions tier1 tier2 tier3 frontend smoke-fixture smoke test all
 
 setup:
 	$(PYTHON) -m pip install -r requirements.txt
-	$(PYTHON) -m pip install -e .
+	$(PYTHON) -m pip install -e .[test]
 
 metadata:
 	$(PYTHON) scripts/00_fetch_metadata.py
@@ -51,7 +53,18 @@ frontend:
 	$(PYTHON) scripts/15_export_frontend_data.py
 	cp output/frontend/*.json docs/data/
 
+smoke-fixture:
+	$(PYTHON) scripts/98_prepare_smoke_fixture.py --config $(SMOKE_CONFIG)
+
+smoke: smoke-fixture
+	$(PYTHON) scripts/06_build_core_panel.py --config $(SMOKE_CONFIG)
+	$(PYTHON) scripts/08_run_baseline_regressions.py --config $(SMOKE_CONFIG)
+	$(PYTHON) scripts/11_run_rate_cycle.py --config $(SMOKE_CONFIG)
+	$(PYTHON) scripts/13_run_robustness.py --config $(SMOKE_CONFIG)
+	$(PYTHON) scripts/14_run_extensions.py --config $(SMOKE_CONFIG)
+	$(PYTHON) scripts/15_export_frontend_data.py --config $(SMOKE_CONFIG)
+
 test:
-	$(PYTHON) -m pytest -q
+	PYTEST_ADDOPTS='$(PYTEST_ADDOPTS)' $(PYTHON) -m pytest -q
 
 all: metadata download panel core history robustness extensions tier1 tier2 tier3 frontend

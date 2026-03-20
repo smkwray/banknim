@@ -18,6 +18,7 @@ from nimscale.bank_panel import map_sod_year_to_quarter, winsorize_series
 from nimscale.io import ensure_dir
 from nimscale.regression import fit_panel_fe, tidy_linearmodels
 from nimscale.settings import load_config, project_root
+from nimscale.validation import assert_nonempty_sample, require_columns, winsorize_required
 
 
 def prep_panel(cfg: dict) -> pd.DataFrame:
@@ -26,9 +27,10 @@ def prep_panel(cfg: dict) -> pd.DataFrame:
     df["CERT"] = df["CERT"].astype(str)
     df["REPDTE"] = pd.to_datetime(df["REPDTE"])
     wp = cfg["project"]["winsor_pct"]
-    df["NIM_W"] = winsorize_series(df["NIM"], p=wp)
-    df["EQ_RATIO_W"] = winsorize_series(df["EQ_RATIO"], p=wp) if "EQ_RATIO" in df.columns else 0.0
-    df["LOANS_SHARE_W"] = winsorize_series(df["LOANS_SHARE"], p=wp) if "LOANS_SHARE" in df.columns else 0.0
+    require_columns(df, ["NIM", "LN_ASSETS", "EQ_RATIO", "LOANS_SHARE"], "extension prep")
+    df["NIM_W"] = winsorize_required(df, "NIM", p=wp, context="extension prep")
+    df["EQ_RATIO_W"] = winsorize_required(df, "EQ_RATIO", p=wp, context="extension prep")
+    df["LOANS_SHARE_W"] = winsorize_required(df, "LOANS_SHARE", p=wp, context="extension prep")
     return df
 
 
@@ -70,29 +72,38 @@ def run_h6_fee_offset(df: pd.DataFrame) -> list[pd.DataFrame]:
     if "ROA" in df.columns:
         df["ROA_W"] = winsorize_series(df["ROA"], p=wp)
         sub = df.dropna(subset=["ROA_W", "LN_ASSETS"]).copy()
+        assert_nonempty_sample(sub, "h6 roa sample", min_rows=1, entity_col="CERT", min_entities=2)
         formula = "ROA_W ~ 1 + LN_ASSETS + EQ_RATIO_W + LOANS_SHARE_W + EntityEffects + TimeEffects"
         res = fit_panel_fe(sub, formula=formula, entity_col="CERT", time_col="REPDTE")
         results.append(tidy_linearmodels(res, "h6_roa_fe"))
         print(f"  ROA FE: LN_ASSETS={res.params['LN_ASSETS']:.6f} (p={res.pvalues['LN_ASSETS']:.4f}), nobs={res.nobs}")
+    else:
+        print("  skipping h6_roa_fe: ROA is unavailable")
 
     # Interest expense: do large banks pay more for funding?
     if "INTEXPY" in df.columns:
         df["INTEXPY_W"] = winsorize_series(df["INTEXPY"], p=wp)
         sub = df.dropna(subset=["INTEXPY_W", "LN_ASSETS"]).copy()
+        assert_nonempty_sample(sub, "h6 interest-expense sample", min_rows=1, entity_col="CERT", min_entities=2)
         formula = "INTEXPY_W ~ 1 + LN_ASSETS + EQ_RATIO_W + LOANS_SHARE_W + EntityEffects + TimeEffects"
         res = fit_panel_fe(sub, formula=formula, entity_col="CERT", time_col="REPDTE")
         results.append(tidy_linearmodels(res, "h6_intexp_fe"))
         print(f"  INTEXP FE: LN_ASSETS={res.params['LN_ASSETS']:.6f} (p={res.pvalues['LN_ASSETS']:.4f}), nobs={res.nobs}")
+    else:
+        print("  skipping h6_intexp_fe: INTEXPY is unavailable")
 
     # Non-interest margin proxy: ROA - (INTINCY - INTEXPY) ≈ noninterest income - noninterest expense, scaled
     if all(c in df.columns for c in ["ROA", "INTINCY", "INTEXPY"]):
         df["NONINT_MARGIN"] = df["ROA"] - (df["INTINCY"] - df["INTEXPY"])
         df["NONINT_MARGIN_W"] = winsorize_series(df["NONINT_MARGIN"], p=wp)
         sub = df.dropna(subset=["NONINT_MARGIN_W", "LN_ASSETS"]).copy()
+        assert_nonempty_sample(sub, "h6 noninterest-margin sample", min_rows=1, entity_col="CERT", min_entities=2)
         formula = "NONINT_MARGIN_W ~ 1 + LN_ASSETS + EQ_RATIO_W + LOANS_SHARE_W + EntityEffects + TimeEffects"
         res = fit_panel_fe(sub, formula=formula, entity_col="CERT", time_col="REPDTE")
         results.append(tidy_linearmodels(res, "h6_nonint_margin_fe"))
         print(f"  NONINT_MARGIN FE: LN_ASSETS={res.params['LN_ASSETS']:.6f} (p={res.pvalues['LN_ASSETS']:.4f}), nobs={res.nobs}")
+    else:
+        print("  skipping h6_nonint_margin_fe: ROA/INTINCY/INTEXPY are unavailable")
 
     return results
 
@@ -171,6 +182,9 @@ def run_market_power(df: pd.DataFrame, hhi: pd.DataFrame) -> list[pd.DataFrame]:
     merged["LN_ASSETS_x_HHI"] = merged["LN_ASSETS"] * merged["LOCAL_HHI_W"]
 
     sub = merged.dropna(subset=["NIM_W", "LN_ASSETS", "LOCAL_HHI_W"]).copy()
+    if sub.empty:
+        print("  skipping market_power_hhi: no merged HHI sample after join")
+        return []
     print(f"  merged panel: {len(sub):,} obs, {sub['CERT'].nunique():,} banks")
     print(f"  LOCAL_HHI mean={sub['LOCAL_HHI_W'].mean():.4f}, median={sub['LOCAL_HHI_W'].median():.4f}")
 
@@ -200,6 +214,7 @@ def run_lagged_controls(df: pd.DataFrame) -> list[pd.DataFrame]:
     panel["EQ_RATIO_LAG1"] = panel.groupby("CERT")["EQ_RATIO_W"].shift(1)
     panel["LOANS_SHARE_LAG1"] = panel.groupby("CERT")["LOANS_SHARE_W"].shift(1)
     sub = panel.dropna(subset=["NIM_W", "LN_ASSETS", "EQ_RATIO_LAG1", "LOANS_SHARE_LAG1"]).copy()
+    assert_nonempty_sample(sub, "lagged-controls sample", min_rows=1, entity_col="CERT", min_entities=2)
     print(f"  obs with lagged controls: {len(sub):,}")
 
     results = []
@@ -232,7 +247,10 @@ def main() -> None:
 
     all_results.extend(run_lagged_controls(df))
 
+    if not all_results:
+        raise ValueError("extensions: no result blocks were produced")
     out = pd.concat(all_results, ignore_index=True)
+    assert_nonempty_sample(out, "extension result export")
     out.to_csv(table_dir / "extension_results.csv", index=False)
     print(f"\nsaved {table_dir / 'extension_results.csv'} ({len(out)} rows, {out['model'].nunique()} models)")
 
