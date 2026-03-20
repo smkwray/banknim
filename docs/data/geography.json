@@ -4,6 +4,13 @@
     "msa_method": "Branch-deposit-weighted CBSA exposure using annual SOD carried forward by SOD year",
     "crosswalk_source": "https://www2.census.gov/programs-surveys/metro-micro/geographies/reference-files/2023/delineation-files/list1_2023.xlsx",
     "crosswalk_vintage": "Jul. 2023 delineation file",
+    "default_cbsa_filter": {
+      "scope": "screened_metros",
+      "cbsa_type": "Metropolitan",
+      "min_banks": 20,
+      "min_matched_dep_share": 0.1,
+      "default_sort": "n_banks"
+    },
     "state_count": 56,
     "msa_count": 935,
     "sod_rows": 1411104,
@@ -133,7 +140,7 @@
       "n_banks": 1,
       "n_obs": 64,
       "avg_roa": 1.331449749571663,
-      "state_name": "FM"
+      "state_name": "Federated States of Micronesia"
     },
     {
       "state_code": "GA",

@@ -212,6 +212,7 @@ code { font-family: var(--font-mono); font-size: 0.875em; background: var(--colo
 .geo-toggle:hover { color: var(--color-heading); border-color: var(--color-accent); }
 .geo-toggle.active { background: rgba(83,126,197,0.12); border-color: var(--color-accent); color: var(--color-accent); }
 [data-theme="dark"] .geo-toggle.active { background: rgba(123,160,224,0.16); }
+.geo-screen-note { color: var(--color-text-secondary); font-size: 0.8rem; margin-bottom: 0; max-width: 36rem; }
 .geo-legend { display: flex; align-items: center; gap: 0.75rem; color: var(--color-text-secondary); font-size: 0.8rem; margin-bottom: 1rem; }
 .geo-legend-bar { flex: 1; min-width: 160px; height: 12px; border-radius: 999px; border: 1px solid var(--color-border); background: linear-gradient(90deg, #edf3ff 0%, var(--color-accent) 100%); }
 [data-theme="dark"] .geo-legend-bar { background: linear-gradient(90deg, #20324d 0%, var(--color-accent) 100%); }
@@ -220,6 +221,10 @@ code { font-family: var(--font-mono); font-size: 0.875em; background: var(--colo
 .geo-state-tile { appearance: none; border: 1px solid rgba(255,255,255,0.14); border-radius: 12px; color: #fff; cursor: default; display: flex; flex-direction: column; justify-content: space-between; padding: 0.5rem; box-shadow: var(--shadow-sm); text-align: left; }
 .geo-state-code { font-size: 0.75rem; font-weight: 800; letter-spacing: 0.03em; }
 .geo-state-value { font-size: 0.72rem; font-family: var(--font-mono); opacity: 0.95; }
+.geo-territory-wrap { margin-top: 0.9rem; }
+.geo-territory-label { color: var(--color-text-secondary); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.55rem; }
+.geo-territory-strip { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.geo-territory-tile { min-width: 88px; }
 .geo-muted { color: var(--color-text-light); font-size: 0.78rem; }
 .geo-empty { background: var(--color-bg-alt); border: 1px dashed var(--color-border); border-radius: var(--radius); color: var(--color-text-secondary); font-size: 0.9rem; margin-top: 0.75rem; padding: 1rem; }
 

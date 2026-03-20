@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light dark">
   <title>banknim &mdash; Data &amp; Distributions</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <script src="js/theme.js"></script>
   <link rel="stylesheet" href="css/style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
@@ -70,6 +71,21 @@
       </table></div>
     </section>
 
+    <!-- Sample construction -->
+    <section class="section" id="sample-construction">
+      <div class="section-header"><h2>Sample Construction</h2><span class="section-tag">QC</span></div>
+      <div class="card">
+        <p>The published sample flow keeps the review path explicit: raw FDIC financial rows, parsed required fields, deduplicated bank-quarter keys, and the final panel used for exports.</p>
+        <div class="table-wrap"><table class="data-table" id="sampleSelectionTable">
+          <thead><tr>
+            <th>Stage</th><th class="num">Rows</th><th class="num">Banks</th><th>Quarter Span</th>
+          </tr></thead>
+          <tbody id="sampleSelectionBody"></tbody>
+        </table></div>
+        <p class="chart-note">Duplicate bank-quarter keys are audited in <code>duplicate_keys.csv</code>; column-level coverage is reported separately in <code>missingness_report.csv</code>.</p>
+      </div>
+    </section>
+
     <!-- Geography -->
     <section class="section" id="geography">
       <div class="section-header"><h2>Geography</h2><span class="section-tag">Descriptive</span></div>
@@ -105,6 +121,10 @@
           <div class="geo-map-wrap">
             <div class="geo-state-grid" id="stateTileGrid"></div>
           </div>
+          <div class="geo-territory-wrap" id="territoryTileWrap" hidden>
+            <div class="geo-territory-label">Territories / Other</div>
+            <div class="geo-territory-strip" id="territoryTileStrip"></div>
+          </div>
           <div class="geo-empty" id="stateTileEmpty" hidden>Geography export not available yet.</div>
         </div>
 
@@ -112,13 +132,21 @@
           <div class="geo-controls">
             <div>
               <h3 style="margin-top:0;">CBSA Ranking</h3>
-              <p class="chart-subtitle" id="msaCoverageNote">Top-ranked CBSAs from the branch-deposit-weighted exposure view.</p>
+              <p class="chart-subtitle" id="msaCoverageNote">Reviewer-facing CBSA view from the branch-deposit-weighted exposure export.</p>
+              <p class="geo-screen-note" id="msaScreenNote">Default screen suppresses thin-coverage and small-sample outliers before ranking.</p>
             </div>
+            <div class="geo-toggle-group" id="msaScopeToggles">
+              <button class="geo-toggle active" type="button" data-scope="screened_metros">Screened metros</button>
+              <button class="geo-toggle" type="button" data-scope="all_metros">All metros</button>
+              <button class="geo-toggle" type="button" data-scope="all_cbsas">All CBSAs</button>
+            </div>
+          </div>
+          <div class="geo-controls">
             <div class="geo-toggle-group" id="msaSortToggles">
-              <button class="geo-toggle active" type="button" data-sort="avg_nim">Avg NIM</button>
+              <button class="geo-toggle active" type="button" data-sort="n_banks">Bank Count</button>
+              <button class="geo-toggle" type="button" data-sort="avg_nim">Avg NIM</button>
               <button class="geo-toggle" type="button" data-sort="avg_roa">Avg ROA</button>
               <button class="geo-toggle" type="button" data-sort="avg_assets_millions">Avg Assets</button>
-              <button class="geo-toggle" type="button" data-sort="n_banks">Bank Count</button>
             </div>
           </div>
 
@@ -178,7 +206,8 @@
     rcChartDefaults();
     var charts = [];
     var geoStateMetric = 'avg_nim';
-    var geoMsaSort = 'avg_nim';
+    var geoMsaSort = 'n_banks';
+    var geoMsaScope = 'screened_metros';
     var geoPayload = null;
     var STATE_TILE_LAYOUT = {
       WA: [1, 1], MT: [4, 1], ND: [6, 1], MN: [8, 1], WI: [10, 1], MI: [12, 1], VT: [14, 1], NH: [15, 1], ME: [16, 1],
@@ -215,6 +244,11 @@
       return (Number(value) * 100).toFixed(1) + '%';
     }
 
+    function formatQuarterSpan(start, end) {
+      if (!start || !end) return '&mdash;';
+      return start + ' to ' + end;
+    }
+
     function setToggleState(containerId, activeValue, attrName) {
       var buttons = document.querySelectorAll('#' + containerId + ' [data-' + attrName + ']');
       buttons.forEach(function(btn) {
@@ -237,16 +271,21 @@
       var grid = document.getElementById('stateTileGrid');
       var empty = document.getElementById('stateTileEmpty');
       var subtitle = document.getElementById('geoStateSubtitle');
-      if (!grid || !empty || !subtitle) return;
+      var territoryWrap = document.getElementById('territoryTileWrap');
+      var territoryStrip = document.getElementById('territoryTileStrip');
+      if (!grid || !empty || !subtitle || !territoryWrap || !territoryStrip) return;
 
       if (!geoPayload || !geoPayload.states || !geoPayload.states.length) {
         grid.innerHTML = '';
+        territoryStrip.innerHTML = '';
+        territoryWrap.hidden = true;
         empty.hidden = false;
         return;
       }
 
       empty.hidden = true;
       grid.innerHTML = '';
+      territoryStrip.innerHTML = '';
       var C = rcColors();
       var metric = GEO_METRICS[geoStateMetric];
       var rows = geoPayload.states.slice().sort(function(a, b) { return a.state_code.localeCompare(b.state_code); });
@@ -259,28 +298,49 @@
       subtitle.textContent = 'State tiles are colored by ' + metric.label + '. Hover or focus a tile for details.';
       rows.forEach(function(row) {
         var tile = document.createElement('button');
-        var pos = STATE_TILE_LAYOUT[row.state_code] || [18, 6];
+        var pos = STATE_TILE_LAYOUT[row.state_code];
         var rawValue = Number(row[geoStateMetric]);
         var ratio = maxValue === minValue ? 0.5 : (rawValue - minValue) / (maxValue - minValue);
         var hasValue = !isNaN(rawValue);
         tile.className = 'geo-state-tile';
         tile.type = 'button';
-        tile.style.gridColumn = pos[0];
-        tile.style.gridRow = pos[1];
         tile.style.background = hasValue ? mixHex(lowColor, highColor, Math.max(0.08, ratio)) : C.muted;
         tile.innerHTML = '<span class="geo-state-code">' + row.state_code + '</span>' +
           '<span class="geo-state-value">' + metric.formatter(rawValue) + '</span>';
         tile.title = row.state_name + ': ' + metric.formatter(rawValue).replace(/&mdash;/g, 'n/a') +
           ' | Banks: ' + formatCount(row.n_banks) +
           ' | Obs: ' + formatCount(row.n_obs);
-        grid.appendChild(tile);
+        if (pos) {
+          tile.style.gridColumn = pos[0];
+          tile.style.gridRow = pos[1];
+          grid.appendChild(tile);
+        } else {
+          tile.classList.add('geo-territory-tile');
+          territoryStrip.appendChild(tile);
+        }
+      });
+      territoryWrap.hidden = territoryStrip.children.length === 0;
+    }
+
+    function filterMsas(rows, metadata) {
+      var filter = metadata && metadata.default_cbsa_filter ? metadata.default_cbsa_filter : {
+        cbsa_type: 'Metropolitan',
+        min_banks: 20,
+        min_matched_dep_share: 0.10
+      };
+      if (geoMsaScope === 'all_cbsas') return rows.slice();
+      var metros = rows.filter(function(row) { return row.cbsa_type === filter.cbsa_type; });
+      if (geoMsaScope === 'all_metros') return metros;
+      return metros.filter(function(row) {
+        return row.n_banks >= filter.min_banks && row.matched_dep_share >= filter.min_matched_dep_share;
       });
     }
 
     function renderMsaTable() {
       var body = document.getElementById('msaTableBody');
       var empty = document.getElementById('msaTableEmpty');
-      if (!body || !empty) return;
+      var note = document.getElementById('msaScreenNote');
+      if (!body || !empty || !note) return;
 
       if (!geoPayload || !geoPayload.msas || !geoPayload.msas.length) {
         body.innerHTML = '';
@@ -289,13 +349,19 @@
       }
 
       empty.hidden = true;
-      var rows = geoPayload.msas.slice().sort(function(a, b) {
+      var metadata = geoPayload.metadata || {};
+      var filter = metadata.default_cbsa_filter || {};
+      var filtered = filterMsas(geoPayload.msas, metadata);
+      var rows = filtered.sort(function(a, b) {
         var av = a[geoMsaSort], bv = b[geoMsaSort];
         if (av === null || av === undefined) return 1;
         if (bv === null || bv === undefined) return -1;
         if (bv !== av) return bv - av;
         return a.cbsa_title.localeCompare(b.cbsa_title);
       }).slice(0, 20);
+      note.textContent = geoMsaScope === 'screened_metros'
+        ? 'Default screen keeps ' + filter.cbsa_type.toLowerCase() + ' areas with at least ' + filter.min_banks + ' matched banks and ' + formatShare(filter.min_matched_dep_share).replace('&mdash;', '0%') + ' matched deposit share.'
+        : 'Broader scopes are available for exploration, but the default screened view is the reviewer-facing baseline.';
 
       body.innerHTML = rows.map(function(row, index) {
         return '<tr>' +
@@ -320,13 +386,19 @@
       document.getElementById('geoMatchedBanks').textContent = formatCount(metadata.matched_panel_bank_count).replace('&mdash;', '0');
       document.getElementById('geoMappedShare').textContent = formatShare(mappedShare).replace('&mdash;', '0%');
       document.getElementById('msaCoverageNote').textContent =
-        'CBSAs use branch deposits from annual SOD carried forward by SOD year. Current export covers ' +
+        'CBSA rows use branch deposits from annual SOD carried forward by SOD year. Current export covers ' +
         formatCount(metadata.matched_panel_bank_count).replace('&mdash;', '0') + ' banks and maps ' +
-        formatShare(mappedShare).replace('&mdash;', '0%') + ' of SOD rows through the ' + metadata.crosswalk_vintage + ' Census delineation file.';
+        formatShare(mappedShare).replace('&mdash;', '0%') + ' of SOD rows through the ' + metadata.crosswalk_vintage + '.';
     }
 
     function renderGeography(payload) {
       geoPayload = payload;
+      if (payload.metadata && payload.metadata.default_cbsa_filter) {
+        geoMsaScope = payload.metadata.default_cbsa_filter.scope || 'screened_metros';
+        geoMsaSort = payload.metadata.default_cbsa_filter.default_sort || 'n_banks';
+      }
+      setToggleState('msaScopeToggles', geoMsaScope, 'scope');
+      setToggleState('msaSortToggles', geoMsaSort, 'sort');
       renderGeographySummary();
       renderStateTiles();
       renderMsaTable();
@@ -343,6 +415,32 @@
           geoPayload = null;
           renderStateTiles();
           renderMsaTable();
+        });
+    }
+
+    function loadSampleSelection() {
+      fetch('data/sample_selection.json')
+        .then(function(r) {
+          if (!r.ok) throw new Error('sample selection fetch failed');
+          return r.json();
+        })
+        .then(function(payload) {
+          var rows = payload.rows || [];
+          var body = document.getElementById('sampleSelectionBody');
+          if (!body) return;
+          body.innerHTML = rows.map(function(row) {
+            return '<tr>' +
+              '<td class="highlight">' + row.label + '</td>' +
+              '<td class="num">' + formatCount(row.rows) + '</td>' +
+              '<td class="num">' + formatCount(row.banks) + '</td>' +
+              '<td>' + formatQuarterSpan(row.quarter_start, row.quarter_end) + '</td>' +
+              '</tr>';
+          }).join('');
+        })
+        .catch(function() {
+          var body = document.getElementById('sampleSelectionBody');
+          if (!body) return;
+          body.innerHTML = '<tr><td colspan="4">Sample-selection export not available.</td></tr>';
         });
     }
 
@@ -459,6 +557,7 @@
           }).join('');
         });
 
+      loadSampleSelection();
       loadGeography();
     }
 
@@ -475,6 +574,14 @@
       if (!target) return;
       geoMsaSort = target.getAttribute('data-sort');
       setToggleState('msaSortToggles', geoMsaSort, 'sort');
+      renderMsaTable();
+    });
+
+    document.getElementById('msaScopeToggles').addEventListener('click', function(evt) {
+      var target = evt.target.closest('[data-scope]');
+      if (!target) return;
+      geoMsaScope = target.getAttribute('data-scope');
+      setToggleState('msaScopeToggles', geoMsaScope, 'scope');
       renderMsaTable();
     });
 

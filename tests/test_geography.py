@@ -195,6 +195,13 @@ def test_build_geography_payload_returns_non_empty_state_and_msa_summaries(tmp_p
     assert metadata["matched_panel_bank_count"] == 2
     assert metadata["mapped_sod_rows"] == 4
     assert metadata["mapped_row_share"] == 1.0
+    assert metadata["default_cbsa_filter"] == {
+        "scope": "screened_metros",
+        "cbsa_type": "Metropolitan",
+        "min_banks": 20,
+        "min_matched_dep_share": 0.10,
+        "default_sort": "n_banks",
+    }
 
     state_row = payload["states"][0]
     assert {

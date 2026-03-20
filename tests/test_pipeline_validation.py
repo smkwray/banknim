@@ -95,10 +95,20 @@ def test_core_panel_duplicate_audit_is_written_before_dedup(tmp_path, monkeypatc
 
     dupes = pd.read_csv(tmp_path / "output" / "tables" / "duplicate_keys.csv")
     summary = pd.read_csv(tmp_path / "output" / "tables" / "core_sample_summary.csv")
+    sample_selection = pd.read_csv(tmp_path / "output" / "tables" / "sample_selection.csv")
 
     assert len(dupes) == 2
     assert int(summary.loc[summary["metric"] == "duplicate_row_count", "value"].iloc[0]) == 2
     assert int(summary.loc[summary["metric"] == "duplicate_key_count", "value"].iloc[0]) == 1
+    assert int(summary.loc[summary["metric"] == "rows_loaded_raw", "value"].iloc[0]) == 3
+    assert int(summary.loc[summary["metric"] == "rows_with_required_fields", "value"].iloc[0]) == 3
+    assert sample_selection["stage_key"].tolist() == [
+        "raw_financial_rows",
+        "required_fields_parsed",
+        "after_dedup",
+        "final_panel_rows",
+        "final_panel_coverage",
+    ]
 
 
 def test_baseline_models_raise_when_required_controls_are_missing(tmp_path, monkeypatch):

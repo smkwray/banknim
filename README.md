@@ -115,6 +115,19 @@ All data are from official government agencies. No proprietary, scraped, or payw
 
 ---
 
+## Data QC / sample construction
+
+The review-facing sample flow is explicit rather than implicit:
+
+- Raw FDIC financial rows loaded: 373,220
+- Rows with required bank/date/assets parsed successfully: 373,220
+- Rows after bank-quarter deduplication: 373,220
+- Final core panel rows: 373,220 across 8,032 banks from 2010-03-31 through 2025-12-31
+
+The current public build records zero duplicate bank-quarter keys in `duplicate_keys.csv`. Column-level missingness is exported separately in `missingness_report.csv`, and the site publishes the same staged flow as `sample_selection.json`.
+
+---
+
 ## Model inventory
 
 | Model | Description | Key variable | N |

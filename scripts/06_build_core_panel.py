@@ -47,11 +47,13 @@ def main() -> None:
         frames.append(df)
 
     df = pd.concat(frames, ignore_index=True)
+    raw_rows_loaded = len(df)
     df = coerce_numeric(df, exclude=["NAME", "CITY", "STALP", "REGAGNT", "BKCLASS"])
 
     cols = infer_main_columns(df, cfg)
     df[cols["date"]] = parse_fdic_quarter_date(df[cols["date"]])
     required_cols = [cols["bank_id"], cols["date"], cols["assets"]]
+    parsed_rows = int(df.dropna(subset=required_cols).shape[0])
     missing_required = {
         col: int(df[col].isna().sum())
         for col in required_cols
@@ -92,8 +94,61 @@ def main() -> None:
     out_path = interim_dir / "bank_panel.parquet"
     panel.to_parquet(out_path, index=False)
 
+    sample_selection = pd.DataFrame(
+        [
+            {
+                "stage_order": 1,
+                "stage_key": "raw_financial_rows",
+                "label": "Raw FDIC financial rows loaded",
+                "rows": raw_rows_loaded,
+                "banks": int(df[cols["bank_id"]].nunique()),
+                "quarter_start": None,
+                "quarter_end": None,
+            },
+            {
+                "stage_order": 2,
+                "stage_key": "required_fields_parsed",
+                "label": "Rows with bank/date/assets parsed successfully",
+                "rows": parsed_rows,
+                "banks": int(df.loc[df[required_cols].notna().all(axis=1), cols["bank_id"]].nunique()),
+                "quarter_start": str(df[cols["date"]].min().date()),
+                "quarter_end": str(df[cols["date"]].max().date()),
+            },
+            {
+                "stage_order": 3,
+                "stage_key": "after_dedup",
+                "label": "Rows after bank-quarter deduplication",
+                "rows": after,
+                "banks": int(df[cols["bank_id"]].nunique()),
+                "quarter_start": str(df[cols["date"]].min().date()),
+                "quarter_end": str(df[cols["date"]].max().date()),
+            },
+            {
+                "stage_order": 4,
+                "stage_key": "final_panel_rows",
+                "label": "Final core panel rows",
+                "rows": int(len(panel)),
+                "banks": int(panel[cols["bank_id"]].nunique()),
+                "quarter_start": str(panel[cols["date"]].min().date()),
+                "quarter_end": str(panel[cols["date"]].max().date()),
+            },
+            {
+                "stage_order": 5,
+                "stage_key": "final_panel_coverage",
+                "label": "Final unique banks and quarter span",
+                "rows": int(len(panel)),
+                "banks": int(panel[cols["bank_id"]].nunique()),
+                "quarter_start": str(panel[cols["date"]].min().date()),
+                "quarter_end": str(panel[cols["date"]].max().date()),
+            },
+        ]
+    )
+    sample_selection.to_csv(table_dir / "sample_selection.csv", index=False)
+
     summary = pd.DataFrame(
         [
+            {"metric": "rows_loaded_raw", "value": raw_rows_loaded},
+            {"metric": "rows_with_required_fields", "value": parsed_rows},
             {"metric": "rows_before_dedup", "value": before},
             {"metric": "rows_after_dedup", "value": after},
             {"metric": "duplicate_row_count", "value": len(dupes)},

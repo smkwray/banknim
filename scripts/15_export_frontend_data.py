@@ -337,6 +337,29 @@ def export_cross_section(panel: pd.DataFrame, out_dir: Path) -> None:
 
 # ── 8. Panel metadata ────────────────────────────────────────────────────────
 
+def export_sample_selection(table_dir: Path, out_dir: Path) -> None:
+    path = table_dir / "sample_selection.csv"
+    if not path.exists():
+        return
+    df = pd.read_csv(path)
+    rows = []
+    for _, row in df.sort_values("stage_order").iterrows():
+        rows.append(
+            {
+                "stage_order": int(row["stage_order"]),
+                "stage_key": row["stage_key"],
+                "label": row["label"],
+                "rows": int(row["rows"]),
+                "banks": int(row["banks"]) if pd.notna(row["banks"]) else None,
+                "quarter_start": row["quarter_start"] if pd.notna(row["quarter_start"]) else None,
+                "quarter_end": row["quarter_end"] if pd.notna(row["quarter_end"]) else None,
+            }
+        )
+    write_json({"rows": rows}, out_dir / "sample_selection.json")
+
+
+# ── 9. Panel metadata ────────────────────────────────────────────────────────
+
 def export_metadata(panel: pd.DataFrame, cfg: dict, table_dir: Path, out_dir: Path) -> None:
     meta = {
         "project": cfg["project"]["name"],
@@ -363,7 +386,7 @@ def export_metadata(panel: pd.DataFrame, cfg: dict, table_dir: Path, out_dir: Pa
     write_json(meta, out_dir / "metadata.json")
 
 
-# ── 9. Robustness comparison ─────────────────────────────────────────────────
+# ── 10. Robustness comparison ────────────────────────────────────────────────
 
 def export_robustness_comparison(table_dir: Path, out_dir: Path) -> None:
     """Extract the key size coefficient from each model for a forest-plot style comparison."""
@@ -400,7 +423,7 @@ def export_robustness_comparison(table_dir: Path, out_dir: Path) -> None:
     write_json(specs, out_dir / "robustness_forest.json")
 
 
-# ── 10. Rolling coefficient path ─────────────────────────────────────────────
+# ── 11. Rolling coefficient path ─────────────────────────────────────────────
 
 def export_rolling_coefficients(table_dir: Path, out_dir: Path) -> None:
     path = table_dir / "rolling_coefficients_results.csv"
@@ -440,7 +463,7 @@ def export_rolling_coefficients(table_dir: Path, out_dir: Path) -> None:
     )
 
 
-# ── 11. Geography summaries ──────────────────────────────────────────────────
+# ── 12. Geography summaries ──────────────────────────────────────────────────
 
 def export_geography(panel: pd.DataFrame, cfg: dict, out_dir: Path) -> None:
     payload = build_geography_payload(panel, cfg, project_root())
@@ -471,6 +494,7 @@ def main() -> None:
     export_threshold_crossing(table_dir, out_dir)
     export_distributions(panel, out_dir)
     export_cross_section(panel, out_dir)
+    export_sample_selection(table_dir, out_dir)
     export_geography(panel, cfg, out_dir)
     export_metadata(panel, cfg, table_dir, out_dir)
     export_robustness_comparison(table_dir, out_dir)

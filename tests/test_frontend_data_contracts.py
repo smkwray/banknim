@@ -4,6 +4,7 @@ import importlib.util
 import json
 import os
 from pathlib import Path
+import re
 
 import pandas as pd
 import pytest
@@ -122,6 +123,10 @@ def test_metadata_and_chart_exports_cover_expected_public_artifacts():
     geography = load_json("geography.json")
     assert {"metadata", "states", "msas"} == set(geography)
 
+    sample_selection = load_json("sample_selection.json")
+    assert "rows" in sample_selection
+    assert len(sample_selection["rows"]) >= 5
+
 
 def test_geography_json_has_expected_schema_and_coverage():
     geography = load_json("geography.json")
@@ -136,6 +141,13 @@ def test_geography_json_has_expected_schema_and_coverage():
     assert metadata["msa_count"] >= 500
     assert 0.75 <= metadata["mapped_row_share"] <= 1.0
     assert metadata["matched_panel_bank_count"] > 0
+    assert metadata["default_cbsa_filter"] == {
+        "scope": "screened_metros",
+        "cbsa_type": "Metropolitan",
+        "min_banks": 20,
+        "min_matched_dep_share": 0.10,
+        "default_sort": "n_banks",
+    }
 
     state_required = {
         "state_code",
@@ -174,6 +186,27 @@ def test_geography_json_has_expected_schema_and_coverage():
         assert row["n_obs"] > 0
         assert row["n_counties"] > 0
         assert 0 <= row["matched_dep_share"] <= 1
+
+
+def test_sample_selection_json_has_ordered_stage_flow():
+    payload = load_json("sample_selection.json")
+    rows = payload["rows"]
+
+    assert [row["stage_order"] for row in rows] == sorted(row["stage_order"] for row in rows)
+    assert [row["stage_key"] for row in rows] == [
+        "raw_financial_rows",
+        "required_fields_parsed",
+        "after_dedup",
+        "final_panel_rows",
+        "final_panel_coverage",
+    ]
+
+    first = rows[0]
+    last = rows[-1]
+    assert first["rows"] >= last["rows"]
+    assert last["banks"] >= 8000
+    assert last["quarter_start"] == "2010-03-31"
+    assert last["quarter_end"] == "2025-12-31"
 
 
 def test_headline_export_logic_is_table_driven(tmp_path):
@@ -230,6 +263,23 @@ def test_data_page_includes_geography_section_and_hooks():
     html = DATA_PAGE.read_text(encoding="utf-8")
     assert 'id="geography"' in html
     assert "fetch('data/geography.json')" in html
+    assert "fetch('data/sample_selection.json')" in html
+    assert 'id="sample-construction"' in html
+    assert 'id="sampleSelectionBody"' in html
     assert 'id="stateTileGrid"' in html
+    assert 'id="territoryTileStrip"' in html
     assert 'id="msaTableBody"' in html
     assert 'id="geoMetricToggles"' in html
+    assert 'id="msaScopeToggles"' in html
+
+
+def test_state_layout_covers_exported_codes_or_territory_bucket():
+    html = DATA_PAGE.read_text(encoding="utf-8")
+    codes = set(re.findall(r"\b([A-Z]{2}): \[", html))
+    assert "FM" not in codes
+    assert 'id="territoryTileStrip"' in html
+
+    geography = load_json("geography.json")
+    exported = {row["state_code"] for row in geography["states"]}
+    uncovered = exported - codes
+    assert uncovered == {"FM"}
