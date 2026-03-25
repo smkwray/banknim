@@ -48,16 +48,26 @@
       <a href="#summary-stats">Summary Stats</a>
     </nav>
 
-    <!-- Baseline -->
+    <!-- Baseline: Main Estimate -->
     <section id="baseline" class="section">
-      <div class="section-header"><h2>Baseline</h2><span class="section-tag">Within &amp; Between</span></div>
-      <p>The within-bank model estimates the size penalty using bank fixed effects. The between-bank model confirms the cross-sectional relationship using bank-level means. The growth model adds asset and deposit growth dynamics.</p>
-      <div class="table-wrap"><table class="data-table" id="baselineTable">
+      <div class="section-header"><h2>Baseline</h2><span class="section-tag">Main estimate</span></div>
+      <p>The within-bank fixed-effects model estimates the size penalty on NIM, controlling for time-invariant bank characteristics.</p>
+      <div class="table-wrap"><table class="data-table" id="baselineMainTable">
         <thead><tr><th>Model</th><th>Term</th><th class="num">Coef</th><th class="num">SE</th><th class="num">p</th><th class="num">CI Low</th><th class="num">CI High</th><th class="num">N</th><th class="num">R&sup2;</th></tr></thead>
-        <tbody id="baselineBody"></tbody>
+        <tbody id="baselineMainBody"></tbody>
       </table></div>
       <div class="insight-box">
-        <p>The <strong>within-bank</strong> model shows a size penalty of <strong>&minus;0.090</strong>. The <strong>between-bank</strong> model confirms the cross-section at <strong>&minus;0.085</strong>. The <strong>growth</strong> model shows asset growth is positively associated with NIM (+0.71) but the asset&times;deposit growth interaction is strongly negative (&minus;3.64) &mdash; growth without matching deposit growth hurts margins.</p>
+        <p>The <strong>within-bank</strong> model shows a size penalty of <strong>&minus;0.090</strong> (p&lt;0.001): when a bank grows, its NIM falls. This is the core result that the robustness section tests.</p>
+      </div>
+
+      <h3>Cross-Section &amp; Growth Dynamics</h3>
+      <p>The between-bank model confirms the cross-sectional relationship using bank-level means. The growth model adds asset and deposit growth dynamics.</p>
+      <div class="table-wrap"><table class="data-table" id="baselineGrowthTable">
+        <thead><tr><th>Model</th><th>Term</th><th class="num">Coef</th><th class="num">SE</th><th class="num">p</th><th class="num">CI Low</th><th class="num">CI High</th><th class="num">N</th><th class="num">R&sup2;</th></tr></thead>
+        <tbody id="baselineGrowthBody"></tbody>
+      </table></div>
+      <div class="insight-box">
+        <p>The <strong>between-bank</strong> model confirms the cross-section at <strong>&minus;0.085</strong>. The <strong>growth</strong> model shows asset growth is positively associated with NIM (+0.71) but the asset&times;deposit growth interaction is strongly negative (&minus;3.64) &mdash; growth without matching deposit growth hurts margins.</p>
       </div>
     </section>
 
@@ -370,13 +380,16 @@
         .then(function(r){ return r.json(); })
         .then(function(data) {
           var baselineRows = data.filter(function(d){ return d.group === 'baseline'; });
+          var baselineMainRows = baselineRows.filter(function(d){ return d.model === 'within_fe_size'; });
+          var baselineGrowthRows = baselineRows.filter(function(d){ return d.model !== 'within_fe_size'; });
           var nimDecompRows = data.filter(function(d){ return d.group === 'nim_decomposition'; });
           var franchiseRows = data.filter(function(d){ return d.group === 'franchise_dilution'; });
           var rateRows = data.filter(function(d){ return d.group === 'rate_cycle'; });
           var extensionRows = data.filter(function(d){ return d.group === 'extension'; });
           var extensionDisplayRows = extensionRows.filter(function(d){ return !String(d.term).startsWith('C(QUARTER)'); });
 
-          renderCoefTable(baselineRows, 'baselineBody');
+          renderCoefTable(baselineMainRows, 'baselineMainBody');
+          renderCoefTable(baselineGrowthRows, 'baselineGrowthBody');
           renderCoefTable(nimDecompRows, 'nimDecompBody');
           renderCoefTable(franchiseRows, 'franchiseBody');
           renderCoefTable(rateRows, 'rateCycleBody');

@@ -40,7 +40,7 @@
         <div class="stat-card"><div class="stat-value" id="statObs">373,220</div><div class="stat-label">Observations</div></div>
         <div class="stat-card"><div class="stat-value" id="statQuarters">64</div><div class="stat-label">Quarters</div></div>
         <div class="stat-card"><div class="stat-value">&minus;0.09</div><div class="stat-label">Within-Bank NIM Penalty</div></div>
-        <div class="stat-card"><div class="stat-value">4 of 6</div><div class="stat-label">Robust Specs Significant</div></div>
+        <div class="stat-card"><div class="stat-value">1st Diff &amp; Lagged</div><div class="stat-label">Strongest Robustness Specs</div></div>
         <div class="stat-card"><div class="stat-value">+0.20</div><div class="stat-label">ROA Offset (Fee Income)</div></div>
       </div>
     </div>
@@ -79,6 +79,16 @@
       </div>
     </section>
 
+    <!-- Robustness Forest (inferential) -->
+    <section class="section">
+      <div class="chart-container">
+        <h3>Robustness: Size Coefficient Across Specifications <span class="badge badge-green">Inferential</span></h3>
+        <p class="chart-subtitle">Point estimates and 95&percnt; confidence intervals for the within-bank log-assets coefficient under six alternative specifications. Ordered by evidentiary strength; dashed line marks zero.</p>
+        <div class="chart-canvas-wrap" style="min-height:220px;"><canvas id="homeForestChart"></canvas></div>
+        <p class="chart-note">The first-difference and lagged-controls specifications provide the strongest reassurance. <a href="models.html#robustness">Full robustness details &rarr;</a></p>
+      </div>
+    </section>
+
     <!-- NIM Trend by Size Decile -->
     <section class="section">
       <div class="chart-container">
@@ -107,37 +117,24 @@
       </div>
     </section>
 
-    <!-- Gateway cards -->
+    <!-- Guided reading path -->
     <section class="section">
+      <div class="section-header"><h2>Reading Path</h2></div>
       <div class="gateway-grid">
         <div class="gateway-card">
-          <h3>Models &amp; Results</h3>
-          <p>
-            Nine result sections from baseline fixed-effects through rate-cycle heterogeneity,
-            acquisition event studies, threshold crossings, rolling time-varying coefficients,
-            and the extension battery. Full coefficient tables with significance stars,
-            confidence intervals, and dynamic interpretation notes.
-          </p>
-          <div class="gateway-stats">
-            <div class="gateway-stat"><div class="gs-value">9</div><div class="gs-label">Sections</div></div>
-            <div class="gateway-stat"><div class="gs-value">6</div><div class="gs-label">Robustness Specs</div></div>
-            <div class="gateway-stat"><div class="gs-value">8</div><div class="gs-label">Extensions</div></div>
-          </div>
-          <a href="models.html" class="cta-btn">Explore models &amp; results &rarr;</a>
+          <h3>1. Strongest Evidence</h3>
+          <p>Start with the within-bank baseline, then check six robustness specifications and the time-varying coefficient path. This is where the core claim is tested.</p>
+          <a href="models.html#baseline" class="cta-btn">Baseline &amp; robustness &rarr;</a>
         </div>
         <div class="gateway-card">
-          <h3>Data &amp; Distributions</h3>
-          <p>
-            Distribution plots for assets, NIM, and growth. Size-decile summary table.
-            Complete data-source documentation and reproducibility notes for the full
-            FDIC-based pipeline.
-          </p>
-          <div class="gateway-stats">
-            <div class="gateway-stat"><div class="gs-value">373k</div><div class="gs-label">Observations</div></div>
-            <div class="gateway-stat"><div class="gs-value">4</div><div class="gs-label">Data Sources</div></div>
-            <div class="gateway-stat"><div class="gs-value">10</div><div class="gs-label">Variables</div></div>
-          </div>
-          <a href="data.html" class="cta-btn">Explore data &amp; distributions &rarr;</a>
+          <h3>2. Mechanisms</h3>
+          <p>NIM decomposition, franchise dilution, rate-cycle heterogeneity, and the acquisition event study. These sections ask <em>why</em> the penalty exists and when it strengthens.</p>
+          <a href="models.html#nim-decomposition" class="cta-btn">Mechanisms &amp; dynamics &rarr;</a>
+        </div>
+        <div class="gateway-card">
+          <h3>3. Data &amp; Appendices</h3>
+          <p>Sample construction, distributions, geography, threshold crossings, extensions, and summary statistics. Supporting detail for reviewers and replicators.</p>
+          <a href="data.html" class="cta-btn">Data &amp; appendices &rarr;</a>
         </div>
       </div>
     </section>
@@ -182,6 +179,113 @@
       charts.forEach(function(c){ c.destroy(); });
       charts = [];
       var C = rcColors();
+
+      /* Robustness forest — condensed horizontal chart */
+      fetch('data/robustness_forest.json')
+        .then(function(r){ return r.json(); })
+        .then(function(specs){
+          var labels = specs.map(function(s){ return s.label; });
+          var coefs = specs.map(function(s){ return s.coef; });
+          var lows = specs.map(function(s){ return s.ci_low; });
+          var highs = specs.map(function(s){ return s.ci_high; });
+          var barColors = specs.map(function(s){
+            return s.ci_high < 0 ? C.accent : (C.muted || '#999');
+          });
+
+          /* Error-bar data for Chart.js: distance from coef to each CI bound */
+          var errMinus = coefs.map(function(v, i){ return v - lows[i]; });
+          var errPlus = coefs.map(function(v, i){ return highs[i] - v; });
+
+          var ch = new Chart(document.getElementById('homeForestChart'), {
+            type: 'bar',
+            data: {
+              labels: labels,
+              datasets: [{
+                label: 'Coefficient',
+                data: coefs,
+                backgroundColor: barColors,
+                borderRadius: 3,
+                barPercentage: 0.6,
+                categoryPercentage: 0.8
+              }]
+            },
+            plugins: [{
+              id: 'forestWhiskers',
+              afterDatasetsDraw: function(chart) {
+                var ctx = chart.ctx;
+                var meta = chart.getDatasetMeta(0);
+                ctx.save();
+                ctx.strokeStyle = C.text || '#666';
+                ctx.lineWidth = 1.5;
+                meta.data.forEach(function(bar, i) {
+                  var xScale = chart.scales.x;
+                  var lowPx = xScale.getPixelForValue(lows[i]);
+                  var highPx = xScale.getPixelForValue(highs[i]);
+                  var y = bar.y;
+                  var capH = 5;
+                  ctx.beginPath();
+                  ctx.moveTo(lowPx, y);
+                  ctx.lineTo(highPx, y);
+                  ctx.stroke();
+                  ctx.beginPath(); ctx.moveTo(lowPx, y - capH); ctx.lineTo(lowPx, y + capH); ctx.stroke();
+                  ctx.beginPath(); ctx.moveTo(highPx, y - capH); ctx.lineTo(highPx, y + capH); ctx.stroke();
+                });
+                ctx.restore();
+              }
+            }],
+            options: {
+              indexAxis: 'y',
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: { display: false },
+                tooltip: {
+                  callbacks: {
+                    label: function(ctx) {
+                      var i = ctx.dataIndex;
+                      return 'Coef: ' + coefs[i].toFixed(4) + '  [' + lows[i].toFixed(4) + ', ' + highs[i].toFixed(4) + ']';
+                    }
+                  }
+                }
+              },
+              scales: {
+                x: {
+                  title: { display: true, text: 'Log-assets coefficient' },
+                  grid: { color: C.grid },
+                  afterBuildTicks: function(axis) {
+                    /* Ensure zero is visually marked */
+                    if (axis.ticks && !axis.ticks.find(function(t){ return t.value === 0; })) {
+                      axis.ticks.push({ value: 0 });
+                      axis.ticks.sort(function(a, b){ return a.value - b.value; });
+                    }
+                  }
+                },
+                y: { grid: { display: false }, ticks: { font: { size: 12 } } }
+              }
+            }
+          });
+          /* Draw dashed zero line via annotation-free approach */
+          var origDraw = ch.draw.bind(ch);
+          ch.draw = function() {
+            origDraw();
+            var xScale = ch.scales.x;
+            var yScale = ch.scales.y;
+            if (xScale.min <= 0 && xScale.max >= 0) {
+              var zeroPx = xScale.getPixelForValue(0);
+              var ctx2 = ch.ctx;
+              ctx2.save();
+              ctx2.setLineDash([6, 4]);
+              ctx2.strokeStyle = C.negative || '#c0392b';
+              ctx2.lineWidth = 1.5;
+              ctx2.beginPath();
+              ctx2.moveTo(zeroPx, yScale.top);
+              ctx2.lineTo(zeroPx, yScale.bottom);
+              ctx2.stroke();
+              ctx2.restore();
+            }
+          };
+          charts.push(ch);
+        });
 
       /* NIM Trend by Size Decile — loaded from data */
       fetch('data/nim_trend_by_size.json')

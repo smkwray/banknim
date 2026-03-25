@@ -166,7 +166,7 @@ code { font-family: var(--font-mono); font-size: 0.875em; background: var(--colo
 .card p { color: var(--color-text-secondary); font-size: 0.95rem; }
 
 /* -- Gateway cards -- */
-.gateway-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem; margin: 2rem 0; }
+.gateway-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin: 2rem 0; }
 .gateway-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 2rem; box-shadow: var(--shadow-sm); transition: box-shadow var(--transition), transform var(--transition); display: flex; flex-direction: column; }
 .gateway-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
 .gateway-card h3 { margin-top: 0; font-size: 1.35rem; }
