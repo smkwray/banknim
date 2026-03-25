@@ -36,6 +36,21 @@
 
   <main class="content">
 
+    <!-- Sample construction -->
+    <section class="section" id="sample-construction">
+      <div class="section-header"><h2>Sample Construction</h2><span class="section-tag">QC</span></div>
+      <div class="card">
+        <p>The published sample flow keeps the review path explicit: raw FDIC financial rows, parsed required fields, deduplicated bank-quarter keys, and the final panel used for exports.</p>
+        <div class="table-wrap"><table class="data-table" id="sampleSelectionTable">
+          <thead><tr>
+            <th>Stage</th><th class="num">Rows</th><th class="num">Banks</th><th>Quarter Span</th>
+          </tr></thead>
+          <tbody id="sampleSelectionBody"></tbody>
+        </table></div>
+        <p class="chart-note">Duplicate bank-quarter keys are audited in <code>duplicate_keys.csv</code>; column-level coverage is reported separately in <code>missingness_report.csv</code>.</p>
+      </div>
+    </section>
+
     <!-- Distributions -->
     <section class="section">
       <div class="section-header"><h2>Distributions</h2></div>
@@ -69,21 +84,6 @@
         </tr></thead>
         <tbody id="decileBody"></tbody>
       </table></div>
-    </section>
-
-    <!-- Sample construction -->
-    <section class="section" id="sample-construction">
-      <div class="section-header"><h2>Sample Construction</h2><span class="section-tag">QC</span></div>
-      <div class="card">
-        <p>The published sample flow keeps the review path explicit: raw FDIC financial rows, parsed required fields, deduplicated bank-quarter keys, and the final panel used for exports.</p>
-        <div class="table-wrap"><table class="data-table" id="sampleSelectionTable">
-          <thead><tr>
-            <th>Stage</th><th class="num">Rows</th><th class="num">Banks</th><th>Quarter Span</th>
-          </tr></thead>
-          <tbody id="sampleSelectionBody"></tbody>
-        </table></div>
-        <p class="chart-note">Duplicate bank-quarter keys are audited in <code>duplicate_keys.csv</code>; column-level coverage is reported separately in <code>missingness_report.csv</code>.</p>
-      </div>
     </section>
 
     <!-- Geography -->

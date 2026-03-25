@@ -39,9 +39,9 @@
         <div class="stat-card"><div class="stat-value" id="statBanks">8,032</div><div class="stat-label">Banks</div></div>
         <div class="stat-card"><div class="stat-value" id="statObs">373,220</div><div class="stat-label">Observations</div></div>
         <div class="stat-card"><div class="stat-value" id="statQuarters">64</div><div class="stat-label">Quarters</div></div>
-        <div class="stat-card"><div class="stat-value">9</div><div class="stat-label">Result Sections</div></div>
-        <div class="stat-card"><div class="stat-value">6</div><div class="stat-label">Robustness Specs</div></div>
-        <div class="stat-card"><div class="stat-value">8</div><div class="stat-label">Extensions</div></div>
+        <div class="stat-card"><div class="stat-value">&minus;0.09</div><div class="stat-label">Within-Bank NIM Penalty</div></div>
+        <div class="stat-card"><div class="stat-value">4 of 6</div><div class="stat-label">Robust Specs Significant</div></div>
+        <div class="stat-card"><div class="stat-value">+0.20</div><div class="stat-label">ROA Offset (Fee Income)</div></div>
       </div>
     </div>
   </section>
@@ -52,26 +52,30 @@
     <section class="section">
       <div class="section-header"><h2>Key Findings</h2></div>
       <div class="finding-grid">
-        <div class="finding-card" data-headline="within_bank_size_nim">
+        <a class="finding-card" data-headline="within_bank_size_nim" href="models.html#baseline">
+          <span class="badge badge-green">Strong</span>
           <div class="fc-value negative">&minus;0.090</div>
           <div class="fc-label">Within-Bank Size&rarr;NIM</div>
           <div class="fc-source">FE panel, 372k obs</div>
-        </div>
-        <div class="finding-card" data-headline="between_bank_size_nim">
-          <div class="fc-value negative">&minus;0.085</div>
-          <div class="fc-label">Between-Bank Size&rarr;NIM</div>
-          <div class="fc-source">Bank means, 8k banks</div>
-        </div>
-        <div class="finding-card" data-headline="roa_offsets_nim">
+        </a>
+        <a class="finding-card" data-headline="lagged_size_effect" href="models.html#robustness">
+          <span class="badge badge-green">Strong</span>
+          <div class="fc-value negative">&minus;0.119</div>
+          <div class="fc-label">Lagged Controls</div>
+          <div class="fc-source">Strongest robustness spec</div>
+        </a>
+        <a class="finding-card" data-headline="roa_offsets_nim" href="models.html#extensions">
+          <span class="badge badge-blue">Supportive</span>
           <div class="fc-value positive">+0.205</div>
           <div class="fc-label">Size&rarr;ROA (H6 Offset)</div>
           <div class="fc-source">Large banks earn more overall</div>
-        </div>
-        <div class="finding-card" data-headline="rate_cycle">
+        </a>
+        <a class="finding-card" data-headline="rate_cycle" href="models.html#rate-cycle">
+          <span class="badge badge-blue">Supportive</span>
           <div class="fc-value negative">&minus;0.012</div>
           <div class="fc-label">Size&times;Rate Hike&rarr;NIM</div>
           <div class="fc-source">NIM penalty worse when rates rise</div>
-        </div>
+        </a>
       </div>
     </section>
 
@@ -97,8 +101,8 @@
     <!-- Cross-Section Binscatter -->
     <section class="section">
       <div class="chart-container">
-        <h3>Cross-Section: NIM vs. Bank Size</h3>
-        <p class="chart-subtitle">Binscatter of average NIM against average log assets (20 equal-sized bins). The downward slope visualizes the between-bank size penalty.</p>
+        <h3>Cross-Section: NIM vs. Bank Size <span class="badge badge-yellow">Descriptive</span></h3>
+        <p class="chart-subtitle">Binscatter of average NIM against average log assets (20 equal-sized bins). This is descriptive cross-sectional evidence&mdash;not the within-bank estimate. The downward slope visualizes the between-bank size penalty.</p>
         <div class="chart-canvas-wrap"><canvas id="binscatterChart"></canvas></div>
       </div>
     </section>

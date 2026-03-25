@@ -30,35 +30,23 @@
   <section class="hero hero-sm">
     <div class="hero-inner">
       <h1>Models &amp; Results</h1>
-      <p class="subtitle">Nine result sections, six robustness specifications, and eight extensions.</p>
+      <p class="subtitle">Core results, robustness evidence, time variation, mechanisms, and extensions.</p>
     </div>
   </section>
 
   <main class="content">
     <nav class="page-nav">
-      <a href="#summary-stats" class="active">Summary Stats</a>
-      <a href="#baseline">Baseline</a>
-      <a href="#nim-decomposition">NIM Decomposition</a>
-      <a href="#franchise">Franchise Dilution</a>
+      <a href="#baseline" class="active">Baseline</a>
+      <a href="#robustness">Robustness</a>
+      <a href="#time-varying">Time Variation</a>
+      <a href="#nim-decomposition">Decomposition</a>
+      <a href="#franchise">Franchise</a>
       <a href="#rate-cycle">Rate Cycle</a>
       <a href="#event-study">Event Study</a>
       <a href="#thresholds">Thresholds</a>
-      <a href="#robustness">Robustness</a>
-      <a href="#time-varying">Time Variation</a>
       <a href="#extensions">Extensions</a>
+      <a href="#summary-stats">Summary Stats</a>
     </nav>
-
-    <!-- Summary Statistics -->
-    <section id="summary-stats" class="section">
-      <div class="section-header"><h2>Summary Statistics</h2></div>
-      <div class="table-wrap"><table class="data-table" id="summaryTable">
-        <thead><tr>
-          <th>Variable</th><th class="num">N</th><th class="num">Mean</th><th class="num">Std</th>
-          <th class="num">1%</th><th class="num">25%</th><th class="num">50%</th><th class="num">75%</th><th class="num">99%</th>
-        </tr></thead>
-        <tbody id="summaryBody"></tbody>
-      </table></div>
-    </section>
 
     <!-- Baseline -->
     <section id="baseline" class="section">
@@ -70,6 +58,34 @@
       </table></div>
       <div class="insight-box">
         <p>The <strong>within-bank</strong> model shows a size penalty of <strong>&minus;0.090</strong>. The <strong>between-bank</strong> model confirms the cross-section at <strong>&minus;0.085</strong>. The <strong>growth</strong> model shows asset growth is positively associated with NIM (+0.71) but the asset&times;deposit growth interaction is strongly negative (&minus;3.64) &mdash; growth without matching deposit growth hurts margins.</p>
+      </div>
+    </section>
+
+    <!-- Robustness -->
+    <section id="robustness" class="section">
+      <div class="section-header"><h2>Robustness</h2><span class="section-tag">6 specifications</span></div>
+      <div class="chart-container">
+        <h3>Size Coefficient Across Specifications</h3>
+        <p class="chart-subtitle">Point estimates and 95% confidence intervals for the log-assets coefficient under six alternative specifications. Ordered by evidentiary strength; dashed red line marks zero.</p>
+        <div class="chart-canvas-wrap"><canvas id="forestChart"></canvas></div>
+      </div>
+      <div class="warning-box">
+        <p><strong>Raw NIM (no winsorization)</strong> shows the size effect is insignificant (&minus;0.01, p=0.87). The result depends on trimming extreme NIM outliers. The <strong>first-difference</strong> spec (&minus;0.11, p&lt;0.001), which removes bank-specific trends, and the <strong>lagged-controls</strong> spec (&minus;0.12, p&lt;0.001) are the most reassuring robustness results.</p>
+      </div>
+    </section>
+
+    <!-- Time-Varying Coefficients -->
+    <section id="time-varying" class="section">
+      <div class="section-header"><h2>Time-Varying Coefficients</h2><span class="section-tag">Rolling 20-quarter FE</span></div>
+      <p>The baseline within-bank FE specification is re-estimated in rolling 20-quarter windows to show how the size penalty evolves over time rather than assuming one constant coefficient for the full 2010&ndash;2025 sample.</p>
+      <div class="chart-container">
+        <h3>Rolling Size Penalty on NIM</h3>
+        <p class="chart-subtitle">Each point is the log-assets coefficient from the baseline FE model centered on the labeled quarter. The shaded band shows the 95% confidence interval.</p>
+        <div class="chart-canvas-wrap"><canvas id="rollingCoeffChart"></canvas></div>
+        <p class="chart-note">Window length is 20 quarters. More negative values imply a steeper within-bank size penalty.</p>
+      </div>
+      <div class="insight-box" id="rollingInsight">
+        <p>Loading rolling coefficient path.</p>
       </div>
     </section>
 
@@ -128,50 +144,25 @@
     <section id="thresholds" class="section">
       <div class="section-header"><h2>Threshold Crossing</h2><span class="section-tag">Regulatory cutoffs</span></div>
       <p>Event-study coefficients around the quarter a bank first crosses a regulatory asset threshold. Reference period is t&minus;1.</p>
-      <div class="tabs">
-        <button class="tab-btn active" onclick="showTab('tab10b',this)">$10B (n=148)</button>
-        <button class="tab-btn" onclick="showTab('tab50b',this)">$50B (n=41)</button>
-        <button class="tab-btn" onclick="showTab('tab100b',this)">$100B (n=26)</button>
-      </div>
-      <div id="tab10b" class="tab-panel active">
-        <div class="chart-container"><div class="chart-canvas-wrap"><canvas id="threshold10bChart"></canvas></div></div>
-      </div>
-      <div id="tab50b" class="tab-panel">
-        <div class="chart-container"><div class="chart-canvas-wrap"><canvas id="threshold50bChart"></canvas></div></div>
-      </div>
-      <div id="tab100b" class="tab-panel">
-        <div class="chart-container"><div class="chart-canvas-wrap"><canvas id="threshold100bChart"></canvas></div></div>
-      </div>
-      <div class="warning-box">
-        <p>148 banks crossed $10B. $50B (41 banks) and $100B (26 banks) samples are too small for reliable inference.</p>
-      </div>
-    </section>
-
-    <!-- Robustness -->
-    <section id="robustness" class="section">
-      <div class="section-header"><h2>Robustness</h2><span class="section-tag">6 specifications</span></div>
       <div class="chart-container">
-        <h3>Size Coefficient Across Specifications</h3>
-        <p class="chart-subtitle">Point estimates and 95% confidence intervals for the log-assets coefficient under six alternative specifications. Dashed red line marks zero.</p>
-        <div class="chart-canvas-wrap"><canvas id="forestChart"></canvas></div>
+        <h3>$10B Threshold (n=148)</h3>
+        <div class="chart-canvas-wrap"><canvas id="threshold10bChart"></canvas></div>
       </div>
+      <details>
+        <summary>Exploratory: $50B and $100B thresholds (small samples)</summary>
+        <div class="tabs" style="margin-top:1rem;">
+          <button class="tab-btn active" onclick="showTab('tab50b',this)">$50B (n=41)</button>
+          <button class="tab-btn" onclick="showTab('tab100b',this)">$100B (n=26)</button>
+        </div>
+        <div id="tab50b" class="tab-panel active">
+          <div class="chart-container"><div class="chart-canvas-wrap"><canvas id="threshold50bChart"></canvas></div></div>
+        </div>
+        <div id="tab100b" class="tab-panel">
+          <div class="chart-container"><div class="chart-canvas-wrap"><canvas id="threshold100bChart"></canvas></div></div>
+        </div>
+      </details>
       <div class="warning-box">
-        <p><strong>Raw NIM (no winsorization)</strong> shows the size effect is insignificant (&minus;0.01, p=0.87). The result depends on trimming extreme NIM outliers. The <strong>first-difference</strong> spec (&minus;0.11, p&lt;0.001), which removes bank-specific trends, and the <strong>lagged-controls</strong> spec (&minus;0.12, p&lt;0.001) are the most reassuring robustness results.</p>
-      </div>
-    </section>
-
-    <!-- Time-Varying Coefficients -->
-    <section id="time-varying" class="section">
-      <div class="section-header"><h2>Time-Varying Coefficients</h2><span class="section-tag">Rolling 20-quarter FE</span></div>
-      <p>The baseline within-bank FE specification is re-estimated in rolling 20-quarter windows to show how the size penalty evolves over time rather than assuming one constant coefficient for the full 2010&ndash;2025 sample.</p>
-      <div class="chart-container">
-        <h3>Rolling Size Penalty on NIM</h3>
-        <p class="chart-subtitle">Each point is the log-assets coefficient from the baseline FE model centered on the labeled quarter. The shaded band shows the 95% confidence interval.</p>
-        <div class="chart-canvas-wrap"><canvas id="rollingCoeffChart"></canvas></div>
-        <p class="chart-note">Window length is 20 quarters. More negative values imply a steeper within-bank size penalty.</p>
-      </div>
-      <div class="insight-box" id="rollingInsight">
-        <p>Loading rolling coefficient path.</p>
+        <p>148 banks crossed $10B. $50B (41 banks) and $100B (26 banks) samples are too small for reliable inference and are collapsed by default.</p>
       </div>
     </section>
 
@@ -182,14 +173,10 @@
         <thead><tr><th>Model</th><th>Term</th><th class="num">Coef</th><th class="num">SE</th><th class="num">p</th><th class="num">CI Low</th><th class="num">CI High</th><th class="num">N</th><th class="num">R&sup2;</th></tr></thead>
         <tbody id="extensionBody"></tbody>
       </table></div>
-      <div class="insight-box">
-        <p><strong>NIM Volatility:</strong> null result (p=0.19). Size doesn&rsquo;t predict NIM volatility.</p>
-      </div>
+
+      <h4>Core mechanism checks</h4>
       <div class="insight-box">
         <p><strong>H6 Fee Offset:</strong> ROA rises with size (+0.20, p&lt;0.001). Noninterest margin +0.31 (p&lt;0.001). Large banks offset lower NIM with higher fee income &mdash; a different earnings model, not a worse one.</p>
-      </div>
-      <div class="insight-box">
-        <p><strong>Market Power:</strong> null result. Local deposit HHI doesn&rsquo;t predict NIM (p=0.70).</p>
       </div>
       <div class="insight-box">
         <p><strong>Lagged Controls:</strong> strengthens baseline (&minus;0.119 vs. &minus;0.090).</p>
@@ -203,9 +190,31 @@
       <div class="insight-box" id="loanMixInsight">
         <p>Loading loan-composition extension.</p>
       </div>
+
+      <h4>Null results</h4>
+      <div class="insight-box">
+        <p><strong>NIM Volatility:</strong> null result (p=0.19). Size doesn&rsquo;t predict NIM volatility.</p>
+      </div>
+      <div class="insight-box">
+        <p><strong>Market Power:</strong> null result. Local deposit HHI doesn&rsquo;t predict NIM (p=0.70).</p>
+      </div>
+
+      <h4>Exploratory</h4>
       <div class="insight-box" id="distressInsight">
         <p>Loading distress model.</p>
       </div>
+    </section>
+
+    <!-- Summary Statistics (Appendix) -->
+    <section id="summary-stats" class="section">
+      <div class="section-header"><h2>Summary Statistics</h2><span class="section-tag">Appendix</span></div>
+      <div class="table-wrap"><table class="data-table" id="summaryTable">
+        <thead><tr>
+          <th>Variable</th><th class="num">N</th><th class="num">Mean</th><th class="num">Std</th>
+          <th class="num">1%</th><th class="num">25%</th><th class="num">50%</th><th class="num">75%</th><th class="num">99%</th>
+        </tr></thead>
+        <tbody id="summaryBody"></tbody>
+      </table></div>
     </section>
 
   </main>
